@@ -1,0 +1,35 @@
+%nav.navbar
+  .container
+    .navbar-brand
+      .navbar-item= image_tag("retromeet_long.png", class: %i[image])
+    .navbar-menu
+      .navbar-end
+        .navbar-item Profile
+        .navbar-item Settings
+        .navbar-item Sign out
+.container
+  .columns
+    .column.is-3
+      %aside.menu
+        %ul.menu-list
+          %li.my-1
+            %a Messages
+          %li.my-1
+            %a Visitors
+
+    .column.is-9
+      .card
+        .card-content
+          .media
+            .media-left
+              %figure.image.is-48x48
+                %img{src: "https://bulma.io/assets/images/placeholders/96x96.png"}
+            .media-content
+              .title.is-4 John Smith
+              .subtitle.is-6 @johnsmith
+          .content!
+            lorem ipsum dolor sit amet, consectetur adipiscing elit. phasellus nec
+            iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
+            <a href="#">#responsive</a>
+            <br />
+            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
