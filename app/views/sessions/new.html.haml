@@ -1,0 +1,18 @@
+.container.has-text-centered
+  .columns
+    .column.is-4.is-offset-4
+      %h3.title.has-text-grey= t('.sign_in')
+      %p.subtitle.has-text-grey= t('.login_to_proceed')
+      .box
+        = form_for(:sessions, url: session_path()) do |f|
+          .field
+            .control
+              = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'email@example.com', class: 'input is-large'
+          .field
+            .control
+              = f.password_field :password, autocomplete: "current-password", placeholder: 'password', class: 'input is-large'
+          .field
+            = f.label :remember_me, class: 'checkbox' do
+              = f.check_box :remember_me
+              = t(".remember_me")
+          = f.submit t(".sign_in"), class: 'button is-block is-info is-large is-fullwidth'

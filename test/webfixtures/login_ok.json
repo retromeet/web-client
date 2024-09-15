@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+authorization: eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjoxLCJhdXRoZW50aWNhdGVkX2J5IjpbInBhc3N3b3JkIl19.twCmKESFEIkjABPanrfnlU7mpVmrYsCqGIn_Z9oRJaE
+content-type: application/json
+vary: accept-encoding
+content-length: 37
+
+{"success":"You have been logged in"}

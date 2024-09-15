@@ -7,4 +7,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "profile#index"
+
+  resource :session, only: [], path: :auth do
+    get :new, path: :sign_in, as: "new"
+    post  :create, path: :sign_in
+    match :destroy, path: :sign_out, as: "destroy", via: :delete
+  end
 end
