@@ -59,3 +59,4 @@ Style/DocumentationMethod:
 Style/Documentation:
   Exclude:
     - "app/controllers/**_controller.rb"
+    - "test/**/*_test.rb"
