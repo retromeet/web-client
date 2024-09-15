@@ -55,3 +55,7 @@ Style/SymbolArray:
 Style/DocumentationMethod:
   Enabled: true
   RequireForNonPublicMethods: true
+
+Style/Documentation:
+  Exclude:
+    - "app/controllers/**_controller.rb"
