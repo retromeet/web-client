@@ -12,6 +12,21 @@
 
   <body>
     <%= render "header" %>
+    <% if flash[:error] %>
+      <div class="notification is-danger">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+    <% if flash[:success] %>
+      <div class="notification is-success">
+        <%= flash[:success] %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

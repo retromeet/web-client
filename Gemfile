@@ -62,5 +62,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 
+  gem "mocha" # adds mocking capabilities
   gem "webmock" # Used for avoiding real requests in the test enviroment
 end

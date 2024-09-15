@@ -184,6 +184,8 @@ GEM
     metrics (0.10.2)
     mini_mime (1.1.5)
     minitest (5.25.1)
+    mocha (2.4.5)
+      ruby2_keywords (>= 0.0.5)
     msgpack (1.7.2)
     net-imap (0.4.15)
       date
@@ -298,6 +300,7 @@ GEM
       rubocop (~> 1.21)
       yard
     ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     samovar (2.3.0)
       console (~> 1.0)
@@ -367,6 +370,7 @@ DEPENDENCIES
   falcon
   haml
   importmap-rails
+  mocha
   rails (~> 7.2.1)
   rubocop
   rubocop-performance
