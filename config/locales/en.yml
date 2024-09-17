@@ -32,3 +32,5 @@ en:
   sessions:
     new:
       sign_in: "Sign in"
+    bad_login: "Incorrect login. It should be the e-mail you used to sign-in."
+    bad_password: "Incorrect password."

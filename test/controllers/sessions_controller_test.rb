@@ -6,7 +6,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     password = "good_password"
     RetroMeetClient.expects(:login).returns("good-token")
     post session_url(sessions: { email:, password: })
-    assert_equal "good-token", cookies["Authentication"]
+    assert_equal "good-token", cookies["Authorization"]
     assert_redirected_to root_path
   end
   test "on create, should fail with proper message on password error" do

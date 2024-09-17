@@ -2,12 +2,44 @@
 
 # This client is designed to connect to retromeet core.
 # It can be used statictly for actions unrelated to users, but then it needs to be instantiated for other operations.
-module RetroMeetClient
+class RetroMeetClient
   RetroMeetError = Class.new(StandardError)
   UnauthorizedError = Class.new(RetroMeetError)
   BadPasswordError = Class.new(UnauthorizedError)
   BadLoginError = Class.new(UnauthorizedError)
   UnknownError = Class.new(RetroMeetError)
+
+  def initialize(authorization_header)
+    @authorization_header = authorization_header
+  end
+
+  # (renatolond, 2024-09-17) Look into a better way to call those instance methods without a .send
+
+  # @return (see .client)
+  def client = self.class.send(:client)
+
+  # @return (see .base_headers)
+  def base_headers
+    @base_headers ||= self.class.send(:base_headers).merge(authorization: @authorization_header)
+  end
+
+  def basic_profile_info
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.get("/api/profile_info", headers: base_headers)
+      case response.status
+      when 200
+        BasicProfileInfo.new()
+      when 401
+        raise UnauthorizedError, "Not logged in"
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
 
   class << self
     # Tries to login to retromeet-core and converts any http errors into Ruby exceptions
@@ -49,7 +81,7 @@ module RetroMeetClient
       end
     end
 
-    private
+    protected
 
       # Returns the retromeet-core base host to be used for requests based off the environment variables
       # @return [Async::HTTP::Endpoint]

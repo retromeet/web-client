@@ -6,4 +6,7 @@
       .navbar-end
         .navbar-item Profile
         .navbar-item Settings
-        .navbar-item Sign out
+        - if @basic_profile_info.present?
+          .navbar-item= link_to t("sign_out"), destroy_session_url, data: { "turbo-method": :delete }
+        - else
+          .navbar-item= link_to t("sign_in"), new_session_url
