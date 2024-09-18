@@ -39,6 +39,11 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
 
+  # Code formatting and hooks
+  gem "lefthook", require: false # Used to make git hooks available between dev machines
+  gem "pronto", "~> 0.11", require: false # pronto analyzes code on changed code only
+  gem "pronto-rubocop", require: false # pronto-rubocop extends pronto for rubocop
+
   gem "rubocop", require: false # A static code analyzer and formatter
   gem "rubocop-performance", require: false # A rubocop extension with performance suggestions
   gem "rubocop-rake", require: false # A rubocop extension for Rakefiles
@@ -49,12 +54,6 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
 end
 
 group :test do
