@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -9,8 +11,10 @@ Rails.application.routes.draw do
   root "profile#index"
 
   resource :session, only: [], path: :auth do
-    get :new, path: :sign_in, as: "new"
-    post  :create, path: :sign_in
+    get :new, path: :sign_in, as: :new
+    post :create, path: :sign_in
+    get :new_account, path: :sign_up
+    post :create_account, path: :sign_up
     match :destroy, path: :sign_out, as: "destroy", via: :delete
   end
 end

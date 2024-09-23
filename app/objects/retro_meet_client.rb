@@ -8,6 +8,7 @@ class RetroMeetClient
   BadPasswordError = Class.new(UnauthorizedError)
   BadLoginError = Class.new(UnauthorizedError)
   UnknownError = Class.new(RetroMeetError)
+  LoginAlreadyTakenError = Class.new(RetroMeetError)
 
   def initialize(authorization_header)
     @authorization_header = authorization_header
@@ -41,7 +42,59 @@ class RetroMeetClient
     end
   end
 
+  # Logs out from retromeet-core
+  # @raise [UnknownError] If an unknown error happens
+  # @return [void]
+  def sign_out
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.post("/logout", headers: base_headers)
+      case response.status
+      when 200
+        @authorization_header = nil
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    end
+  end
+
   class << self
+    # Tries to create an account in retromeet-core and converts any http errors into Ruby exceptions
+    # @param login (see .login)
+    # @param password (see .login)
+    # @raise [UnknownError] If an unknown error happens
+    # @return (see .login)
+    def create_account(login:, password:)
+      Sync do
+        body = { login:, password: }.to_json
+        response = client.post("/create-account", headers: base_headers, body:)
+        case response.status
+        when 200
+          response_headers = response.headers
+          response_headers["authorization"]
+        when 422
+          begin
+            response_body = JSON.parse(response.read, symbolize_names: true)
+            field_error = response_body.dig(:"field-error", 0)
+            field_message = response_body.dig(:"field-error", 1)
+          rescue
+            field_error = "unknown field"
+          end
+
+          raise LoginAlreadyTakenError, "This login already exists" if field_error == "login" && field_message["already an account with this login"]
+          raise BadLoginError, "Invalid login" if field_error == "login"
+          raise BadPasswordError, "Invalid password" if field_error == "password"
+
+          raise UnknownError
+        else
+          raise UnknownError, "Something went wrong, code=#{response.status}"
+        end
+      ensure
+        response&.close
+      end
+    end
+
     # Tries to login to retromeet-core and converts any http errors into Ruby exceptions
     # @param login [String] The login to use in retromeet-core, should be an email
     # @param password [String]

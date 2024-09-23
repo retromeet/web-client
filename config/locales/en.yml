@@ -30,7 +30,12 @@
 en:
   hello: "Hello world"
   sessions:
+    sign_up: "Sign up"
     new:
       sign_in: "Sign in"
+    new_account:
+      password_confirmation: "Password confirmation"
+      password: "Password"
+    login_is_already_in_use: "The login is already in use. Maybe try signing in instead?"
     bad_login: "Incorrect login. It should be the e-mail you used to sign-in."
     bad_password: "Incorrect password."

@@ -1,0 +1,17 @@
+.container.has-text-centered
+  .columns
+    .column.is-4.is-offset-4
+      %h3.title.has-text-grey= t('sessions.sign_up')
+      .box
+        = form_with(url: create_account_session_path) do |f|
+          .field
+            .control
+              = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'email@example.com', class: 'input is-large', value: @email
+          .field
+            .control
+              = f.password_field :password, autocomplete: "new-password", placeholder: t(".password"), class: 'input is-large'
+          .field
+            .control
+              = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t(".password_confirmation"), class: 'input is-large'
+          = f.submit t("sessions.sign_up"), class: 'button is-block is-info is-large is-fullwidth'
+      = render "sessions/shared/links"

@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+authorization: eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjoxNCwiYXV0aGVudGljYXRlZF9ieSI6WyJhdXRvbG9naW4iXSwiYXV0b2xvZ2luX3R5cGUiOiJjcmVhdGVfYWNjb3VudCJ9.Fo5ZXDASNTcea-V4KlX8JjWy7XQOcPHDFcjET0HeIsw
+content-type: application/json
+vary: accept-encoding
+content-length: 43
+
+{"success":"Your account has been created"}
