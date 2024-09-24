@@ -4,6 +4,8 @@
       .navbar-item= link_to image_tag("retromeet_long.png", class: %i[image]), root_url
     .navbar-menu
       .navbar-end
+        - if @basic_profile_info.present?
+          .navbar-item Welcome, #{@basic_profile_info.display_name}!
         .navbar-item Profile
         .navbar-item Settings
         - if @basic_profile_info.present?

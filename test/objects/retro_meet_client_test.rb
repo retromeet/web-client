@@ -79,4 +79,13 @@ class RetroMeetClientTest < ActiveSupport::TestCase
     end
     assert_requested(:post, "http://localhost:3000/create-account")
   end
+
+  test "calls the profile info method with a good authorization header and gets the profile info" do
+    authorization_header = "good_header"
+    stub_request(:get, "http://localhost:3000/api/profile/info").with(headers: { "Content-Type" => "application/json", "Authorization" => authorization_header })
+                                                                .to_return(webfixture_json_file("profile_info_good"))
+    expected_response = BasicProfileInfo.new("bob tables", DateTime.new(2024, 9, 23, 15, 45, 24, "+02:00"))
+    assert_equal expected_response, RetroMeetClient.new(authorization_header).basic_profile_info
+    assert_requested(:get, "http://localhost:3000/api/profile/info")
+  end
 end
