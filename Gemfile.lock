@@ -130,7 +130,7 @@ GEM
       reline (>= 0.3.8)
     drb (2.2.1)
     erubi (1.13.0)
-    falcon (0.48.0)
+    falcon (0.48.2)
       async
       async-container (~> 0.18)
       async-http (~> 0.75)
@@ -257,8 +257,8 @@ GEM
     protocol-http2 (0.19.2)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.18)
-    protocol-rack (0.7.0)
-      protocol-http (~> 0.27)
+    protocol-rack (0.10.0)
+      protocol-http (~> 0.37)
       rack (>= 1.0)
     psych (5.1.2)
       stringio
