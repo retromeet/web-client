@@ -1,0 +1,31 @@
+.container
+  .columns
+    .column.is-3
+      %aside.menu
+        %ul.menu-list
+          %li.my-1
+            %a Messages
+          %li.my-1
+            %a Visitors
+
+    .column.is-9
+      .card
+        .card-content
+          .media
+            .media-left
+              %figure.image.is-128x128
+                %img{src: @profile_info.profile_picture}
+            .media-content
+              .title.is-4
+                #{@profile_info.display_name}
+                - @profile_info.genders.each do |gender|
+                  %span.tag.is-primary #{I18n.t(gender, scope: :genders)}
+                - @profile_info.orientations.each do |orientation|
+                  %span.tag.is-info #{I18n.t(orientation, scope: :orientations)}
+              .subtitle.is-6 #{I18n.t("age", count: @profile_info.age)}
+          .content!
+            lorem ipsum dolor sit amet, consectetur adipiscing elit. phasellus nec
+            iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
+            <a href="#">#responsive</a>
+            <br />
+            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>

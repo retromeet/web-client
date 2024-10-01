@@ -17,4 +17,7 @@ Rails.application.routes.draw do
     post :create_account, path: :sign_up
     match :destroy, path: :sign_out, as: "destroy", via: :delete
   end
+
+  resource :profile, except: %i[new create destroy]
+  get "/profiles/:id", to: "profiles#view"
 end
