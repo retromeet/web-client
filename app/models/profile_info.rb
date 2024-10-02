@@ -1,8 +1,49 @@
 # frozen_string_literal: true
 
-ProfileInfo = Data.define(:display_name, :birth_date, :genders, :orientations, :age, :profile_picture) do
+ABOUT_ME_TEXT = "I'm very much into computers. I spend most of my time jacked into the ship's computers using my neuro-port. I really am not that much into humans, but I'm hoping that maybe I can find someone that's into the same things that I am and we can maybe spend time in virtual.
+
+I also make a mean carbonara, but most of the time I just live off Soylent Green, it has a distinct flavor that really pleases me."
+ProfileInfo = Data.define(:display_name,
+                          :birth_date,
+                          :genders,
+                          :orientations,
+                          :age,
+                          :profile_picture,
+                          :location,
+                          :about_me,
+                          :pronouns,
+                          :languages,
+                          :relationship_status,
+                          :relationship_type,
+                          :tobacco,
+                          :alcohol,
+                          :marijuana,
+                          :other_recreational_drugs,
+                          :kids,
+                          :wants_kids,
+                          :pets,
+                          :wants_pets) do
   # TODO: remove default later, these are here to make it easier to create new profile page
-  def initialize(display_name: "Lommie Thorne", birth_date: Date.new(2083, 6, 12), genders: %i[genderfluid questioning], orientations: %i[asexual bisexual], age: nil, profile_picture: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fnightflyers8841%2Fimages%2F3%2F35%2FLommie_Profile_Image.jpg%2Frevision%2Flatest%3Fcb%3D20181127123914&f=1&nofb=1&ipt=77a78fb901bd3c8c0a52d4797b5535c097c153458aea337cdcaf63c62acba7b9&ipo=images")
+  def initialize(display_name: "Lommie Thorne",
+                 birth_date: Date.new(2083, 6, 12),
+                 genders: %i[genderfluid questioning],
+                 orientations: %i[asexual bisexual],
+                 age: nil,
+                 profile_picture: "https://picsum.photos/id/433/256/256",
+                 location: "Nightflyer, Space",
+                 about_me: ABOUT_ME_TEXT,
+                 pronouns: "She/Her",
+                 languages: %i[por eng qaa],
+                 relationship_status: :single,
+                 relationship_type: :non_monogamous,
+                 tobacco: :never,
+                 alcohol: :often,
+                 marijuana: :sometimes,
+                 other_recreational_drugs: :sometimes,
+                 pets: :have,
+                 wants_pets: :do_not_want_more,
+                 kids: :have_not,
+                 wants_kids: :dont_know)
     age ||= begin
       now = Time.now.utc.to_date
       extra_year_or_not = 0

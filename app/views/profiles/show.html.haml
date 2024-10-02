@@ -18,14 +18,55 @@
             .media-content
               .title.is-4
                 #{@profile_info.display_name}
-                - @profile_info.genders.each do |gender|
-                  %span.tag.is-primary #{I18n.t(gender, scope: :genders)}
-                - @profile_info.orientations.each do |orientation|
-                  %span.tag.is-info #{I18n.t(orientation, scope: :orientations)}
-              .subtitle.is-6 #{I18n.t("age", count: @profile_info.age)}
-          .content!
-            lorem ipsum dolor sit amet, consectetur adipiscing elit. phasellus nec
-            iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-            <a href="#">#responsive</a>
-            <br />
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              .subtitle.is-6 #{I18n.t("age", count: @profile_info.age)} &centerdot; #{@profile_info.location}
+              .content
+                .fixed-grid
+                  .grid
+                    .cell
+                      #{I18n.t("gender")}
+                      - @profile_info.genders.each do |gender|
+                        %span.tag.is-primary #{I18n.t(gender, scope: :genders)}
+                    .cell
+                      #{I18n.t("orientation")}
+                      - @profile_info.orientations.each do |orientation|
+                        %span.tag.is-info #{I18n.t(orientation, scope: :orientations)}
+                    .cell
+                      #{I18n.t("pronouns")}
+                      %span.tag.is-light.is-info #{@profile_info.pronouns}
+                    .cell
+                      #{I18n.t("relationship_status")}
+                      %span.tag.is-primary #{I18n.t(@profile_info.relationship_status, scope: :relationship_status_list)}
+                    .cell
+                      #{I18n.t("relationship_type")}
+                      %span.tag.is-info #{I18n.t(@profile_info.relationship_type, scope: :relationship_type_list)}
+                    .cell
+                      #{I18n.t("languages_known")}
+                      - @profile_info.languages.each do |language|
+                        %span.tag.is-info.is-light #{I18n.t(language, scope: :languages_known_list)}
+          .content
+            %hr
+            %h1 Some extra details:
+            .fixed-grid.has-3-cols
+              .grid
+                .cell
+                  #{I18n.t("tobacco")}
+                  %span.tag.is-primary.is-light #{I18n.t(@profile_info.tobacco, scope: :frequency)}
+                .cell
+                  #{I18n.t("alcohol")}
+                  %span.tag.is-primary.is-light #{I18n.t(@profile_info.alcohol, scope: :frequency)}
+                .cell
+                  #{I18n.t("marijuana")}
+                  %span.tag.is-primary.is-light #{I18n.t(@profile_info.marijuana, scope: :frequency)}
+                .cell
+                  #{I18n.t("other_recreational_drugs")}
+                  %span.tag.is-primary.is-light #{I18n.t(@profile_info.other_recreational_drugs, scope: :frequency)}
+                .cell
+                  #{I18n.t("kids")}
+                  %span.tag.is-primary.is-light #{[I18n.t(@profile_info.kids, this: I18n.t("kids").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_kids, scope: :wants)].compact.to_sentence}
+                .cell
+                  #{I18n.t("pets")}
+                  %span.tag.is-primary.is-light #{[I18n.t(@profile_info.pets, this: I18n.t("pets").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_pets, scope: :wants)].compact.to_sentence}
+            %hr
+            %h1 About me
+            :markdown
+              #{@profile_info.about_me}

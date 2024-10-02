@@ -14,6 +14,7 @@ gem "sprockets-rails"
 gem "falcon"
 
 gem "haml" # Allows to use haml template files instead of erb
+gem "kramdown" # Allows for markdown in haml files, look more into this
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"

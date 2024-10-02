@@ -41,6 +41,7 @@ en:
     bad_password: "Incorrect password."
   age:
     other: '%{count} years old'
+  gender: "Gender"
   genders:
     man: Man
     woman: Woman
@@ -62,6 +63,7 @@ en:
     androgynous: Androgynous
     questioning: Questioning
     unsure: Unsure
+  orientation: "Sexual orientation"
   orientations:
     straight: Straight
     bisexual: Bisexual
@@ -84,3 +86,220 @@ en:
     fluctuating: Fluctuating
     unsure: Unsure
     questioning: Questioning
+  pronouns: "Pronouns"
+  languages_known: "Languages known"
+  languages_known_list:
+    abk: Abkhazian
+    aar: Afar
+    afr: Afrikaans
+    aka: Akan
+    sqi: Albanian
+    amh: Amharic
+    ara: Arabic
+    arg: Aragonese
+    hye: Armenian
+    asm: Assamese
+    ava: Avaric
+    ave: Avestan
+    aym: Aymara
+    aze: Azerbaijani
+    bam: Bambara
+    bak: Bashkir
+    eus: Basque
+    bel: Belarusian
+    ben: Bengali
+    bis: Bislama
+    bos: Bosnian
+    bre: Breton
+    bul: Bulgarian
+    mya: Burmese
+    cat: Catalan
+    cha: Chamorro
+    che: Chechen
+    nya: Chichewa
+    zho: Chinese
+    chu: Church Slavonic
+    chv: Chuvash
+    cor: Cornish
+    cos: Corsican
+    cre: Cree
+    hrv: Croatian
+    ces: Czech
+    dan: Danish
+    div: Divehi
+    nld: Dutch
+    dzo: Dzongkha
+    eng: English
+    epo: Esperanto
+    est: Estonian
+    ewe: Ewe
+    fao: Faroese
+    fij: Fijian
+    fin: Finnish
+    fra: French
+    fry: Western Frisian
+    ful: Fulah
+    gla: Gaelic
+    glg: Galician
+    lug: Ganda
+    kat: Georgian
+    deu: German
+    ell: Modern Greek
+    kal: Kalaallisut
+    grn: Guarani
+    guj: Gujarati
+    hat: Haitian
+    hau: Hausa
+    heb: Hebrew
+    her: Herero
+    hin: Hindi
+    hmo: Hiri Motu
+    hun: Hungarian
+    isl: Icelandic
+    ido: Ido
+    ibo: Igbo
+    ind: Indonesian
+    ina: Interlingua
+    ile: Interlingue
+    iku: Inuktitut
+    ipk: Inupiaq
+    gle: Irish
+    ita: Italian
+    jpn: Japanese
+    jav: Javanese
+    kan: Kannada
+    kau: Kanuri
+    kas: Kashmiri
+    kaz: Kazakh
+    khm: Central Khmer
+    kik: Kikuyu
+    kin: Kinyarwanda
+    kir: Kirghiz
+    kom: Komi
+    kon: Kongo
+    kor: Korean
+    kua: Kuanyama
+    kur: Kurdish
+    lao: Lao
+    lat: Latin
+    lav: Latvian
+    lim: Limburgan
+    lin: Lingala
+    lit: Lithuanian
+    lub: Luba-Katanga
+    ltz: Luxembourgish
+    mkd: Macedonian
+    mlg: Malagasy
+    msa: Malay
+    mal: Malayalam
+    mlt: Maltese
+    glv: Manx
+    mri: Maori
+    mar: Marathi
+    mah: Marshallese
+    mon: Mongolian
+    nau: Nauru
+    nav: Navajo
+    nde: North Ndebele
+    nbl: South Ndebele
+    ndo: Ndonga
+    nep: Nepali
+    nor: Norwegian
+    nob: Norwegian Bokmål
+    nno: Norwegian Nynorsk
+    oci: Occitan
+    oji: Ojibwa
+    ori: Oriya
+    orm: Oromo
+    oss: Ossetian
+    pli: Pali
+    pus: Pashto
+    fas: Persian
+    pol: Polish
+    por: Portuguese
+    pan: Punjabi
+    que: Quechua
+    ron: Romanian
+    roh: Romansh
+    run: Rundi
+    rus: Russian
+    sme: Northern Sami
+    smo: Samoan
+    sag: Sango
+    san: Sanskrit
+    srd: Sardinian
+    srp: Serbian
+    sna: Shona
+    snd: Sindhi
+    sin: Sinhala
+    slk: Slovak
+    slv: Slovenian
+    som: Somali
+    sot: Southern Sotho
+    spa: Spanish
+    sun: Sundanese
+    swa: Swahili
+    ssw: Swati
+    swe: Swedish
+    tgl: Tagalog
+    tah: Tahitian
+    tgk: Tajik
+    tam: Tamil
+    tat: Tatar
+    tel: Telugu
+    tha: Thai
+    bod: Tibetan
+    tir: Tigrinya
+    ton: Tonga (Tonga Islands)
+    tso: Tsonga
+    tsn: Tswana
+    tur: Turkish
+    tuk: Turkmen
+    twi: Twi
+    uig: Uighur
+    ukr: Ukrainian
+    urd: Urdu
+    uzb: Uzbek
+    ven: Venda
+    vie: Vietnamese
+    vol: Volapük
+    wln: Walloon
+    cym: Welsh
+    wol: Wolof
+    xho: Xhosa
+    iii: Sichuan Yi
+    yid: Yiddish
+    yor: Yoruba
+    zha: Zhuang
+    zul: Zulu
+    # qaa-qtz are reserved for local use in ISO-639-3, so we use for funny languages we might want to add. Do not use it for real languages, consult the real language in https://iso639-3.sil.org/code_tables/639/data/all
+    qaa: Binary
+  relationship_status_list:
+    single: Single
+    partnered: Partnered
+    married: Married
+  relationship_status: "Relationship status"
+  relationship_type_list:
+    monogamous: Monogamous
+    non_monogamous: "Non-monogamous"
+  relationship_type: "Relationship type"
+  marijuana: "Marijuana"
+  alcohol: "Alcohol"
+  tobacco: "Tobacco"
+  other_recreational_drugs: "Other recreational drugs"
+  frequency:
+    often: "Often"
+    sometimes: "Sometimes"
+    never: "Never"
+  have_or_have_nots:
+    have: "I have %{this}"
+    have_not: "I don't have %{this}"
+  kids: "Kids"
+  pets: "Pets"
+  wants:
+    want_more: "want more"
+    do_not_want_more: "don't want more"
+    want_some: "want some"
+    do_not_want_any: "don't want them"
+    dont_know: "don't know if I want them"
+    maybe: "I might want"
