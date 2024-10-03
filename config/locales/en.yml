@@ -303,3 +303,23 @@ en:
     do_not_want_any: "don't want them"
     dont_know: "don't know if I want them"
     maybe: "I might want"
+  religion: "Religion"
+  religion_list:
+    agnosticism: Agnosticism
+    atheism: Atheism
+    buddhism: Buddhism
+    candomble: Candomblé
+    catholicism: Catholicism
+    christianity: Christianity
+    hinduism: Hinduism
+    islam: Islam
+    judaism: Judaism
+    rastafari: Rastafari
+    sikh: Sikh
+    spiritism: Spiritism
+    umbanda: Umbanda
+    other: Other religion
+  importance:
+    important: it's important
+    not_important: it's not important
+    do_not_care: I don't really care

@@ -22,7 +22,9 @@ ProfileInfo = Data.define(:display_name,
                           :kids,
                           :wants_kids,
                           :pets,
-                          :wants_pets) do
+                          :wants_pets,
+                          :religion,
+                          :religion_importance) do
   # TODO: remove default later, these are here to make it easier to create new profile page
   def initialize(display_name: "Lommie Thorne",
                  birth_date: Date.new(2083, 6, 12),
@@ -43,7 +45,9 @@ ProfileInfo = Data.define(:display_name,
                  pets: :have,
                  wants_pets: :do_not_want_more,
                  kids: :have_not,
-                 wants_kids: :dont_know)
+                 wants_kids: :dont_know,
+                 religion: :atheism,
+                 religion_importance: :important)
     age ||= begin
       now = Time.now.utc.to_date
       extra_year_or_not = 0
