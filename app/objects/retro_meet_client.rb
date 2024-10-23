@@ -24,7 +24,7 @@ class RetroMeetClient
     @base_headers ||= self.class.send(:base_headers).merge(authorization: @authorization_header)
   end
 
-  # Calls the profile info endpoint in retromeet-core and returns the response as a ruby object
+  # Calls the basic profile info endpoint in retromeet-core and returns the response as a ruby object
   #
   # @raise [UnauthorizedError] If it has a bad login
   # @raise [UnknownError] If an unknown error happens
@@ -38,6 +38,32 @@ class RetroMeetClient
       when 200
         response_body = JSON.parse(response.read, symbolize_names: true)
         BasicProfileInfo.new(response_body[:display_name], response_body[:created_at])
+      when 401
+        raise UnauthorizedError, "Not logged in"
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # Calls the profile info endpoint in retromeet-core and returns the response as a ruby object
+  #
+  # @raise [UnauthorizedError] If it has a bad login
+  # @raise [UnknownError] If an unknown error happens
+  # @return [ProfileInfo]
+  def profile_info
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.get("/api/profile/complete", headers: base_headers)
+      case response.status
+      when 200
+        # @type [Hash{Symbol=>Object}]
+        response_body = JSON.parse(response.read, symbolize_names: true)
+        pp response_body
+        ProfileInfo.new(**response_body.slice(*ProfileInfo.members))
       when 401
         raise UnauthorizedError, "Not logged in"
       else
