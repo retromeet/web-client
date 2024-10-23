@@ -3,7 +3,10 @@
 class ProfilesController < ApplicationController
   def show
     @profile_info = retro_meet_client.profile_info
-    @profile_info
+  end
+
+  def edit
+    @profile_info = retro_meet_client.profile_info
   end
 
   def view
