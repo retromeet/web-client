@@ -18,7 +18,10 @@
             .media-content
               .title.is-4
                 #{@profile_info.display_name}
-              .subtitle.is-6 #{I18n.t("age", count: @profile_info.age)} &centerdot; #{@profile_info.location}
+              .subtitle.is-6
+                #{@profile_info.age ? I18n.t("age", count: @profile_info.age) : I18n.t("unknown_age")}
+                &centerdot;
+                #{@profile_info.location}
               .content
                 .fixed-grid
                   .grid

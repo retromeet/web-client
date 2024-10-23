@@ -62,7 +62,6 @@ class RetroMeetClient
       when 200
         # @type [Hash{Symbol=>Object}]
         response_body = JSON.parse(response.read, symbolize_names: true)
-        pp response_body
         ProfileInfo.new(**response_body.slice(*ProfileInfo.members))
       when 401
         raise UnauthorizedError, "Not logged in"

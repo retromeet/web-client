@@ -48,11 +48,14 @@ ProfileInfo = Data.define(:display_name,
                  wants_kids: :dont_know,
                  religion: :atheism,
                  religion_importance: :important)
-    age ||= begin
-      now = Time.now.utc.to_date
-      extra_year_or_not = 0
-      extra_year_or_not = 1 if now.month > birth_date.month || (now.month == birth_date.month && now.day >= birth_date.day)
-      now.year - birth_date.year - extra_year_or_not
+    if birth_date
+      birth_date = Date.parse(birth_date) if birth_date.is_a? String
+      age ||= begin
+        now = Time.now.utc.to_date
+        extra_year_or_not = 1
+        extra_year_or_not = 0 if now.month > birth_date.month || (now.month == birth_date.month && now.day >= birth_date.day)
+        now.year - birth_date.year - extra_year_or_not
+      end
     end
     super
   end
