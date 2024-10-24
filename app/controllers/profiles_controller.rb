@@ -10,8 +10,13 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile_info = ProfileInfo.new(**profile_params.to_hash.transform_keys!(&:to_sym))
-    render :edit, status: :unprocessable_content
+    response = retro_meet_client.update_profile_info(profile_params)
+    if response
+      redirect_to profile_path, status: :see_other
+    else
+      @profile_info = ProfileInfo.new(**profile_params)
+      render :edit, status: :unprocessable_content
+    end
   end
 
   def view
@@ -22,6 +27,6 @@ class ProfilesController < ApplicationController
   private
 
     def profile_params
-      params.require(:profile).permit(:about_me)
+      @profile_params ||= params.require(:profile).permit(*ProfileInfo.members).to_hash.transform_keys!(&:to_sym)
     end
 end

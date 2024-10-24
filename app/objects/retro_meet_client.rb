@@ -73,6 +73,29 @@ class RetroMeetClient
     end
   end
 
+  # Calls the update profile info endpoint in retromeet-core and returns the response as a ruby object
+  #
+  def update_profile_info(params)
+    return nil if @authorization_header.blank?
+
+    body = params.to_json
+    Sync do
+      response = client.post("/api/profile/complete", headers: base_headers, body:)
+      case response.status
+      when 200
+        true
+      when 401
+        raise UnauthorizedError, "Not logged in"
+      when 422
+        raise UnknownError
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
   # Logs out from retromeet-core
   # @raise [UnknownError] If an unknown error happens
   # @return [void]

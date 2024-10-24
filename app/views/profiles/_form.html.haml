@@ -46,37 +46,74 @@
                       %span.tag.is-info.is-light #{I18n.t(language, scope: :languages_known_list)}
       .content
         %hr
-        %h1 Some extra details:
-        .fixed-grid.has-3-cols
-          .grid
-            - if @profile_info.tobacco
-              .cell
-                #{I18n.t("tobacco")}
-                %span.tag.is-primary.is-light #{I18n.t(@profile_info.tobacco, scope: :frequency)}
-            - if @profile_info.alcohol
-              .cell
-                #{I18n.t("alcohol")}
-                %span.tag.is-primary.is-light #{I18n.t(@profile_info.alcohol, scope: :frequency)}
-            - if @profile_info.marijuana
-              .cell
-                #{I18n.t("marijuana")}
-                %span.tag.is-primary.is-light #{I18n.t(@profile_info.marijuana, scope: :frequency)}
-            - if @profile_info.other_recreational_drugs
-              .cell
-                #{I18n.t("other_recreational_drugs")}
-                %span.tag.is-primary.is-light #{I18n.t(@profile_info.other_recreational_drugs, scope: :frequency)}
-            - if @profile_info.kids || @profile_info.wants_kids
-              .cell
-                #{I18n.t("kids")}
-                %span.tag.is-primary.is-light #{[I18n.t(@profile_info.kids, this: I18n.t("kids").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_kids, scope: :wants)].compact.to_sentence}
-            - if @profile_info.pets || @profile_info.wants_pets
-              .cell
-                #{I18n.t("pets")}
-                %span.tag.is-primary.is-light #{[I18n.t(@profile_info.pets, this: I18n.t("pets").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_pets, scope: :wants)].compact.to_sentence}
-            - if @profile_info.religion
-              .cell
-                #{I18n.t("religion")}
-                %span.tag.is-primary.is-light #{[I18n.t(@profile_info.religion, scope: :religion_list), I18n.t(@profile_info.religion_importance, scope: :importance)].compact.to_sentence}
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :tobacco, class: "label"
+          .field-body
+            .field
+              .control
+                .select.is-fullwidth
+                  = form.select :tobacco, frequency_options
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :alcohol, class: "label"
+          .field-body
+            .field
+              .control
+                .select.is-fullwidth
+                  = form.select :alcohol, frequency_options
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :marijuana, class: "label"
+          .field-body
+            .field
+              .control
+                .select.is-fullwidth
+                  = form.select :marijuana, frequency_options
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :other_recreational_drugs, class: "label"
+          .field-body
+            .field
+              .control
+                .select.is-fullwidth
+                  = form.select :other_recreational_drugs, frequency_options
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :kids, class: "label"
+          .field-body
+            .field
+              .control
+                .select.is-fullwidth
+                  = form.select :kids, have_kids_options
+            .field
+              .control
+                .select.is-fullwidth
+                  = form.select :wants_kids, wants_options
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :pets, class: "label"
+          .field-body
+            .field
+              .control.is-expanded
+                .select.is-fullwidth
+                  = form.select :pets, have_pets_options
+            .field
+              .control.is-expanded
+                .select.is-fullwidth
+                  = form.select :wants_pets, wants_options
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :religion, class: "label"
+          .field-body
+            .field
+              .control.is-expanded
+                .select.is-fullwidth
+                  = form.select :religion, religion_options
+            .field
+              .control.is-expanded
+                .select.is-fullwidth
+                  = form.select :religion_importance, importance_options
         %hr
         .field
           = form.label :about_me, class: "label"
