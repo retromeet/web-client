@@ -1,151 +1,97 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
+---
 en:
-  hello: "Hello world"
-  sessions:
-    sign_up: "Sign up"
-    new:
-      sign_in: "Sign in"
-    new_account:
-      password_confirmation: "Password confirmation"
-      password: "Password"
-    login_is_already_in_use: "The login is already in use. Maybe try signing in instead?"
-    bad_login: "Incorrect login. It should be the e-mail you used to sign-in."
-    bad_password: "Incorrect password."
   age:
-    other: '%{count} years old'
-  gender: "Gender"
+    other: "%{count} years old"
+  alcohol: Alcohol
+  forced_log_out: Forced log out
+  frequency:
+    never: Never
+    often: Often
+    sometimes: Sometimes
+  gender: Gender
   genders:
-    man: Man
-    woman: Woman
-    non_binary: Non-Binary
-    genderqueer: Genderqueer
-    genderfluid: Genderfluid
+    agender: Agender
+    androgynous: Androgynous
+    bigender: Bigender
     gender_non_conforming: Gender Non-Conforming
-    transgender: Transgender
+    genderfluid: Genderfluid
+    genderqueer: Genderqueer
+    intersex: Intersex
+    man: Man
+    non_binary: Non-Binary
+    pangender: Pangender
+    questioning: Questioning
     trans man: Trans Man
-    transmasculine: Transmasculine
     trans woman: Trans Woman
     transfeminine: Transfeminine
+    transgender: Transgender
+    transmasculine: Transmasculine
     transsexual: Transsexual
-    agender: Agender
-    bigender: Bigender
-    pangender: Pangender
     two_spirit: Two-Spirit
-    intersex: Intersex
-    androgynous: Androgynous
-    questioning: Questioning
     unsure: Unsure
-  orientation: "Sexual orientation"
-  orientations:
-    straight: Straight
-    bisexual: Bisexual
-    heteroflexible: Heteroflexible
-    homoflexible: Homoflexible
-    gay: Gay
-    lesbian: Lesbian
-    queer: Queer
-    pansexual: Pansexual
-    omnisexual: Omnisexual
-    abrosexual: Abrosexual
-    demisexual: Demisexual
-    asexual: Asexual
-    greysexual: Greysexual
-    reciprosexual: Reciprosexual
-    demiromantic: Demiromantic
-    aromantic: Aromantic
-    greyromantic: Greyromantic
-    fluid: Fluid
-    fluctuating: Fluctuating
-    unsure: Unsure
-    questioning: Questioning
-  pronouns: "Pronouns"
-  languages_known: "Languages known"
+    woman: Woman
+  have_or_have_nots:
+    have: I have %{this}
+    have_not: I don't have %{this}
+  importance:
+    do_not_care: I don't really care
+    important: it's important
+    not_important: it's not important
+  kids: Kids
+  languages_known: Languages known
   languages_known_list:
-    abk: Abkhazian
     aar: Afar
+    abk: Abkhazian
     afr: Afrikaans
     aka: Akan
-    sqi: Albanian
     amh: Amharic
     ara: Arabic
     arg: Aragonese
-    hye: Armenian
     asm: Assamese
     ava: Avaric
     ave: Avestan
     aym: Aymara
     aze: Azerbaijani
-    bam: Bambara
     bak: Bashkir
-    eus: Basque
+    bam: Bambara
     bel: Belarusian
     ben: Bengali
     bis: Bislama
+    bod: Tibetan
     bos: Bosnian
     bre: Breton
     bul: Bulgarian
-    mya: Burmese
     cat: Catalan
+    ces: Czech
     cha: Chamorro
     che: Chechen
-    nya: Chichewa
-    zho: Chinese
     chu: Church Slavonic
     chv: Chuvash
     cor: Cornish
     cos: Corsican
     cre: Cree
-    hrv: Croatian
-    ces: Czech
+    cym: Welsh
     dan: Danish
+    deu: German
     div: Divehi
-    nld: Dutch
     dzo: Dzongkha
+    ell: Modern Greek
     eng: English
     epo: Esperanto
     est: Estonian
+    eus: Basque
     ewe: Ewe
     fao: Faroese
+    fas: Persian
     fij: Fijian
     fin: Finnish
     fra: French
     fry: Western Frisian
     ful: Fulah
     gla: Gaelic
+    gle: Irish
     glg: Galician
-    lug: Ganda
-    kat: Georgian
-    deu: German
-    ell: Modern Greek
-    kal: Kalaallisut
+    glv: Manx
     grn: Guarani
     guj: Gujarati
     hat: Haitian
@@ -154,22 +100,26 @@ en:
     her: Herero
     hin: Hindi
     hmo: Hiri Motu
+    hrv: Croatian
     hun: Hungarian
-    isl: Icelandic
-    ido: Ido
+    hye: Armenian
     ibo: Igbo
-    ind: Indonesian
-    ina: Interlingua
-    ile: Interlingue
+    ido: Ido
+    iii: Sichuan Yi
     iku: Inuktitut
+    ile: Interlingue
+    ina: Interlingua
+    ind: Indonesian
     ipk: Inupiaq
-    gle: Irish
+    isl: Icelandic
     ita: Italian
-    jpn: Japanese
     jav: Javanese
+    jpn: Japanese
+    kal: Kalaallisut
     kan: Kannada
-    kau: Kanuri
     kas: Kashmiri
+    kat: Georgian
+    kau: Kanuri
     kaz: Kazakh
     khm: Central Khmer
     kik: Kikuyu
@@ -186,75 +136,78 @@ en:
     lim: Limburgan
     lin: Lingala
     lit: Lithuanian
-    lub: Luba-Katanga
     ltz: Luxembourgish
+    lub: Luba-Katanga
+    lug: Ganda
+    mah: Marshallese
+    mal: Malayalam
+    mar: Marathi
     mkd: Macedonian
     mlg: Malagasy
-    msa: Malay
-    mal: Malayalam
     mlt: Maltese
-    glv: Manx
-    mri: Maori
-    mar: Marathi
-    mah: Marshallese
     mon: Mongolian
+    mri: Maori
+    msa: Malay
+    mya: Burmese
     nau: Nauru
     nav: Navajo
-    nde: North Ndebele
     nbl: South Ndebele
+    nde: North Ndebele
     ndo: Ndonga
     nep: Nepali
-    nor: Norwegian
-    nob: Norwegian Bokmål
+    nld: Dutch
     nno: Norwegian Nynorsk
+    nob: Norwegian Bokmål
+    nor: Norwegian
+    nya: Chichewa
     oci: Occitan
     oji: Ojibwa
     ori: Oriya
     orm: Oromo
     oss: Ossetian
+    pan: Punjabi
     pli: Pali
-    pus: Pashto
-    fas: Persian
     pol: Polish
     por: Portuguese
-    pan: Punjabi
+    pus: Pashto
+    qaa: Binary
     que: Quechua
-    ron: Romanian
     roh: Romansh
+    ron: Romanian
     run: Rundi
     rus: Russian
-    sme: Northern Sami
-    smo: Samoan
     sag: Sango
     san: Sanskrit
-    srd: Sardinian
-    srp: Serbian
-    sna: Shona
-    snd: Sindhi
     sin: Sinhala
     slk: Slovak
     slv: Slovenian
+    sme: Northern Sami
+    smo: Samoan
+    sna: Shona
+    snd: Sindhi
     som: Somali
     sot: Southern Sotho
     spa: Spanish
+    sqi: Albanian
+    srd: Sardinian
+    srp: Serbian
+    ssw: Swati
     sun: Sundanese
     swa: Swahili
-    ssw: Swati
     swe: Swedish
-    tgl: Tagalog
     tah: Tahitian
-    tgk: Tajik
     tam: Tamil
     tat: Tatar
     tel: Telugu
+    tgk: Tajik
+    tgl: Tagalog
     tha: Thai
-    bod: Tibetan
     tir: Tigrinya
     ton: Tonga (Tonga Islands)
-    tso: Tsonga
     tsn: Tswana
-    tur: Turkish
+    tso: Tsonga
     tuk: Turkmen
+    tur: Turkish
     twi: Twi
     uig: Uighur
     ukr: Ukrainian
@@ -264,46 +217,53 @@ en:
     vie: Vietnamese
     vol: Volapük
     wln: Walloon
-    cym: Welsh
     wol: Wolof
     xho: Xhosa
-    iii: Sichuan Yi
     yid: Yiddish
     yor: Yoruba
     zha: Zhuang
+    zho: Chinese
     zul: Zulu
-    # qaa-qtz are reserved for local use in ISO-639-3, so we use for funny languages we might want to add. Do not use it for real languages, consult the real language in https://iso639-3.sil.org/code_tables/639/data/all
-    qaa: Binary
+  marijuana: Marijuana
+  orientation: Sexual orientation
+  orientations:
+    abrosexual: Abrosexual
+    aromantic: Aromantic
+    asexual: Asexual
+    bisexual: Bisexual
+    demiromantic: Demiromantic
+    demisexual: Demisexual
+    fluctuating: Fluctuating
+    fluid: Fluid
+    gay: Gay
+    greyromantic: Greyromantic
+    greysexual: Greysexual
+    heteroflexible: Heteroflexible
+    homoflexible: Homoflexible
+    lesbian: Lesbian
+    omnisexual: Omnisexual
+    pansexual: Pansexual
+    queer: Queer
+    questioning: Questioning
+    reciprosexual: Reciprosexual
+    straight: Straight
+    unsure: Unsure
+  other_recreational_drugs: Other recreational drugs
+  pets: Pets
+  profiles:
+    show:
+      edit_profile: Edit profile
+  pronouns: Pronouns
+  relationship_status: Relationship status
   relationship_status_list:
-    single: Single
-    partnered: Partnered
     married: Married
-  relationship_status: "Relationship status"
+    partnered: Partnered
+    single: Single
+  relationship_type: Relationship type
   relationship_type_list:
     monogamous: Monogamous
-    non_monogamous: "Non-monogamous"
-  relationship_type: "Relationship type"
-  marijuana: "Marijuana"
-  alcohol: "Alcohol"
-  tobacco: "Tobacco"
-  other_recreational_drugs: "Other recreational drugs"
-  frequency:
-    often: "Often"
-    sometimes: "Sometimes"
-    never: "Never"
-  have_or_have_nots:
-    have: "I have %{this}"
-    have_not: "I don't have %{this}"
-  kids: "Kids"
-  pets: "Pets"
-  wants:
-    want_more: "want more"
-    do_not_want_more: "don't want more"
-    want_some: "want some"
-    do_not_want_any: "don't want them"
-    dont_know: "don't know if I want them"
-    maybe: "I might want"
-  religion: "Religion"
+    non_monogamous: Non-monogamous
+  religion: Religion
   religion_list:
     agnosticism: Agnosticism
     atheism: Atheism
@@ -314,13 +274,35 @@ en:
     hinduism: Hinduism
     islam: Islam
     judaism: Judaism
+    other: Other religion
     rastafari: Rastafari
     sikh: Sikh
     spiritism: Spiritism
     umbanda: Umbanda
-    other: Other religion
-  importance:
-    important: it's important
-    not_important: it's not important
-    do_not_care: I don't really care
+  sessions:
+    create:
+      bad_login: Incorrect login. It should be the e-mail you used to sign-in.
+      bad_password: Incorrect password.
+    create_account:
+      login_is_already_in_use: The login is already in use. Maybe try signing in instead?
+      passwords_do_not_match: Passwords do not match
+    new:
+      login_to_proceed: Login to proceed
+      remember_me: Remember me
+      sign_in: Sign in
+    new_account:
+      password: Password
+      password_confirmation: Password confirmation
+    sign_in: Sign in
+    sign_up: Sign up
+  sign_in: Sign in
+  sign_out: Sign out
+  tobacco: Tobacco
   unknown_age: Unknown age
+  wants:
+    do_not_want_any: don't want them
+    do_not_want_more: don't want more
+    dont_know: don't know if I want them
+    maybe: I might want
+    want_more: want more
+    want_some: want some
