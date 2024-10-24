@@ -1,0 +1,85 @@
+.card
+  .card-content
+    = form_for(@profile_info, as: :profile, url: profile_path) do |form|
+      .media
+        .media-left
+          %figure.image.is-128x128
+            %img{src: @profile_info.profile_picture}
+        .media-content
+          - if controller.action_name == 'show'
+            .is-pulled-right
+              %a{href: edit_profile_path}= I18n.t("edit_profile")
+          .title.is-4
+            #{@profile_info.display_name}
+          .subtitle.is-6
+            #{@profile_info.age ? I18n.t("age", count: @profile_info.age) : I18n.t("unknown_age")}
+            &centerdot;
+            #{@profile_info.location}
+          .content
+            .fixed-grid
+              .grid
+                - if @profile_info.genders
+                  .cell
+                    #{I18n.t("gender")}
+                    - @profile_info.genders.each do |gender|
+                      %span.tag.is-primary #{I18n.t(gender, scope: :genders)}
+                - if @profile_info.orientations
+                  .cell
+                    #{I18n.t("orientation")}
+                    - @profile_info.orientations.each do |orientation|
+                      %span.tag.is-info #{I18n.t(orientation, scope: :orientations)}
+                .cell
+                  #{I18n.t("pronouns")}
+                  %span.tag.is-light.is-info #{@profile_info.pronouns}
+                - if @profile_info.relationship_status
+                  .cell
+                    #{I18n.t("relationship_status")}
+                    %span.tag.is-primary #{I18n.t(@profile_info.relationship_status, scope: :relationship_status_list)}
+                - if @profile_info.relationship_type
+                  .cell
+                    #{I18n.t("relationship_type")}
+                    %span.tag.is-info #{I18n.t(@profile_info.relationship_type, scope: :relationship_type_list)}
+                - if @profile_info.languages
+                  .cell
+                    #{I18n.t("languages_known")}
+                    - @profile_info.languages.each do |language|
+                      %span.tag.is-info.is-light #{I18n.t(language, scope: :languages_known_list)}
+      .content
+        %hr
+        %h1 Some extra details:
+        .fixed-grid.has-3-cols
+          .grid
+            - if @profile_info.tobacco
+              .cell
+                #{I18n.t("tobacco")}
+                %span.tag.is-primary.is-light #{I18n.t(@profile_info.tobacco, scope: :frequency)}
+            - if @profile_info.alcohol
+              .cell
+                #{I18n.t("alcohol")}
+                %span.tag.is-primary.is-light #{I18n.t(@profile_info.alcohol, scope: :frequency)}
+            - if @profile_info.marijuana
+              .cell
+                #{I18n.t("marijuana")}
+                %span.tag.is-primary.is-light #{I18n.t(@profile_info.marijuana, scope: :frequency)}
+            - if @profile_info.other_recreational_drugs
+              .cell
+                #{I18n.t("other_recreational_drugs")}
+                %span.tag.is-primary.is-light #{I18n.t(@profile_info.other_recreational_drugs, scope: :frequency)}
+            - if @profile_info.kids || @profile_info.wants_kids
+              .cell
+                #{I18n.t("kids")}
+                %span.tag.is-primary.is-light #{[I18n.t(@profile_info.kids, this: I18n.t("kids").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_kids, scope: :wants)].compact.to_sentence}
+            - if @profile_info.pets || @profile_info.wants_pets
+              .cell
+                #{I18n.t("pets")}
+                %span.tag.is-primary.is-light #{[I18n.t(@profile_info.pets, this: I18n.t("pets").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_pets, scope: :wants)].compact.to_sentence}
+            - if @profile_info.religion
+              .cell
+                #{I18n.t("religion")}
+                %span.tag.is-primary.is-light #{[I18n.t(@profile_info.religion, scope: :religion_list), I18n.t(@profile_info.religion_importance, scope: :importance)].compact.to_sentence}
+        %hr
+        .field
+          = form.label :about_me, class: "label"
+          = form.text_area :about_me, class: "textarea"
+        .actions
+          = form.submit class: "button is-info is-pulled-right"

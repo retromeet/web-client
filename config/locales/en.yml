@@ -3,6 +3,7 @@ en:
   age:
     other: "%{count} years old"
   alcohol: Alcohol
+  edit_profile: Edit profile
   forced_log_out: Forced log out
   frequency:
     never: Never
@@ -225,6 +226,7 @@ en:
     zho: Chinese
     zul: Zulu
   marijuana: Marijuana
+  my_profile: My profile
   orientation: Sexual orientation
   orientations:
     abrosexual: Abrosexual
@@ -306,3 +308,4 @@ en:
     maybe: I might want
     want_more: want more
     want_some: want some
+  welcome: Welcome, %{display_name}!

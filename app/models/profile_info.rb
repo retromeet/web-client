@@ -24,7 +24,8 @@ ProfileInfo = Data.define(:display_name,
                           :pets,
                           :wants_pets,
                           :religion,
-                          :religion_importance) do
+                          :religion_importance,
+                          :persisted) do
   # TODO: remove default later, these are here to make it easier to create new profile page
   def initialize(display_name: "Lommie Thorne",
                  birth_date: Date.new(2083, 6, 12),
@@ -47,7 +48,8 @@ ProfileInfo = Data.define(:display_name,
                  kids: :have_not,
                  wants_kids: :dont_know,
                  religion: :atheism,
-                 religion_importance: :important)
+                 religion_importance: :important,
+                 persisted: true)
     if birth_date
       birth_date = Date.parse(birth_date) if birth_date.is_a? String
       age ||= begin
@@ -59,4 +61,6 @@ ProfileInfo = Data.define(:display_name,
     end
     super
   end
+
+  alias_method :persisted?, :persisted
 end
