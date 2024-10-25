@@ -74,9 +74,21 @@ class RetroMeetClient
   end
 
   # Calls the update profile info endpoint in retromeet-core and returns the response as a ruby object
-  #
+  # @param params [Hash] A hash containing the params to be passed on to core. Will be modified!
+  # @return [TrueClass] If the request is sucessfull
   def update_profile_info(params)
     return nil if @authorization_header.blank?
+
+    params.transform_values! do |v|
+      if v.blank?
+        nil
+      else
+        v
+      end
+    end
+    params[:languages]&.delete("")
+    params[:genders]&.delete("")
+    params[:orientations]&.delete("")
 
     body = params.to_json
     Sync do
@@ -84,6 +96,10 @@ class RetroMeetClient
       case response.status
       when 200
         true
+      when 400
+        pp response.read
+        # TODO: Treat bad requests
+        raise UnknownError
       when 401
         raise UnauthorizedError, "Not logged in"
       when 422

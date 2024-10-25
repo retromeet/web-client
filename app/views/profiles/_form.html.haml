@@ -18,16 +18,6 @@
           .content
             .fixed-grid
               .grid
-                - if @profile_info.genders
-                  .cell
-                    #{I18n.t("gender")}
-                    - @profile_info.genders.each do |gender|
-                      %span.tag.is-primary #{I18n.t(gender, scope: :genders)}
-                - if @profile_info.orientations
-                  .cell
-                    #{I18n.t("orientation")}
-                    - @profile_info.orientations.each do |orientation|
-                      %span.tag.is-info #{I18n.t(orientation, scope: :orientations)}
                 .cell
                   #{I18n.t("pronouns")}
                   %span.tag.is-light.is-info #{@profile_info.pronouns}
@@ -39,12 +29,33 @@
                   .cell
                     #{I18n.t("relationship_type")}
                     %span.tag.is-info #{I18n.t(@profile_info.relationship_type, scope: :relationship_type_list)}
-                - if @profile_info.languages
-                  .cell
-                    #{I18n.t("languages_known")}
-                    - @profile_info.languages.each do |language|
-                      %span.tag.is-info.is-light #{I18n.t(language, scope: :languages_known_list)}
       .content
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :genders, class: "label"
+          .field-body
+            .field
+              .control
+                .select.is-fullwidth.is-multiple
+                  = form.select :genders, gender_options, {}, {multiple: true, data: { "search-target": :genderSelect, controller: :profile, placeholder: t(".select_your_genders") } }
+      .content
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :orientations, class: "label"
+          .field-body
+            .field
+              .control
+                .select.is-fullwidth.is-multiple
+                  = form.select :orientations, orientation_options, {}, {multiple: true, data: { "search-target": :orientationSelect, controller: :profile, placeholder: t(".select_your_orientations") } }
+      .content
+        .field.is-horizontal
+          .field-label.is-normal
+            = form.label :languages, class: "label"
+          .field-body
+            .field
+              .control
+                .select.is-fullwidth.is-multiple
+                  = form.select :languages, language_options, {}, {multiple: true, data: { "search-target": :languageSelect, controller: :profile, placeholder: t(".select_languages_you_speak") } }
         %hr
         .field.is-horizontal
           .field-label.is-normal

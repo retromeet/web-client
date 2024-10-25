@@ -254,6 +254,10 @@ en:
   pets: Pets
   prefer_not_to_answer: Prefer not to answer
   profiles:
+    form:
+      select_languages_you_speak: Select any languages you speak
+      select_your_genders: Select one or more genders that define you
+      select_your_orientations: Select one or more orientations that define you
     show:
       edit_profile: Edit profile
   pronouns: Pronouns

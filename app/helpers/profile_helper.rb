@@ -44,4 +44,19 @@ module ProfileHelper
   def importance_options
     @importance_options ||= [PREFER_NOT_TO_ANSWER] + I18n.translate("importance").map(&:reverse)
   end
+
+  # @return [Array<List<String,String>>] An array containing the symbols for each language option and their translations
+  def language_options
+    @language_options ||= I18n.translate("languages_known_list").map(&:reverse)
+  end
+
+  # @return [Array<List<String,String>>] An array containing the symbols for each gender option and their translations
+  def gender_options
+    @gender_options ||= I18n.translate("genders").map(&:reverse)
+  end
+
+  # @return [Array<List<String,String>>] An array containing the symbols for each orientation option and their translations
+  def orientation_options
+    @orientation_options ||= I18n.translate("orientations").map(&:reverse)
+  end
 end
