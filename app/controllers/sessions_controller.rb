@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  layout "no_columns"
+
   def new
     redirect_to :root unless basic_profile_info.nil?
   end
