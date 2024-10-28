@@ -59,4 +59,14 @@ module ProfileHelper
   def orientation_options
     @orientation_options ||= I18n.translate("orientations").map(&:reverse)
   end
+
+  # @return [Array<List<String,String>>] An array containing the symbols for each religion option and their translations
+  def relationship_status_options
+    @relationship_status_options ||= I18n.translate("relationship_status_list").map(&:reverse)
+  end
+
+  # @return [Array<List<String,String>>] An array containing the symbols for each religion option and their translations
+  def relationship_type_options
+    @relationship_type_options ||= I18n.translate("relationship_type_list").map(&:reverse)
+  end
 end

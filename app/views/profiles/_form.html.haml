@@ -21,14 +21,22 @@
                 .cell
                   #{I18n.t("pronouns")}
                   %span.tag.is-light.is-info #{@profile_info.pronouns}
-                - if @profile_info.relationship_status
-                  .cell
-                    #{I18n.t("relationship_status")}
-                    %span.tag.is-primary #{I18n.t(@profile_info.relationship_status, scope: :relationship_status_list)}
-                - if @profile_info.relationship_type
-                  .cell
-                    #{I18n.t("relationship_type")}
-                    %span.tag.is-info #{I18n.t(@profile_info.relationship_type, scope: :relationship_type_list)}
+      .field.is-horizontal
+        .field-label.is-normal
+          = form.label :relationship_status, class: "label"
+        .field-body
+          .field
+            .control
+              .select.is-fullwidth
+                = form.select :relationship_status, relationship_status_options
+      .field.is-horizontal
+        .field-label.is-normal
+          = form.label :relationship_type, class: "label"
+        .field-body
+          .field
+            .control
+              .select.is-fullwidth
+                = form.select :relationship_type, relationship_type_options
       .content
         .field.is-horizontal
           .field-label.is-normal
