@@ -80,7 +80,7 @@ GEM
       io-event (~> 1.6, >= 1.6.5)
     async-container (0.18.3)
       async (~> 2.10)
-    async-http (0.82.1)
+    async-http (0.82.2)
       async (>= 2.10.2)
       async-pool (~> 0.9)
       io-endpoint (~> 0.14)
