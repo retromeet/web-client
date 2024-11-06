@@ -1,0 +1,7 @@
+= turbo_stream.replace "search_results" do
+  - if @locations.size == 0
+    No results
+  - elsif @locations.size == 1
+    One result
+  - elsif @locations.size > 1
+    So many results

@@ -112,6 +112,28 @@ class RetroMeetClient
     end
   end
 
+  # Calls the profile info endpoint in retromeet-core and returns the response as a ruby object
+  #
+  # @raise [UnauthorizedError] If it has a bad login
+  # @raise [UnknownError] If an unknown error happens
+  # @return [ProfileInfo]
+  def location_search(query:)
+    return nil if @authorization_header.blank?
+
+    body = { query: }.to_json
+    Sync do
+      response = client.post("/api/search/address", headers: base_headers, body:)
+      case response.status
+      when 200
+        JSON.parse(response.read, symbolize_names: true)
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
   # Logs out from retromeet-core
   # @raise [UnknownError] If an unknown error happens
   # @return [void]

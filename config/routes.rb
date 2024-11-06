@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     match :destroy, path: :sign_out, as: "destroy", via: :delete
   end
 
-  resource :profile, except: %i[new create destroy]
+  resource :profile, except: %i[new create destroy] do
+    resource :location, only: %i[edit update], controller: "profiles/locations" do
+      collection do
+        get "search"
+      end
+    end
+  end
   get "/profiles/:id", to: "profiles#view"
 end

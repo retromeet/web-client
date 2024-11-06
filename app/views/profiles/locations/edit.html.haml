@@ -1,0 +1,17 @@
+.card
+  .card-header
+    .card-header-title= t(".change_your_location")
+  .card-content
+    = form_with(url: search_profile_location_path, method: :get, data: { turbo_stream: true }) do |form|
+      .field.is-horizontal
+        .field-label
+          = form.label :location, class: "label"
+        .field-body
+          .field.is-expanded
+            .field.has-addons
+              .control.is-expanded
+                = form.text_field :location, class: "input", placeholder: t(".full_address")
+              .control
+                = form.submit t(".search"), class: "button is-info"
+            %p.help= t(".address_help")
+    %div#search_results

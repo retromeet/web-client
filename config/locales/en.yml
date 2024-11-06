@@ -254,6 +254,12 @@ en:
   pets: Pets
   prefer_not_to_answer: Prefer not to answer
   profiles:
+    locations:
+      edit:
+        search: "Search"
+        full_address: "Camden Town, London, England"
+        address_help: "When selecting your location, the more specific you are the best the results will be. Prefer writing something like 'Camdem Town, London, England' to just 'Camdem Town'.
+        You can choose countries, cities or neighborhoods."
     form:
       select_languages_you_speak: Select any languages you speak
       select_your_genders: Select one or more genders that define you
