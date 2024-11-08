@@ -13,6 +13,8 @@ gem "propshaft"
 gem "falcon"
 
 gem "haml" # Allows to use haml template files instead of erb
+gem "haml-rails", "~> 2.0"
+
 gem "kramdown" # Allows for markdown in haml files, look more into this
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]

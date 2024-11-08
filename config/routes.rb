@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "profiles#index"
+  root "home#index"
 
   resource :session, only: [], path: :auth do
     get :new, path: :sign_in, as: :new

@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title= content_for(:title) || "Retromeet Web"
+    %title RetromeetWeb
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
     %meta{:content => "yes", :name => "mobile-web-app-capable"}/
@@ -15,26 +15,6 @@
     = stylesheet_link_tag :app, "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
-    = render "header"
-    - if flash[:error]
-      .notification.is-danger
-        = flash[:error]
-    - if flash[:alert]
-      .notification.is-danger
-        = flash[:alert]
-    - if flash[:success]
-      .notification.is-success
-        = flash[:success]
-    .container
-      .columns
-        .column.is-3
-          %aside.menu
-            %ul.menu-list
-              %li.my-1
-                %a Messages
-              %li.my-1
-                %a Visitors
-
-        .column.is-9
-          = yield
+    %section.hero.is-medium.is-bold
+      = yield
     = render "footer"

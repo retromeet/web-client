@@ -6,9 +6,10 @@
       .navbar-end
         - if @basic_profile_info.present?
           .navbar-item= t("welcome", display_name: @basic_profile_info.display_name)
-        .navbar-item= link_to t("my_profile"), profile_path
-        .navbar-item Settings
+          .navbar-item= link_to t("my_profile"), profile_path
+          .navbar-item Settings
         - if @basic_profile_info.present?
           .navbar-item= link_to t("sign_out"), destroy_session_url, data: { "turbo-method": :delete }
         - else
           .navbar-item= link_to t("sign_in"), new_session_url
+          .navbar-item= link_to t("sign_up"), new_account_session_path

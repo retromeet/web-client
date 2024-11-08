@@ -166,6 +166,11 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
+    haml-rails (2.1.0)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6)
+      railties (>= 5.1)
     hashdiff (1.1.1)
     httparty (0.22.0)
       csv
@@ -412,6 +417,7 @@ DEPENDENCIES
   debug
   falcon
   haml
+  haml-rails (~> 2.0)
   importmap-rails
   kramdown
   lefthook
