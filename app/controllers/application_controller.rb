@@ -3,6 +3,9 @@
 class ApplicationController < ActionController::Base
   before_action :basic_profile_info
 
+  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
+  allow_browser versions: :modern
+
   protected
 
     # @return [String,nil] The value of the authorization cookie
