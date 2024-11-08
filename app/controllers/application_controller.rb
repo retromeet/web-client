@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Authentication
   before_action :basic_profile_info
 
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
   protected
-
-    # @return [String,nil] The value of the authorization cookie
-    def authorization_header
-      cookies["Authorization"]
-    end
 
     # Gets base information about a profile, things that are needed to show the profile info a of a logged-in user
     # @return [BasicProfileInfo] if the user is logged in
@@ -20,9 +16,9 @@ class ApplicationController < ActionController::Base
       @basic_profile_info ||= retro_meet_client.basic_profile_info
     rescue RetroMeetClient::UnauthorizedError
       flash.now[:warn] = t("forced_log_out")
-      cookies.delete("Authorization")
+      terminate_session
       redirect_to :root
     end
 
-    def retro_meet_client = @retro_meet_client ||= RetroMeetClient.new(authorization_header)
+    def retro_meet_client = @retro_meet_client ||= RetroMeetClient.new(Current.session)
 end
