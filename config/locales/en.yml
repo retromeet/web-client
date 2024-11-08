@@ -255,6 +255,10 @@ en:
   prefer_not_to_answer: Prefer not to answer
   profiles:
     locations:
+      search:
+        no_results: "No results"
+        no_results_help: "Double check the location name for mispellings or try being less specific."
+        multiple_results_help: "Your search returned multiple results. Select the one you expected or try searching again being more specific."
       edit:
         search: "Search"
         full_address: "Camden Town, London, England"

@@ -7,6 +7,7 @@ class RetroMeetClient
   UnauthorizedError = Class.new(RetroMeetError)
   BadPasswordError = Class.new(UnauthorizedError)
   BadLoginError = Class.new(UnauthorizedError)
+  UnprocessableRequestError = Class.new(RetroMeetError)
   UnknownError = Class.new(RetroMeetError)
   LoginAlreadyTakenError = Class.new(RetroMeetError)
 
@@ -126,6 +127,35 @@ class RetroMeetClient
       case response.status
       when 200
         JSON.parse(response.read, symbolize_names: true)
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # Calls the update profile location endpoint in retromeet-core and returns the response as a ruby object
+  # @param location [String] A location to be used as the current profile location
+  # @return [TrueClass] If the request is sucessfull
+  def update_profile_location(location:)
+    return nil if @authorization_header.blank?
+
+    body = { location: }.to_json
+    Sync do
+      response = client.post("/api/profile/location", headers: base_headers, body:)
+      case response.status
+      when 200
+        true
+      when 400
+        pp response.read
+        # TODO: Treat bad requests
+        raise UnknownError
+      when 401
+        raise UnauthorizedError, "Not logged in"
+      when 422
+        error = JSON.parse(response.read, symbolize_names: true)
+        raise UnprocessableRequestError, error[:detail]
       else
         raise UnknownError, "An unknown error happened while calling retromeet-core"
       end
