@@ -233,7 +233,7 @@ class RetroMeetClient
       def retromeet_core_host = @retromeet_core_host ||= Async::HTTP::Endpoint.parse("http://localhost:3000")
 
       # @return [Hash] Base headers to be used for requests
-      def base_headers = @base_headers ||= { "Content-Type" => "application/json" }.freeze
+      def base_headers = @base_headers ||= { "Content-Type" => "application/json", "User-Agent": RetroMeet::Version.user_agent }.freeze
 
       # @return [Async::HTTP::Client]
       def client = Async::HTTP::Client.new(retromeet_core_host)

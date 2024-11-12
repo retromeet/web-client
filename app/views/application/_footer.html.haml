@@ -7,8 +7,7 @@
             %img.image{:alt => "", :src => "https://bulma.io/images/bulma-logo.png", :width => "96px"}/
         %div
           %ul.is-flex.is-flex-wrap-wrap.is-align-items-center.is-justify-content-center
-            %li.mr-4
-              %a{:href => "#"} About
+            %li.mr-4= link_to t("about"), about_path
             %li.mr-4= link_to t("terms"), terms_path
             %li.mr-4= link_to t("privacy_policy"), privacy_path
     %hr
@@ -17,7 +16,7 @@
         %p
           Powered by
           %a{href: "https://join.retromeet.social", target: "_blank"}
-            RetroMeet
+            RetroMeet #{RetroMeet::Version}
           &#169; 2024, RetroMeet contributors.
         .py-2.is-hidden-tablet
         .ml-auto
