@@ -8,11 +8,9 @@
         %div
           %ul.is-flex.is-flex-wrap-wrap.is-align-items-center.is-justify-content-center
             %li.mr-4
-              %a.is-white{:href => "#"} About
-            %li.mr-4
-              %a.is-white{:href => "#"} Terms
-            %li.mr-4
-              %a.is-white{:href => "#"} Privacy
+              %a{:href => "#"} About
+            %li.mr-4= link_to t("terms"), terms_path
+            %li.mr-4= link_to t("privacy_policy"), privacy_path
     %hr
     .container
       .is-flex-tablet.is-justify-content-between.is-align-items-center
