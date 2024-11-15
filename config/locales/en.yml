@@ -4,6 +4,7 @@ en:
     other: "%{count} years old"
   alcohol: Alcohol
   edit_profile: Edit profile
+  edit_profile_location: Edit profile location
   forced_log_out: Forced log out
   frequency:
     never: Never
@@ -324,3 +325,14 @@ en:
     want_more: want more
     want_some: want some
   welcome: Welcome, %{display_name}!
+  osm_types:
+    town: "Town"
+    village: "Village"
+    hamlet: "Hamlet"
+    isolated_dwelling: "Isolated dwelling"
+    city: "City"
+    borough: "Borough"
+    suburb: "Suburb"
+    quarter: "Quarter"
+    neighbourhood: "Neighbourhood"
+    municipality: "Municipality"

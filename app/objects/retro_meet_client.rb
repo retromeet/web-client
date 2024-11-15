@@ -126,7 +126,10 @@ class RetroMeetClient
       response = client.post("/api/search/address", headers: base_headers, body:)
       case response.status
       when 200
-        JSON.parse(response.read, symbolize_names: true)
+        response_body = JSON.parse(response.read, symbolize_names: true)
+        response_body.map! do |result|
+          LocationResult.new(**result.slice(*LocationResult.members))
+        end
       else
         raise UnknownError, "An unknown error happened while calling retromeet-core"
       end
@@ -137,11 +140,12 @@ class RetroMeetClient
 
   # Calls the update profile location endpoint in retromeet-core and returns the response as a ruby object
   # @param location [String] A location to be used as the current profile location
+  # @param osm_id [Integer] The OSM id to be matched to the location
   # @return [TrueClass] If the request is sucessfull
-  def update_profile_location(location:)
+  def update_profile_location(location:, osm_id:)
     return nil if @authorization_header.blank?
 
-    body = { location: }.to_json
+    body = { location:, osm_id: }.to_json
     Sync do
       response = client.post("/api/profile/location", headers: base_headers, body:)
       case response.status

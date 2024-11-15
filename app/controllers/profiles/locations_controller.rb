@@ -6,7 +6,8 @@ class Profiles::LocationsController < ApplicationController
   end
 
   def update
-    retro_meet_client.update_profile_location(location: params["location"])
+    location, osm_id = params["location"].split("|", 2)
+    retro_meet_client.update_profile_location(location:, osm_id:)
     if response
       redirect_to profile_path, status: :see_other
     else

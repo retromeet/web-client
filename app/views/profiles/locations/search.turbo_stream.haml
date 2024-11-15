@@ -12,7 +12,7 @@
           .field-body
             .field
               .control
-                = form.text_field :location, class: "input", value: @locations.first[:display_name], readonly: true
+                = form.text_field :location, class: "input", value: "#{@locations.first.display_name}|#{@locations.first.osm_id}", readonly: true
         .field.is-grouped-right.is-grouped
           .control
             = form.submit class: "button is-info"
@@ -20,14 +20,11 @@
       .message.is-success
         .message-body= t(".multiple_results_help")
       = form_with(url: profile_location_path, method: :patch) do |form|
-        .field.is-horizontal
-          .field-label.is-normal
-            = form.label :location, class: "label"
-          .field-body
-            .field
-              .control
-                .select.is-fullwidth
-                  = form.select :location, @locations.map { |v| v[:display_name] }
+        - @locations.each do |location|
+          .control
+            %label.radio
+              = form.radio_button :location, "#{location.display_name}|#{location.osm_id}"
+              #{location.display_name} (#{t(location.osm_type, scope: "osm_types")})
         .field.is-grouped-right.is-grouped
           .control
             = form.submit class: "button is-info"

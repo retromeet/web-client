@@ -8,6 +8,8 @@
         - if controller.action_name == 'show'
           .is-pulled-right
             %a{href: edit_profile_path}= I18n.t("edit_profile")
+            |
+            %a{href: edit_profile_location_path}= I18n.t("edit_profile_location")
         .title.is-4
           #{@profile_info.display_name}
         .subtitle.is-6
