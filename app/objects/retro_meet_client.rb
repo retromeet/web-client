@@ -74,6 +74,33 @@ class RetroMeetClient
     end
   end
 
+  # Calls the profile info endpoint in retromeet-core and returns the response as a ruby object
+  #
+  # @raise [UnauthorizedError] If it has a bad login
+  # @raise [UnknownError] If an unknown error happens
+  # @return [ProfileInfo]
+  def other_profile_info(id:)
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.get("/api/profile/#{id}/complete", headers: base_headers)
+      case response.status
+      when 200
+        # @type [Hash{Symbol=>Object}]
+        response_body = JSON.parse(response.read, symbolize_names: true)
+        OtherProfileInfo.new(**response_body.slice(*OtherProfileInfo.members))
+      when 401
+        raise UnauthorizedError, "Not logged in"
+      when 404
+        raise NotFound, "Profile not found or does not exist"
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
   # Calls the update profile info endpoint in retromeet-core and returns the response as a ruby object
   # @param params [Hash] A hash containing the params to be passed on to core. Will be modified!
   # @return [TrueClass] If the request is sucessfull

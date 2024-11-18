@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   end
 
   def view
-    @profile_info = ProfileInfo.new
+    @profile_info = retro_meet_client.other_profile_info(id: params[:id])
     render "show"
   end
 
