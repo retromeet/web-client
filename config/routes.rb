@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  extend Routes::AuthenticationHelper
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,12 +11,16 @@ Rails.application.routes.draw do
   get "terms" => "home#terms"
   get "privacy" => "home#privacy"
   get "about" => "home#about"
+  get "listing/index"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
+  logged_in do
+    root to: "listing#index", as: :authenticated_root
+  end
   root "home#index"
 
   resource :session, only: [], path: :auth do
@@ -23,7 +28,7 @@ Rails.application.routes.draw do
     post :create, path: :sign_in
     get :new_account, path: :sign_up
     post :create_account, path: :sign_up
-    match :destroy, path: :sign_out, as: "destroy", via: :delete
+    delete :destroy, path: :sign_out, as: "destroy"
   end
 
   resource :profile, except: %i[new create destroy] do

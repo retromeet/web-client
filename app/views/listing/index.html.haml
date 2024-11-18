@@ -1,0 +1,19 @@
+- @profiles.each do |profile|
+  .card
+    .card-content
+      .media
+        .media-left
+          %figure.image.is-48x48
+            %img{src: profile.profile_picture}
+        .media-content
+          .title.is-4 #{profile.display_name}
+          .subtitle.is-6
+            #{profile.age ? I18n.t("age", count: profile.age) : I18n.t("unknown_age")}
+            &centerdot;
+            #{profile.location} (#{profile.distance})
+      .content!
+        lorem ipsum dolor sit amet, consectetur adipiscing elit. phasellus nec
+        iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
+        <a href="#">#responsive</a>
+        <br />
+        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
