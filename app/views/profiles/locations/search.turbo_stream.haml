@@ -12,7 +12,8 @@
           .field-body
             .field
               .control
-                = form.text_field :location, class: "input", value: "#{@locations.first.display_name}|#{@locations.first.osm_id}", readonly: true
+                = form.text_field :location, class: "input", value: "#{@locations.first.display_name}", disabled: true
+        = form.hidden_field :location, class: "input", value: "#{@locations.first.display_name}|#{@locations.first.osm_id}"
         .field.is-grouped-right.is-grouped
           .control
             = form.submit class: "button is-info"
