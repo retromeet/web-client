@@ -219,6 +219,23 @@ class RetroMeetClient
     end
   end
 
+  # @return [Object]
+  def find_conversations
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.get("/api/conversations", headers: base_headers)
+      case response.status
+      when 200
+        JSON.parse(response.read, symbolize_names: true)[:conversations]
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
   # Logs out from retromeet-core
   # @raise [UnknownError] If an unknown error happens
   # @return [void]
