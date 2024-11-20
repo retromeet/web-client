@@ -4,4 +4,8 @@ class ConversationsController < ApplicationController
   def show
     @conversations = retro_meet_client.find_conversations
   end
+
+  def create
+    retro_meet_client.create_conversation(other_profile_id: params[:other_profile])
+  end
 end

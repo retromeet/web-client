@@ -227,7 +227,29 @@ class RetroMeetClient
       response = client.get("/api/conversations", headers: base_headers)
       case response.status
       when 200
-        JSON.parse(response.read, symbolize_names: true)[:conversations]
+        response_body = JSON.parse(response.read, symbolize_names: true)
+        response_body[:conversations].map! do |conversation|
+          Conversation.new(**conversation.slice(*Conversation.members))
+        end
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # @param other_profile_id [String] a uuid of the other profile in the conversation
+  # @return [String] The uuid of the created conversation (or of an existing one)
+  def create_conversation(other_profile_id:)
+    return nil if @authorization_header.blank?
+
+    body = { other_profile_id: }.to_json
+    Sync do
+      response = client.post("/api/conversations", headers: base_headers, body:)
+      case response.status
+      when 201
+        JSON.parse(response.read, symbolize_names: true)
       else
         raise UnknownError, "An unknown error happened while calling retromeet-core"
       end

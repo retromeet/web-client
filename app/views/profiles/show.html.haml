@@ -10,6 +10,9 @@
             %a{href: edit_profile_path}= I18n.t("edit_profile")
             |
             %a{href: edit_profile_location_path}= I18n.t("edit_profile_location")
+        - if controller.action_name == 'view'
+          .is-pulled-right
+            %a.button.is-info{href: conversations_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("send_a_message")
         .title.is-4
           #{@profile_info.display_name}
         .subtitle.is-6
