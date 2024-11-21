@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ConversationsController < ApplicationController
-  def show
+  def index
     @conversations = retro_meet_client.find_conversations
   end
 

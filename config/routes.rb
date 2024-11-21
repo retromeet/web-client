@@ -41,5 +41,7 @@ Rails.application.routes.draw do
   end
   get "/profiles/:id", to: "profiles#view", as: :view_profile
 
-  resource :conversations, only: %i[show create]
+  resources :conversations, only: %i[index create] do
+    resource :messages, only: %i[show], controller: "conversations/messages"
+  end
 end

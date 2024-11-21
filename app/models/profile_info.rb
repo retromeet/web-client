@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-ProfileInfo = Data.define(:display_name,
+ProfileInfo = Data.define(:id,
+                          :display_name,
                           :birth_date,
                           :genders,
                           :orientations,
@@ -23,7 +24,8 @@ ProfileInfo = Data.define(:display_name,
                           :religion,
                           :religion_importance) do
   # TODO: remove default later, these are here to make it easier to create new profile page
-  def initialize(display_name:,
+  def initialize(id:,
+                 display_name:,
                  birth_date:,
                  genders:,
                  orientations:,

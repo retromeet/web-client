@@ -31,3 +31,18 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+
+.conversations-list .list a.box:hover,
+.conversations-list .list a.box:focus,
+.conversations-list .list a.box:active {
+  box-shadow: none;
+  background-color: #f9f9f9;
+}
+
+.chat-right {
+  justify-content: flex-end;
+}
+
+.chat .message {
+  --bulma-message-border-style: none;
+}

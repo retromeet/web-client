@@ -38,7 +38,7 @@ class RetroMeetClient
       case response.status
       when 200
         response_body = JSON.parse(response.read, symbolize_names: true)
-        BasicProfileInfo.new(response_body[:display_name], response_body[:created_at])
+        BasicProfileInfo.new(**response_body.slice(*BasicProfileInfo.members))
       when 401
         raise UnauthorizedError, "Not logged in"
       else
