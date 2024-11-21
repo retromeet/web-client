@@ -3,17 +3,14 @@
     %h1 Chat with #{@conversation.other_profile.display_name}
     %hr
     - @messages.each do |message|
-      - if message.sender == @profile_info.id
+      - if message.sender == @basic_profile_info.id
         .media.chat-right
           .message.is-success
             .message-body
               %p
                 #{message.content}
-              %p
+              %p.is-size-7.has-text-right
                 sent #{time_ago_in_words(message.sent_at)} ago
-          .media-right
-            %figure.image.is-48x48.is-32x32-mobile
-              %img.is-rounded{:alt => "Image", :src => @profile_info.profile_picture}/
       - else
         .media
           .media-left
@@ -23,5 +20,5 @@
             .message-body
               %p
                 #{message.content}
-              %p
+              %p.is-size-7.has-text-right
                 sent #{time_ago_in_words(message.sent_at)} ago

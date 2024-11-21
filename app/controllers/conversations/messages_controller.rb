@@ -3,7 +3,7 @@
 module Conversations
   class MessagesController < ApplicationController
     def show
-      @profile_info = retro_meet_client.profile_info
+      @basic_profile_info = basic_profile_info
       # TODO: everything here is a placeholder, make it real
       @conversation = retro_meet_client.find_conversations.first
       @messages = [

@@ -45,4 +45,5 @@
 
 .chat .message {
   --bulma-message-border-style: none;
+  width: 300px;
 }
