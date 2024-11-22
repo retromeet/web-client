@@ -2,4 +2,4 @@ HTTP/1.1 200 OK
 content-type: application/json
 vary: accept-encoding
 
-{"display_name":"bob tables","created_at":"2024-09-23T15:45:24+02:00"}
+{"id": "0192e1e9-9e3a-7156-91c3-6e38966821eb", "display_name":"bob tables","created_at":"2024-09-23T15:45:24+02:00"}
