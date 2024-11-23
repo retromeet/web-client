@@ -1,0 +1,29 @@
+= turbo_stream.before "messages-end" do
+  - @messages.each do |message|
+    - if message.sender == @basic_profile_info.id
+      .media.chat-right
+        .message.is-success
+          .message-body
+            %p
+              #{message.content}
+            %p.is-size-7.has-text-right
+              sent #{time_ago_in_words(message.sent_at)} ago
+    - else
+      .media
+        .media-left
+          %figure.image.is-48x48.is-32x32-mobile
+            %img.is-rounded{:alt => "Image", src: @conversation.other_profile.profile_picture}/
+        .message.is-link
+          .message-body
+            %p
+              #{message.content}
+            %p.is-size-7.has-text-right
+              sent #{time_ago_in_words(message.sent_at)} ago
+= turbo_stream.replace "message-form" do
+  #message-form
+    = form_with(url: conversation_messages_path(@conversation.id, min_id: @messages.last.id), method: :post) do |form|
+      .field.is-grouped
+        .control.is-expanded
+          = form.textarea :message, class: "textarea"
+        .control
+          = form.submit t(".send"), class: "button is-link"
