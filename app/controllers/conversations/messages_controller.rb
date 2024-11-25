@@ -6,6 +6,8 @@ module Conversations
       @basic_profile_info = basic_profile_info
       @conversation = retro_meet_client.find_conversation(conversation_id: params[:conversation_id])
       @messages = retro_meet_client.find_messages(conversation_id: @conversation.id).reverse
+      # (renatolond, 2024-11-25) This should probably be client-side with https://github.com/stimulus-use/stimulus-use/, but for the moment I'll put it here
+      retro_meet_client.conversation_viewed(conversation_id: @conversation.id)
     end
 
     def create

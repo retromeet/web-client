@@ -11,4 +11,7 @@
               %p
                 %strong= conversation.other_profile.display_name
                 %br/
-                %small No unread messages
+                - if conversation.new_messages_preview
+                  %small New messages!
+                - else
+                  %small No unread messages

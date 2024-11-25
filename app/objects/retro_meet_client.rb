@@ -238,6 +238,24 @@ class RetroMeetClient
     end
   end
 
+  # @param conversation_id (see #send_message)
+  # @return [void]
+  def conversation_viewed(conversation_id:)
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.put("/api/conversations/#{conversation_id}/viewed", headers: base_headers)
+      case response.status
+      when 204
+        true
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
   # @return [Array<Conversation>]
   def find_conversations
     return nil if @authorization_header.blank?
