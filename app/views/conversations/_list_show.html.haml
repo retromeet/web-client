@@ -1,0 +1,17 @@
+.conversations-list
+  .list
+    - @conversations.each do |conversation|
+      %a.list-item.active.box{href: conversation_messages_path(conversation.id)}
+        .media
+          .media-left
+            %figure.image.is-48x48.is-32x32-mobile
+              %img.is-rounded{:alt => "Image", src: conversation.other_profile.profile_picture}/
+          .media-content.is-hidden-mobile
+            .content
+              %p
+                %strong= conversation.other_profile.display_name
+                %br/
+                - if conversation.new_messages_preview
+                  %small New messages!
+                - else
+                  %small No unread messages

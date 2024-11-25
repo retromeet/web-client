@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ListingController < ApplicationController
-  def index
+  def show
     @profiles = retro_meet_client.nearby
   end
 end

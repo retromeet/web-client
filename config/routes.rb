@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get "terms" => "home#terms"
   get "privacy" => "home#privacy"
   get "about" => "home#about"
-  get "listing/index"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
@@ -19,9 +18,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   logged_in do
-    root to: "listing#index", as: :authenticated_root
+    root to: "listing#show", as: :authenticated_root
   end
   root "home#index"
+
+  resource :listing, only: %i[show], controller: "listing"
 
   resource :session, only: [], path: :auth do
     get :new, path: :sign_in, as: :new
@@ -39,4 +40,8 @@ Rails.application.routes.draw do
     end
   end
   get "/profiles/:id", to: "profiles#view", as: :view_profile
+
+  resources :conversations, only: %i[index create] do
+    resource :messages, only: %i[show create], controller: "conversations/messages"
+  end
 end

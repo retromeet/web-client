@@ -38,7 +38,7 @@ class RetroMeetClient
       case response.status
       when 200
         response_body = JSON.parse(response.read, symbolize_names: true)
-        BasicProfileInfo.new(response_body[:display_name], response_body[:created_at])
+        BasicProfileInfo.new(**response_body.slice(*BasicProfileInfo.members))
       when 401
         raise UnauthorizedError, "Not logged in"
       else
@@ -210,6 +210,135 @@ class RetroMeetClient
         response_body = JSON.parse(response.read, symbolize_names: true)
         response_body[:profiles].map! do |result|
           OtherProfileInfo.new(**result.slice(*OtherProfileInfo.members))
+        end
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # @param conversation_id (see #send_message)
+  # @return [Conversation]
+  def find_conversation(conversation_id:)
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.get("/api/conversations/#{conversation_id}", headers: base_headers)
+      case response.status
+      when 200
+        response_body = JSON.parse(response.read, symbolize_names: true)
+        Conversation.new(**response_body.slice(*Conversation.members))
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # @param conversation_id (see #send_message)
+  # @return [void]
+  def conversation_viewed(conversation_id:)
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.put("/api/conversations/#{conversation_id}/viewed", headers: base_headers)
+      case response.status
+      when 204
+        true
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # @return [Array<Conversation>]
+  def find_conversations
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.get("/api/conversations", headers: base_headers)
+      case response.status
+      when 200
+        response_body = JSON.parse(response.read, symbolize_names: true)
+        response_body[:conversations].map! do |conversation|
+          Conversation.new(**conversation.slice(*Conversation.members))
+        end
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # @param other_profile_id [String] a uuid of the other profile in the conversation
+  # @return [String] The uuid of the created conversation (or of an existing one)
+  def create_conversation(other_profile_id:)
+    return nil if @authorization_header.blank?
+
+    body = { other_profile_id: }.to_json
+    Sync do
+      response = client.post("/api/conversations", headers: base_headers, body:)
+      case response.status
+      when 201
+        JSON.parse(response.read, symbolize_names: true)
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # @param conversation_id [String] a uuid for the conversation you want to send a message to
+  # @param content [String] The content of the message
+  # @return [Hash] Will return the message if the insert was sucessfull
+  def send_message(conversation_id:, content:)
+    return nil if @authorization_header.blank?
+
+    body = { content: }.to_json
+    Sync do
+      response = client.post("/api/conversations/#{conversation_id}/messages", headers: base_headers, body:)
+      case response.status
+      when 201
+        JSON.parse(response.read, symbolize_names: true)
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # Calls the profile info endpoint in retromeet-core and returns the response as a ruby object
+  #
+  # @param conversation_id (see #send_message)
+  # @param min_id [Integer, nil] if it's not nil, will only return messages with ids bigger than this. Good to get new messages
+  # @param max_id [Integer, nil] if it's not nil, will only return messages with ids smaller than this. Good to paginate results
+  # @raise [UnauthorizedError] If it has a bad login
+  # @raise [UnknownError] If an unknown error happens
+  # @return [Array<OtherProfileInfo>]
+  def find_messages(conversation_id:, min_id: nil, max_id: nil)
+    return nil if @authorization_header.blank?
+
+    params = {}
+    params[:min_id] = min_id if min_id
+    params[:max_id] = max_id if max_id
+
+    query_params = params.map { |k, v| "#{k}=#{v}" }.join("&")
+
+    Sync do
+      response = client.get("/api/conversations/#{conversation_id}/messages?#{query_params}", headers: base_headers)
+      case response.status
+      when 200
+        response_body = JSON.parse(response.read, symbolize_names: true)
+        response_body[:messages].map! do |result|
+          Message.new(**result.slice(*Message.members))
         end
       else
         raise UnknownError, "An unknown error happened while calling retromeet-core"
