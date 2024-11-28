@@ -46,7 +46,7 @@ ProfileInfo = Data.define(:id,
                  religion_importance:,
                  pronouns: "She/Her",
                  age: nil,
-                 profile_picture: "https://picsum.photos/id/433/256/256")
+                 profile_picture: "/no_avatar.svg")
     if birth_date
       birth_date = Date.parse(birth_date) if birth_date.is_a? String
       age ||= begin

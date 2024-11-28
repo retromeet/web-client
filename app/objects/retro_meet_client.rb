@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "net/http/post/multipart"
+
 # This client is designed to connect to retromeet core.
 # It can be used statictly for actions unrelated to users, but then it needs to be instantiated for other operations.
 class RetroMeetClient
@@ -342,6 +344,30 @@ class RetroMeetClient
         end
       else
         raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # @param filename [String] The name of the file
+  # @param io [File] The file to be uploaded
+  # @return [void]
+  # @param content_type [Object]
+  def upload_profile_picture(filename:, io:, content_type:)
+    return nil if @authorization_header.blank?
+
+    form_data = {
+      file: ::Multipart::Post::UploadIO.new(io, content_type, filename)
+    }
+    headers = {}
+    multipart_post = ::Net::HTTP::Post::Multipart.new("/api/profile/picture", form_data, headers)
+    headers["Content-Type"] = multipart_post["content-type"]
+    Sync do
+      response = client.post("/api/profile/picture", headers: base_headers.merge(headers), body: multipart_post.body_stream.read)
+      case response.status
+      when 204
+        puts "YEAH"
       end
     ensure
       response&.close

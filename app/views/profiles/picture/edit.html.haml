@@ -1,0 +1,36 @@
+.card
+  .card-content
+    = form_with(url: profile_picture_path, method: :patch) do |form|
+      .media
+        .media-left{data: { controller: "image-preview" } }
+          %figure.image.is-256x256
+            - if @profile_info.profile_picture
+              = image_tag @profile_info.profile_picture, data: { "image-preview-target": "output" }
+            - else
+              = image_tag "placeholder.png", data: { "image-preview-target": "output" }
+          .file.has-name.is-boxed.is-fullwidth.is-empty{"data-image-preview-target": "parentdiv"}
+            %label.file-label
+              = form.file_field :profile_picture, class: "file-input", data: { "image-preview-target": "input", action: "image-preview#read_url" }
+              %span.file-cta
+                %span.file-icon
+                  %i.fa.fa-upload
+                %span.file-label.has-text-centered= t(".choose_a_file")
+              %span.file-name{ "data-image-preview-target": "filename" }
+        .media-content
+          .content
+            %p
+              Here you can change your profile picture. Your profile picture is what most people will see when they look at your profile.
+            %p
+              If you don't feel comfortable putting a picture of yours, you can skip this part. The picture is not required!
+            %p
+              You need to follow a few rules for this one:
+            %ul
+              %li It needs to be a picture of <strong>you</strong>, with your face visible in it.
+              %li It needs to be a picture the average person would be fine seeing in public transport. So <strong>no</strong> nudity or explicit content (don't worry, you can put some of those elsewhere here if you want).
+              %li You <strong>cannot</strong> edit an emoji or anything else in front of your face.
+              %li It <strong>cannot</strong> be a picture of anything else: no nature, memes, cartoons, etc
+              %li It <strong>cannot</strong> be a group picture.
+
+            %p Any picture that does not follow those rules will be removed and you might get your account suspended.
+          .actions
+            = form.submit t(".upload_picture"), class: "button is-info is-pulled-right"
