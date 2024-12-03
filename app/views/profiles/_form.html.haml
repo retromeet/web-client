@@ -4,13 +4,13 @@
       .media
         .media-left
           %figure.image.is-128x128
-            - if @profile_info.profile_picture
-              = image_tag @profile_info.profile_picture, data: { "image-preview-target": "output" }
+            - if @profile_info.picture
+              = image_tag @profile_info.picture, data: { "image-preview-target": "output" }
             - else
               = image_tag "placeholder.png", data: { "image-preview-target": "output" }
           .file.has-name.is-boxed.is-fullwidth.is-empty
             %label.file-label
-              = form.file_field :profile_picture, class: "file-input", data: { "image-preview-target": "input", action: "image-preview#read_url" }
+              = form.file_field :picture, class: "file-input", data: { "image-preview-target": "input", action: "image-preview#read_url" }
               %span.file-cta
                 %span.file-icon
                   %i.fa.fa-upload

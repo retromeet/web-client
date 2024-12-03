@@ -352,8 +352,8 @@ class RetroMeetClient
 
   # @param filename [String] The name of the file
   # @param io [File] The file to be uploaded
+  # @param content_type [String] The content type of the original file
   # @return [void]
-  # @param content_type [Object]
   def upload_profile_picture(filename:, io:, content_type:)
     return nil if @authorization_header.blank?
 
@@ -372,6 +372,22 @@ class RetroMeetClient
     ensure
       response&.close
     end
+  end
+
+  def image(path:)
+    return nil if @authorization_header.blank?
+
+    status = headers = body = nil
+    Sync do
+      response = client.get("/api#{path}", headers: base_headers)
+      status = response.status
+      headers = response.headers
+      body = response.read
+    ensure
+      response&.close
+    end
+    pp headers
+    return status, headers, body
   end
 
   # Logs out from retromeet-core

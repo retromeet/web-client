@@ -6,7 +6,7 @@ ProfileInfo = Data.define(:id,
                           :genders,
                           :orientations,
                           :age,
-                          :profile_picture,
+                          :picture,
                           :location_display_name,
                           :about_me,
                           :pronouns,
@@ -46,7 +46,7 @@ ProfileInfo = Data.define(:id,
                  religion_importance:,
                  pronouns: "She/Her",
                  age: nil,
-                 profile_picture: "/no_avatar.svg")
+                 picture: "/no_avatar.svg")
     if birth_date
       birth_date = Date.parse(birth_date) if birth_date.is_a? String
       age ||= begin
