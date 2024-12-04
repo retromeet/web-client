@@ -358,7 +358,7 @@ class RetroMeetClient
     return nil if @authorization_header.blank?
 
     form_data = {
-      file: ::Multipart::Post::UploadIO.new(io, content_type, filename)
+      profile_picture: ::Multipart::Post::UploadIO.new(io, content_type, filename)
     }
     headers = {}
     multipart_post = ::Net::HTTP::Post::Multipart.new("/api/profile/picture", form_data, headers)
@@ -367,13 +367,17 @@ class RetroMeetClient
       response = client.post("/api/profile/picture", headers: base_headers.merge(headers), body: multipart_post.body_stream.read)
       case response.status
       when 204
-        puts "YEAH"
+        true
       end
     ensure
       response&.close
     end
   end
 
+  # This method is only used if the core is storing pictures locally
+  # It basically proxies the images from the core to the application
+  # @param path [String] The path to the image
+  # @return [List<Integer,Hash,String>] Status, headers and body
   def image(path:)
     return nil if @authorization_header.blank?
 

@@ -4,8 +4,8 @@
       .media
         .media-left{data: { controller: "image-preview" } }
           %figure.image.is-256x256
-            - if @profile_info.profile_picture
-              = image_tag @profile_info.profile_picture, data: { "image-preview-target": "output" }
+            - if @profile_info.picture
+              = image_tag @profile_info.picture, data: { "image-preview-target": "output" }
             - else
               = image_tag "placeholder.png", data: { "image-preview-target": "output" }
           .file.has-name.is-boxed.is-fullwidth.is-empty{"data-image-preview-target": "parentdiv"}

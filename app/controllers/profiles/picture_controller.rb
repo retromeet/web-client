@@ -8,6 +8,7 @@ module Profiles
 
     def update
       retro_meet_client.upload_profile_picture(filename: params[:profile_picture].original_filename, io: params[:profile_picture].to_io, content_type: params[:profile_picture].content_type)
+      redirect_to profile_path, status: :see_other
     end
   end
 end
