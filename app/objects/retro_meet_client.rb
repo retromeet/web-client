@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "net/http/post/multipart"
+
 # This client is designed to connect to retromeet core.
 # It can be used statictly for actions unrelated to users, but then it needs to be instantiated for other operations.
 class RetroMeetClient
@@ -346,6 +348,50 @@ class RetroMeetClient
     ensure
       response&.close
     end
+  end
+
+  # @param filename [String] The name of the file
+  # @param io [File] The file to be uploaded
+  # @param content_type [String] The content type of the original file
+  # @return [void]
+  def upload_profile_picture(filename:, io:, content_type:)
+    return nil if @authorization_header.blank?
+
+    form_data = {
+      profile_picture: ::Multipart::Post::UploadIO.new(io, content_type, filename)
+    }
+    headers = {}
+    multipart_post = ::Net::HTTP::Post::Multipart.new("/api/profile/picture", form_data, headers)
+    headers["Content-Type"] = multipart_post["content-type"]
+    Sync do
+      response = client.post("/api/profile/picture", headers: base_headers.merge(headers), body: multipart_post.body_stream.read)
+      case response.status
+      when 204
+        true
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # This method is only used if the core is storing pictures locally
+  # It basically proxies the images from the core to the application
+  # @param path [String] The path to the image
+  # @return [List<Integer,Hash,String>] Status, headers and body
+  def image(path:)
+    return nil if @authorization_header.blank?
+
+    status = headers = body = nil
+    Sync do
+      response = client.get("/api#{path}", headers: base_headers)
+      status = response.status
+      headers = response.headers
+      body = response.read
+    ensure
+      response&.close
+    end
+    pp headers
+    return status, headers, body
   end
 
   # Logs out from retromeet-core

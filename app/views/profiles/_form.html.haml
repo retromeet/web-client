@@ -4,11 +4,19 @@
       .media
         .media-left
           %figure.image.is-128x128
-            %img{src: @profile_info.profile_picture}
+            - if @profile_info.picture
+              = image_tag @profile_info.picture, data: { "image-preview-target": "output" }
+            - else
+              = image_tag "placeholder.png", data: { "image-preview-target": "output" }
+          .file.has-name.is-boxed.is-fullwidth.is-empty
+            %label.file-label
+              = form.file_field :picture, class: "file-input", data: { "image-preview-target": "input", action: "image-preview#read_url" }
+              %span.file-cta
+                %span.file-icon
+                  %i.fa.fa-upload
+                %span.file-label.has-text-centered= t(".choose_a_file")
+              %span.file-name{ "data-image-preview-target": "filename" }
         .media-content
-          - if controller.action_name == 'show'
-            .is-pulled-right
-              %a{href: edit_profile_path}= I18n.t("edit_profile")
           .title.is-4
             #{@profile_info.display_name}
           .subtitle.is-6

@@ -5,6 +5,7 @@ en:
   alcohol: Alcohol
   edit_profile: Edit profile
   edit_profile_location: Edit profile location
+  edit_profile_picture: Edit profile picture
   forced_log_out: Forced log out
   frequency:
     never: Never
@@ -345,3 +346,8 @@ en:
         send: "Send"
       create:
         send: "Send"
+  profiles:
+    picture:
+      edit:
+        upload_picture: "Upload picture"
+        choose_a_file: "Choose a file"

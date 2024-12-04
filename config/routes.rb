@@ -38,10 +38,13 @@ Rails.application.routes.draw do
         get "search"
       end
     end
+    resource :picture, only: %i[edit update], controller: "profiles/picture"
   end
   get "/profiles/:id", to: "profiles#view", as: :view_profile
 
   resources :conversations, only: %i[index create] do
     resource :messages, only: %i[show create], controller: "conversations/messages"
   end
+
+  get "/images/*rest", to: "image_proxy#image"
 end
