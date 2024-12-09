@@ -305,6 +305,9 @@ en:
     create_account:
       login_is_already_in_use: The login is already in use. Maybe try signing in instead?
       passwords_do_not_match: Passwords do not match
+      birth_date_is_under_age: You need to be at least 18 years old to join RetroMeet.
+      date_invalid: Your birth date need to be a valid date.
+      password_invalid: The password does not meet minimum requirements.
     new:
       login_to_proceed: Login to proceed
       remember_me: Remember me
@@ -312,6 +315,7 @@ en:
     new_account:
       password: Password
       password_confirmation: Password confirmation
+      birth_date_required_help: We need your birth date to guarantee that you are allowed access to our service, according to our terms of service. You **CANNOT** change this at a later time, but you can make your age private if you wish.
     sign_in: Sign in
     sign_up: Sign up
   sign_in: Sign in

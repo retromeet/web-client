@@ -13,5 +13,9 @@
           .field
             .control
               = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t(".password_confirmation"), class: 'input is-large'
+          .field
+            .control
+              = f.date_field :birth_date, class: 'input is-large', value: @birth_date
+            %p.help= t(".birth_date_required_help")
           = f.submit t("sessions.sign_up"), class: 'button is-block is-info is-large is-fullwidth'
       = render "sessions/shared/links"
