@@ -256,6 +256,10 @@ en:
   pets: Pets
   prefer_not_to_answer: Prefer not to answer
   profiles:
+    picture:
+      edit:
+        upload_picture: "Upload picture"
+        choose_a_file: "Choose a file"
     locations:
       search:
         no_results: "No results"
@@ -321,7 +325,7 @@ en:
   sign_in: Sign in
   sign_out: Sign out
   tobacco: Tobacco
-  unknown_age: Unknown age
+  hidden_age: Hidden age
   wants:
     do_not_want_any: don't want them
     do_not_want_more: don't want more
@@ -350,8 +354,3 @@ en:
         send: "Send"
       create:
         send: "Send"
-  profiles:
-    picture:
-      edit:
-        upload_picture: "Upload picture"
-        choose_a_file: "Choose a file"

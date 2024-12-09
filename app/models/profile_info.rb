@@ -22,7 +22,8 @@ ProfileInfo = Data.define(:id,
                           :pets,
                           :wants_pets,
                           :religion,
-                          :religion_importance) do
+                          :religion_importance,
+                          :hide_age) do
   # TODO: remove default later, these are here to make it easier to create new profile page
   def initialize(id:,
                  display_name:,
@@ -44,18 +45,10 @@ ProfileInfo = Data.define(:id,
                  wants_kids:,
                  religion:,
                  religion_importance:,
+                 hide_age:,
                  pronouns: "She/Her",
                  age: nil,
                  picture: "/no_avatar.svg")
-    if birth_date
-      birth_date = Date.parse(birth_date) if birth_date.is_a? String
-      age ||= begin
-        now = Time.now.utc.to_date
-        extra_year_or_not = 1
-        extra_year_or_not = 0 if now.month > birth_date.month || (now.month == birth_date.month && now.day >= birth_date.day)
-        now.year - birth_date.year - extra_year_or_not
-      end
-    end
     super
   end
 

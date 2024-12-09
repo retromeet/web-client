@@ -8,14 +8,6 @@
               = image_tag @profile_info.picture, data: { "image-preview-target": "output" }
             - else
               = image_tag "placeholder.png", data: { "image-preview-target": "output" }
-          .file.has-name.is-boxed.is-fullwidth.is-empty
-            %label.file-label
-              = form.file_field :picture, class: "file-input", data: { "image-preview-target": "input", action: "image-preview#read_url" }
-              %span.file-cta
-                %span.file-icon
-                  %i.fa.fa-upload
-                %span.file-label.has-text-centered= t(".choose_a_file")
-              %span.file-name{ "data-image-preview-target": "filename" }
         .media-content
           .title.is-4
             #{@profile_info.display_name}
@@ -23,6 +15,11 @@
             #{@profile_info.age ? I18n.t("age", count: @profile_info.age) : I18n.t("unknown_age")}
             &centerdot;
             #{@profile_info.location}
+          .field.is-horizontal
+            .field-label.is-normal
+              = form.label :hide_age, class: "label checkbox" do
+                = form.checkbox :hide_age, class: "checkbox"
+                = t(".hide_age")
           .content
             .fixed-grid
               .grid
