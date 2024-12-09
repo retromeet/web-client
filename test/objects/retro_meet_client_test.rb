@@ -43,7 +43,7 @@ class RetroMeetClientTest < ActiveSupport::TestCase
                                                                .to_return(webfixture_json_file("create_account_ok"))
 
     expected_response = "eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjoxNCwiYXV0aGVudGljYXRlZF9ieSI6WyJhdXRvbG9naW4iXSwiYXV0b2xvZ2luX3R5cGUiOiJjcmVhdGVfYWNjb3VudCJ9.Fo5ZXDASNTcea-V4KlX8JjWy7XQOcPHDFcjET0HeIsw"
-    assert_equal expected_response, RetroMeetClient.create_account(login:, password:)
+    assert_equal expected_response, RetroMeetClient.create_account(login:, password:, birth_date: "1980-01-01")
     assert_requested(:post, "http://localhost:3000/create-account")
   end
   test "calls the create_account method with good params but already used login and gets the proper error" do
@@ -53,7 +53,7 @@ class RetroMeetClientTest < ActiveSupport::TestCase
                                                                .to_return(webfixture_json_file("create_account_existing"))
 
     assert_raises RetroMeetClient::LoginAlreadyTakenError do
-      RetroMeetClient.create_account(login:, password:)
+      RetroMeetClient.create_account(login:, password:, birth_date: "1980-01-01")
     end
     assert_requested(:post, "http://localhost:3000/create-account")
   end
@@ -64,7 +64,7 @@ class RetroMeetClientTest < ActiveSupport::TestCase
                                                                .to_return(webfixture_json_file("create_account_bad_password"))
 
     assert_raises RetroMeetClient::BadPasswordError do
-      RetroMeetClient.create_account(login:, password:)
+      RetroMeetClient.create_account(login:, password:, birth_date: "1980-01-01")
     end
     assert_requested(:post, "http://localhost:3000/create-account")
   end
@@ -75,7 +75,7 @@ class RetroMeetClientTest < ActiveSupport::TestCase
                                                                .to_return(webfixture_json_file("create_account_bad_login"))
 
     assert_raises RetroMeetClient::BadLoginError do
-      RetroMeetClient.create_account(login:, password:)
+      RetroMeetClient.create_account(login:, password:, birth_date: "1980-01-01")
     end
     assert_requested(:post, "http://localhost:3000/create-account")
   end

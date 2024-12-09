@@ -31,14 +31,24 @@ class SessionsController < ApplicationController
   def create_account
     @email = params[:email]
 
-    if params[:password] == params[:password_confirmation]
-      authorization_token = RetroMeetClient.create_account(login: params[:email], password: params[:password])
+    @birth_date = Date.parse(params[:birth_date])
+    if @birth_date.year >= Date.today.year - 16
+      flash.now[:error] = t(".birth_date_is_under_age")
+      render "new_account", status: :bad_request
+    elsif params[:password] == params[:password_confirmation]
+      authorization_token = RetroMeetClient.create_account(login: params[:email], password: params[:password], birth_date: @birth_date)
       start_new_session_for authorization_token
       redirect_to after_authentication_url
     else
       flash.now[:error] = t(".passwords_do_not_match")
       render "new_account", status: :bad_request
     end
+  rescue Date::Error
+    flash.now[:error] = t(".date_invalid")
+    render "new_account", status: :unprocessable_content
+  rescue RetroMeetClient::BadPasswordError
+    flash.now[:error] = t(".password_invalid")
+    render "new_account", status: :unprocessable_content
   rescue RetroMeetClient::LoginAlreadyTakenError
     flash.now[:error] = t(".login_is_already_in_use")
     render "new_account", status: :unprocessable_content

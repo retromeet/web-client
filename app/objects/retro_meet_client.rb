@@ -415,11 +415,12 @@ class RetroMeetClient
     # Tries to create an account in retromeet-core and converts any http errors into Ruby exceptions
     # @param login (see .login)
     # @param password (see .login)
+    # @param birth_date [Date,String] The birth date of the user
     # @raise [UnknownError] If an unknown error happens
     # @return (see .login)
-    def create_account(login:, password:)
+    def create_account(login:, password:, birth_date:)
       Sync do
-        body = { login:, password: }.to_json
+        body = { login:, password:, birth_date: }.to_json
         response = client.post("/create-account", headers: base_headers, body:)
         case response.status
         when 200
@@ -437,6 +438,7 @@ class RetroMeetClient
           raise LoginAlreadyTakenError, "This login already exists" if field_error == "login" && field_message["already an account with this login"]
           raise BadLoginError, "Invalid login" if field_error == "login"
           raise BadPasswordError, "Invalid password" if field_error == "password"
+          raise Date::Error, "Invalid date" if field_error == "birth_date"
 
           raise UnknownError
         else

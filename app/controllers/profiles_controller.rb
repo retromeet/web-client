@@ -44,6 +44,7 @@ class ProfilesController < ApplicationController
                       :wants_pets,
                       :religion,
                       :religion_importance,
+                      :hide_age,
                       { languages: [], genders: [], orientations: [] }].freeze
     def profile_params
       @profile_params ||= params.require(:profile).permit(*PROFILE_FIELDS).to_hash.transform_keys!(&:to_sym)
