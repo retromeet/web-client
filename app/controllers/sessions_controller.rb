@@ -43,6 +43,9 @@ class SessionsController < ApplicationController
       flash.now[:error] = t(".passwords_do_not_match")
       render "new_account", status: :bad_request
     end
+  rescue RetroMeetClient::TooYoungError
+    flash.now[:error] = t(".birth_date_is_under_age")
+    render "new_account", status: :bad_request
   rescue Date::Error
     flash.now[:error] = t(".date_invalid")
     render "new_account", status: :unprocessable_content

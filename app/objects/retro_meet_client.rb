@@ -12,6 +12,7 @@ class RetroMeetClient
   UnprocessableRequestError = Class.new(RetroMeetError)
   UnknownError = Class.new(RetroMeetError)
   LoginAlreadyTakenError = Class.new(RetroMeetError)
+  TooYoungError = Class.new(RetroMeetError)
 
   def initialize(authorization_header)
     @authorization_header = authorization_header
@@ -438,6 +439,7 @@ class RetroMeetClient
           raise LoginAlreadyTakenError, "This login already exists" if field_error == "login" && field_message["already an account with this login"]
           raise BadLoginError, "Invalid login" if field_error == "login"
           raise BadPasswordError, "Invalid password" if field_error == "password"
+          raise TooYoungError, "Must be 18 years or older" if field_error == "birth_date" && field_message["must be 18"]
           raise Date::Error, "Invalid date" if field_error == "birth_date"
 
           raise UnknownError
