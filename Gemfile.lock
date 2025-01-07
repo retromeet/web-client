@@ -119,7 +119,7 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
-    console (1.29.0)
+    console (1.29.2)
       fiber-annotation
       fiber-local (~> 1.1)
       json
@@ -134,7 +134,7 @@ GEM
       reline (>= 0.3.8)
     drb (2.2.1)
     erubi (1.13.1)
-    falcon (0.48.3)
+    falcon (0.48.4)
       async
       async-container (~> 0.18)
       async-http (~> 0.75)
@@ -184,7 +184,7 @@ GEM
       railties (>= 6.0.0)
     io-console (0.8.0)
     io-endpoint (0.14.0)
-    io-event (1.7.4)
+    io-event (1.7.5)
     io-stream (0.6.1)
     irb (1.14.3)
       rdoc (>= 4.0.0)
@@ -245,7 +245,7 @@ GEM
     octokit (7.2.0)
       faraday (>= 1, < 3)
       sawyer (~> 0.9)
-    openssl (3.2.0)
+    openssl (3.3.0)
     parallel (1.26.3)
     parser (3.3.6.0)
       ast (~> 2.4.1)
@@ -271,14 +271,14 @@ GEM
       rack
       railties (>= 7.0.0)
     protocol-hpack (1.5.1)
-    protocol-http (0.47.0)
+    protocol-http (0.47.1)
     protocol-http1 (0.28.1)
       protocol-http (~> 0.22)
     protocol-http2 (0.22.0)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.18)
-    protocol-rack (0.10.1)
-      protocol-http (~> 0.37)
+    protocol-rack (0.11.1)
+      protocol-http (~> 0.43)
       rack (>= 1.0)
     psych (5.2.2)
       date
