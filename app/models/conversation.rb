@@ -5,7 +5,7 @@ Conversation = Data.define(:id,
                            :created_at,
                            :last_seen_at,
                            :new_messages_preview) do
-  def initialize(id:, other_profile:, created_at:, last_seen_at:, new_messages_preview:)
+  def initialize(id:, other_profile:, created_at:, last_seen_at:, new_messages_preview: nil)
     other_profile = OtherProfileInfo.new(**other_profile.slice(*OtherProfileInfo.members))
     super
   end

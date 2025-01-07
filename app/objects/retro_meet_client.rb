@@ -289,7 +289,7 @@ class RetroMeetClient
       response = client.post("/api/conversations", headers: base_headers, body:)
       case response.status
       when 201
-        JSON.parse(response.read, symbolize_names: true)
+        JSON.parse(response.read, symbolize_names: true)[:id]
       else
         raise UnknownError, "An unknown error happened while calling retromeet-core"
       end
