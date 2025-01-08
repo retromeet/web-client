@@ -15,6 +15,7 @@
         - if controller.action_name == 'view'
           .is-pulled-right
             %a.button.is-info{href: conversations_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("send_a_message")
+            %a.button.is-info{href: profile_block_index_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("block_profile")
         .title.is-4
           #{@profile_info.display_name}
         .subtitle.is-6
