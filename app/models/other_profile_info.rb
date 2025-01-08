@@ -22,8 +22,9 @@ OtherProfileInfo = Data.define(:id,
                                :wants_pets,
                                :religion,
                                :religion_importance,
-                               :location_distance) do
-  def initialize(id:, display_name:, age:, genders:, orientations:, location_display_name:, relationship_status:, about_me: nil, languages: nil, relationship_type: nil, tobacco: nil, alcohol: nil, marijuana: nil, other_recreational_drugs: nil, pets: nil, wants_pets: nil, kids: nil, wants_kids: nil, religion: nil, religion_importance: nil, pronouns: "She/Her", picture: "/no_avatar.svg", location_distance: 0)
+                               :location_distance,
+                               :is_blocked) do
+  def initialize(id:, display_name:, age:, genders:, orientations:, location_display_name:, relationship_status:, about_me: nil, languages: nil, relationship_type: nil, tobacco: nil, alcohol: nil, marijuana: nil, other_recreational_drugs: nil, pets: nil, wants_pets: nil, kids: nil, wants_kids: nil, religion: nil, religion_importance: nil, pronouns: "She/Her", picture: "/no_avatar.svg", location_distance: 0, is_blocked: false)
     super
   end
 

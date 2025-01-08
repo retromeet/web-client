@@ -413,6 +413,24 @@ class RetroMeetClient
     end
   end
 
+  # @param other_profile_id (see #create_conversation)
+  # @return [Boolean]
+  def unblock_profile(other_profile_id:)
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.delete("/api/profile/#{other_profile_id}/block", headers: base_headers)
+      case response.status
+      when 204
+        true
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
   # Logs out from retromeet-core
   # @raise [UnknownError] If an unknown error happens
   # @return [void]

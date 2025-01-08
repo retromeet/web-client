@@ -7,6 +7,9 @@ module Profiles
       redirect_to listing_path, status: :see_other
     end
 
-    def delete; end
+    def destroy
+      retro_meet_client.unblock_profile(other_profile_id: params[:other_profile])
+      redirect_to view_profile_path(params[:other_profile]), status: :see_other
+    end
   end
 end
