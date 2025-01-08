@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
     # @return [nil] if the user is not logged in
     def basic_profile_info
       @basic_profile_info ||= retro_meet_client.basic_profile_info if authenticated?
-    rescue RetroMeetClient::UnauthorizedError
+    rescue RetroMeet::Client::UnauthorizedError
       flash.now[:warn] = t("forced_log_out")
       terminate_session
       redirect_to :root
     end
 
-    def retro_meet_client = @retro_meet_client ||= RetroMeetClient.new(Current.session)
+    def retro_meet_client = @retro_meet_client ||= RetroMeet::Client.new(Current.session)
 end
