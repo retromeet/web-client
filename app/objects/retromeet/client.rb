@@ -17,8 +17,9 @@ module RetroMeet
     LoginAlreadyTakenError = Class.new(RetroMeet::Error)
     TooYoungError = Class.new(RetroMeet::Error)
 
-    def initialize(authorization_header)
+    def initialize(authorization_header, user_ip)
       @authorization_header = authorization_header
+      @user_ip = user_ip
     end
 
     # (renatolond, 2024-09-17) Look into a better way to call those instance methods without a .send
@@ -28,7 +29,7 @@ module RetroMeet
 
     # @return (see .base_headers)
     def base_headers
-      @base_headers ||= self.class.send(:base_headers).merge(authorization: @authorization_header)
+      @base_headers ||= self.class.send(:base_headers).merge(authorization: @authorization_header, "X-Forwarded-For": @user_ip)
     end
 
     # Calls the basic profile info endpoint in retromeet-core and returns the response as a ruby object
@@ -455,13 +456,15 @@ module RetroMeet
       # Tries to create an account in retromeet-core and converts any http errors into Ruby exceptions
       # @param login (see .login)
       # @param password (see .login)
+      # @param user_ip (see .login)
       # @param birth_date [Date,String] The birth date of the user
       # @raise [UnknownError] If an unknown error happens
       # @return (see .login)
-      def create_account(login:, password:, birth_date:)
+      def create_account(login:, password:, birth_date:, user_ip:)
         Sync do
           body = { login:, password:, birth_date: }.to_json
-          response = client.post("/create-account", headers: base_headers, body:)
+          headers = base_headers.merge("X-Forwarded-For": user_ip)
+          response = client.post("/create-account", headers:, body:)
           case response.status
           when 200
             response_headers = response.headers
@@ -493,13 +496,15 @@ module RetroMeet
       # Tries to login to retromeet-core and converts any http errors into Ruby exceptions
       # @param login [String] The login to use in retromeet-core, should be an email
       # @param password [String]
+      # @param user_ip [String] The ip of the user that started the request. Will be forwarded to core
       # @raise [UnauthorizedError] If one of the login fields is incorrect
       # @raise [UnknownError] If an unknown error happens
       # @return [String] If the request was sucessfull, will return the jwt authoriztion token to be used for requests
-      def login(login:, password:)
+      def login(login:, password:, user_ip:)
         Sync do
           body = { login:, password: }.to_json
-          response = client.post("/login", headers: base_headers, body:)
+          headers = base_headers.merge("X-Forwarded-For": user_ip)
+          response = client.post("/login", headers:, body:)
           case response.status
           when 200
             response_headers = response.headers

@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
 
   def create
     authorization_token = RetroMeet::Client.login(login: params[:email],
-                                                password: params[:password])
+                                                  password: params[:password],
+                                                  user_ip: request.ip)
     # user_agent: request.user_agent,
     # ip_address: request.remote_ip)
     start_new_session_for authorization_token
@@ -36,7 +37,10 @@ class SessionsController < ApplicationController
       flash.now[:error] = t(".birth_date_is_under_age")
       render "new_account", status: :bad_request
     elsif params[:password] == params[:password_confirmation]
-      authorization_token = RetroMeet::Client.create_account(login: params[:email], password: params[:password], birth_date: @birth_date)
+      authorization_token = RetroMeet::Client.create_account(login: params[:email],
+                                                             password: params[:password],
+                                                             birth_date: @birth_date,
+                                                             user_ip: request.ip)
       start_new_session_for authorization_token
       redirect_to after_authentication_url
     else
