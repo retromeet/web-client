@@ -20,5 +20,5 @@ class ApplicationController < ActionController::Base
       redirect_to :root
     end
 
-    def retro_meet_client = @retro_meet_client ||= RetroMeet::Client.new(Current.session)
+    def retro_meet_client = @retro_meet_client ||= RetroMeet::Client.new(Current.session, request.ip)
 end
