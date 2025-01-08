@@ -2,7 +2,12 @@
   .container
     .navbar-brand
       .navbar-item= link_to image_tag("retromeet_long.png", class: %i[image]), root_url
-    .navbar-menu
+      %a.navbar-burger{role: "button", aria: { label: "menu", expanded: false}, "data-target": "navbarMenu" }
+        %span{"aria-hidden": true}
+        %span{"aria-hidden": true}
+        %span{"aria-hidden": true}
+        %span{"aria-hidden": true}
+    #navbarMenu.navbar-menu
       .navbar-end
         - if @basic_profile_info.present?
           .navbar-item= t("welcome", display_name: @basic_profile_info.display_name)

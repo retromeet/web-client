@@ -348,6 +348,8 @@ en:
   very_near_you: Very near you
   go_to_profile: Go to profile
   send_a_message: Send them a message!
+  block_profile: Block their profile
+  unblock_profile: Unblock their profile
   conversations:
     messages:
       show:

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       end
     end
     resource :picture, only: %i[edit update], controller: "profiles/picture"
+    resources :block, only: %i[create destroy], controller: "profiles/blocks"
   end
   get "/profiles/:id", to: "profiles#view", as: :view_profile
 

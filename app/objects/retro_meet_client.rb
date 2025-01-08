@@ -289,7 +289,7 @@ class RetroMeetClient
       response = client.post("/api/conversations", headers: base_headers, body:)
       case response.status
       when 201
-        JSON.parse(response.read, symbolize_names: true)
+        JSON.parse(response.read, symbolize_names: true)[:id]
       else
         raise UnknownError, "An unknown error happened while calling retromeet-core"
       end
@@ -393,6 +393,42 @@ class RetroMeetClient
     end
     pp headers
     return status, headers, body
+  end
+
+  # @param other_profile_id (see #create_conversation)
+  # @return [Boolean]
+  def block_profile(other_profile_id:)
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.post("/api/profile/#{other_profile_id}/block", headers: base_headers)
+      case response.status
+      when 204
+        true
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
+  end
+
+  # @param other_profile_id (see #create_conversation)
+  # @return [Boolean]
+  def unblock_profile(other_profile_id:)
+    return nil if @authorization_header.blank?
+
+    Sync do
+      response = client.delete("/api/profile/#{other_profile_id}/block", headers: base_headers)
+      case response.status
+      when 204
+        true
+      else
+        raise UnknownError, "An unknown error happened while calling retromeet-core"
+      end
+    ensure
+      response&.close
+    end
   end
 
   # Logs out from retromeet-core
