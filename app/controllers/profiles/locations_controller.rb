@@ -14,7 +14,7 @@ class Profiles::LocationsController < ApplicationController
       @location = params[:location]
       render :edit, status: :unprocessable_content
     end
-  rescue RetroMeetClient::UnprocessableRequestError => e
+  rescue RetroMeet::Client::UnprocessableRequestError => e
     @location = params[:location]
     flash[:error] = e.message
     render :edit, status: :unprocessable_content
