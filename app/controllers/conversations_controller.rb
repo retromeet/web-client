@@ -2,7 +2,7 @@
 
 class ConversationsController < ApplicationController
   def index
-    @conversations = retro_meet_client.find_conversations
+    @conversations = retro_meet_client.conversations.value
   end
 
   def create
