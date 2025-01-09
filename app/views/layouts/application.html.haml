@@ -6,6 +6,8 @@
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
     %meta{:content => "yes", :name => "mobile-web-app-capable"}/
+    - if Rails.env.test? # Turbo prefetch needs to be off for capybara tests or errors propagate weirdly
+      %meta{name: "turbo-prefetch", content: false}
     = csrf_meta_tags
     = csp_meta_tag
     = yield :head

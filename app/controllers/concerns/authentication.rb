@@ -65,7 +65,7 @@ module Authentication
     # Logs out from retro meet core and removes the session cookie
     # @return [void]
     def terminate_session
-      retro_meet_client.sign_out
+      retro_meet_client.logout
       cookies.delete(:authorization)
     end
 end

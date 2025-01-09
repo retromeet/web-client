@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+content-type: application/json
+vary: accept-encoding
+
+{"id":"0192b89b-8518-7e16-bd5a-49e71f81b477","display_name":"bob tables","about_me":"HEY WHAT DOES THIS DO?","genders":["man"],"orientations":["bisexual"],"languages":["eng"],"relationship_status":"partnered","relationship_type":"non_monogamous","tobacco":"never","alcohol":"sometimes","marijuana":"sometimes","other_recreational_drugs":null,"pets":"have","wants_pets":"maybe","kids":"have_not","wants_kids":"do_not_want_any","religion":"atheism","religion_importance":"not_important","location_display_name":{"en":"Schaerbeek - Schaarbeek, Brussels-Capital, Belgium"},"age":37,"picture":"/images/eyJpZCI6InByb2ZpbGVfcGljdHVyZS8wMTkyYjg5Yi04NTE4LTdlMTYtYmQ1YS00OWU3MWY4MWI0NzcvNWU0N2I4ZDk3NTI3OTU2ZGZhZDQwMWM4YTlhMzI2MWIuanBlZyIsInN0b3JhZ2UiOiJzdG9yZSIsIm1ldGFkYXRhIjp7ImZpbGVuYW1lIjoiRmFjZS5qcGVnIiwic2l6ZSI6MjQ3MjM2LCJtaW1lX3R5cGUiOiJpbWFnZS9qcGVnIn19","birth_date":"1990-01-01","created_at":"2024-09-23T15:45:24+02:00","hide_age":false}

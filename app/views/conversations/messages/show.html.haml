@@ -1,9 +1,14 @@
 .box
   .content.chat
-    %h1 Chat with #{@conversation.other_profile.display_name}
+    %h1= t(".chat_with", display_name: @conversation.other_profile.display_name)
+    %a{href: view_profile_path(@conversation.other_profile.id)}= t(".see_profile", display_name: @conversation.other_profile.display_name)
     %hr
     - if @messages.empty?
-      No messages yet.
+      %p= t(".there_are_no_messages_yet")
+      %p= t(".things_to_keep_in_mind")
+      %ul
+        - t(".starting_to_talk_tips").each do |tip|
+          %li= tip
     - else
       - @messages.each do |message|
         - if message.sender == @basic_profile_info.id

@@ -3,14 +3,17 @@
 class ProfilesController < ApplicationController
   def show
     @profile_info = retro_meet_client.profile_info
+                                     .value
   end
 
   def edit
     @profile_info = retro_meet_client.profile_info
+                                     .value
   end
 
   def update
-    response = retro_meet_client.update_profile_info(profile_params)
+    response = retro_meet_client.profile_info
+                                .update(profile_params)
     if response
       redirect_to profile_path, status: :see_other
     else
@@ -20,7 +23,9 @@ class ProfilesController < ApplicationController
   end
 
   def view
-    @profile_info = retro_meet_client.other_profile_info(id: params[:id])
+    @profile_info = retro_meet_client.other_profile(other_profile_id: params[:id])
+                                     .profile_info
+                                     .value
     render "show"
   end
 
@@ -47,6 +52,9 @@ class ProfilesController < ApplicationController
                       :hide_age,
                       { languages: [], genders: [], orientations: [] }].freeze
     def profile_params
-      @profile_params ||= params.require(:profile).permit(*PROFILE_FIELDS).to_hash.transform_keys!(&:to_sym)
+      @profile_params ||= params.require(:profile)
+                                .permit(*PROFILE_FIELDS)
+                                .to_hash
+                                .transform_keys!(&:to_sym)
     end
 end
