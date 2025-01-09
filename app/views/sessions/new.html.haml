@@ -7,9 +7,9 @@
         = form_with url: session_path do |form|
           .field
             .control
-              = form.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'email@example.com', class: 'input is-large'
+              = form.email_field :email, autofocus: true, autocomplete: 'email', placeholder: t(".email_placeholder"), class: 'input is-large'
           .field
             .control
-              = form.password_field :password, autocomplete: "current-password", placeholder: 'password', class: 'input is-large'
+              = form.password_field :password, autocomplete: "current-password", placeholder: t(".password"), class: 'input is-large'
           = form.submit t(".sign_in"), class: 'button is-block is-info is-large is-fullwidth'
       = render "sessions/shared/links"

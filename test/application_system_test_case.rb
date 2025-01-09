@@ -1,6 +1,13 @@
 require "test_helper"
+require_relative "helpers/capybara_sign_in_helper"
+
+Capybara.configure do |config|
+  config.server = :falcon_http
+end
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+  include CapybaraSignInHelper
+
   headless = ENV.fetch("HEADLESS", true) != "false"
 
   driven_by(:selenium, using: :chrome, screen_size: [1400, 1400]) do |driver|
