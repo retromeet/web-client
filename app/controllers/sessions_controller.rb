@@ -10,16 +10,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    authorization_token = RetroMeetClient.login(login: params[:email],
-                                                password: params[:password])
-    # user_agent: request.user_agent,
-    # ip_address: request.remote_ip)
+    authorization_token = retro_meet_client.login(login: params[:email],
+                                                  password: params[:password])
+    flash[:success] = t(".logged_in")
     start_new_session_for authorization_token
     redirect_to after_authentication_url
-  rescue RetroMeetClient::BadPasswordError
+  rescue RetroMeet::Core::BadPasswordError
     flash.now[:error] = t(".bad_password")
     render "new", status: :unauthorized
-  rescue RetroMeetClient::BadLoginError
+  rescue RetroMeet::Core::BadLoginError
     flash.now[:error] = t(".bad_login")
     render "new", status: :unauthorized
   end
@@ -36,23 +35,29 @@ class SessionsController < ApplicationController
       flash.now[:error] = t(".birth_date_is_under_age")
       render "new_account", status: :bad_request
     elsif params[:password] == params[:password_confirmation]
-      authorization_token = RetroMeetClient.create_account(login: params[:email], password: params[:password], birth_date: @birth_date)
+      authorization_token = retro_meet_client.create_account(login: params[:email],
+                                                             password: params[:password],
+                                                             birth_date: @birth_date)
+      flash[:success] = t(".account_created")
       start_new_session_for authorization_token
       redirect_to after_authentication_url
     else
       flash.now[:error] = t(".passwords_do_not_match")
       render "new_account", status: :bad_request
     end
-  rescue RetroMeetClient::TooYoungError
+  rescue RetroMeet::Core::TooYoungError
     flash.now[:error] = t(".birth_date_is_under_age")
     render "new_account", status: :bad_request
   rescue Date::Error
     flash.now[:error] = t(".date_invalid")
     render "new_account", status: :unprocessable_content
-  rescue RetroMeetClient::BadPasswordError
+  rescue RetroMeet::Core::BadLoginError
+    flash.now[:error] = t(".login_must_be_email")
+    render "new_account", status: :unprocessable_content
+  rescue RetroMeet::Core::BadPasswordError
     flash.now[:error] = t(".password_invalid")
     render "new_account", status: :unprocessable_content
-  rescue RetroMeetClient::LoginAlreadyTakenError
+  rescue RetroMeet::Core::LoginAlreadyTakenError
     flash.now[:error] = t(".login_is_already_in_use")
     render "new_account", status: :unprocessable_content
   end
