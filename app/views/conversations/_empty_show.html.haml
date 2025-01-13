@@ -1,8 +1,5 @@
 %section.hero.is-medium.is-bold
   .hero-body
     .container.has-text-centered
-      %h1.title
-        Currently you have no messages.
-      %h2.subtitle
-        You have no messages at this moment. You will see your chats here once you do. Check out the
-        %a{href: listing_path} folks around you!
+      %h1.title= t(".no_messages_title")
+      %h2.subtitle= t(".no_messages_subtitle_html", listing_path:)

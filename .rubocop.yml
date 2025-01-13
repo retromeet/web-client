@@ -58,6 +58,7 @@ Style/DocumentationMethod:
   RequireForNonPublicMethods: true
   Exclude:
     - "app/controllers/**/*_controller.rb"
+    - "test/**/*_test.rb"
 
 Style/Documentation:
   Exclude:
