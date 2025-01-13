@@ -48,9 +48,10 @@ group :development, :test do
   gem "pronto-rubocop", require: false # pronto-rubocop extends pronto for rubocop
 
   gem "rubocop", require: false # A static code analyzer and formatter
+  gem "rubocop-capybara", require: false
   gem "rubocop-performance", require: false # A rubocop extension with performance suggestions
+  gem "rubocop-rails", require: false # A rubocop extension with performance suggestions
   gem "rubocop-rake", require: false # A rubocop extension for Rakefiles
-  gem "rubocop-sequel", require: false # A rubocop extension for Sequel
   gem "rubocop-yard", require: false # A rubocop extension for yard documentation
 end
 

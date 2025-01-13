@@ -1,7 +1,8 @@
 require:
+  - rubocop-capybara
   - rubocop-performance
   - rubocop-rake
-  - rubocop-sequel
+  - rubocop-rails
   - rubocop-yard
 
 AllCops:
