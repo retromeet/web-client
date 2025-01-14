@@ -262,7 +262,7 @@ GEM
       rexml (>= 3.2.5, < 4.0)
       rugged (>= 0.23.0, < 2.0)
       thor (>= 0.20.3, < 2.0)
-    pronto-rubocop (0.11.5)
+    pronto-rubocop (0.11.6)
       pronto (~> 0.11.0)
       rubocop (>= 0.63.1, < 2.0)
     propshaft (1.1.0)
