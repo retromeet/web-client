@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+content-type: application/json
+vary: accept-encoding
+
+[{"latitude":41.3936885,"longitude":2.1636552,"display_name":"Eixample, Barcelona, Catalonia, Spain","osm_id":3008998,"osm_type":"borough"}]

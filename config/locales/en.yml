@@ -266,6 +266,7 @@ en:
         no_results_help: "Double check the location name for mispellings or try being less specific."
         multiple_results_help: "Your search returned multiple results. Select the one you expected or try searching again being more specific."
       edit:
+        change_your_location: "Change your location"
         search: "Search"
         full_address: "Camden Town, London, England"
         address_help: "When selecting your location, the more specific you are the best the results will be. Prefer writing something like 'Camdem Town, London, England' to just 'Camdem Town'.
@@ -274,6 +275,7 @@ en:
       select_languages_you_speak: Select any languages you speak
       select_your_genders: Select one or more genders that define you
       select_your_orientations: Select one or more orientations that define you
+      hide_age: Hide age
     show:
       edit_profile: Edit profile
   pronouns: Pronouns
@@ -304,19 +306,25 @@ en:
     umbanda: Umbanda
   sessions:
     create:
+      logged_in: Logged in successfully!
       bad_login: Incorrect login. It should be the e-mail you used to sign-in.
       bad_password: Incorrect password.
     create_account:
+      account_created: Your account was created!
       login_is_already_in_use: The login is already in use. Maybe try signing in instead?
+      login_must_be_email: Your login must be a valid email.
       passwords_do_not_match: Passwords do not match
       birth_date_is_under_age: You need to be at least 18 years old to join RetroMeet.
       date_invalid: Your birth date need to be a valid date.
       password_invalid: The password does not meet minimum requirements.
     new:
+      email_placeholder: email@example.com
+      password: Password
       login_to_proceed: Login to proceed
       remember_me: Remember me
       sign_in: Sign in
     new_account:
+      email_placeholder: email@example.com
       password: Password
       password_confirmation: Password confirmation
       birth_date_required_help: We need your birth date to guarantee that you are allowed access to our service, according to our terms of service. You **CANNOT** change this at a later time, but you can make your age private if you wish.
@@ -353,6 +361,16 @@ en:
   conversations:
     messages:
       show:
+        chat_with: "Chat with %{display_name}"
+        see_profile: "See %{display_name}'s profile"
         send: "Send"
+        there_are_no_messages_yet: "There are no messages in this conversation at the moment."
+        things_to_keep_in_mind: "Here are some things to keep in mind when starting a conversation:"
+        starting_to_talk_tips:
+          - "Be respectful. Treat this conversation as you would getting to know the friend of a friend."
+          - "Consent is key."
       create:
         send: "Send"
+    empty_show:
+      no_messages_title: Currently you have no messages.
+      no_messages_subtitle_html: You have no messages at this moment. You will see your chats here once you do. Check out the <a href="%{listing_path}">folks around you!</a>

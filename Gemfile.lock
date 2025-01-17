@@ -96,6 +96,9 @@ GEM
     async-pool (0.10.2)
       async (>= 1.25)
       traces
+    async-rest (0.19.1)
+      async-http (~> 0.42)
+      protocol-http (~> 0.45)
     async-service (0.12.0)
       async
       async-container (~> 0.16)
@@ -147,6 +150,10 @@ GEM
       protocol-http (~> 0.31)
       protocol-rack (~> 0.7)
       samovar (~> 2.3)
+    falcon-capybara (1.6.1)
+      capybara (~> 3.37)
+      falcon
+      selenium-webdriver
     faraday (2.12.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -419,12 +426,13 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  async-http
+  async-rest
   bootsnap
   brakeman
   capybara
   debug
   falcon
+  falcon-capybara
   haml
   haml-rails (~> 2.0)
   importmap-rails

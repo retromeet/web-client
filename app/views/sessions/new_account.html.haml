@@ -6,7 +6,7 @@
         = form_with(url: create_account_session_path) do |f|
           .field
             .control
-              = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'email@example.com', class: 'input is-large', value: @email
+              = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: t(".email_placeholder"), class: 'input is-large', value: @email
           .field
             .control
               = f.password_field :password, autocomplete: "new-password", placeholder: t(".password"), class: 'input is-large'

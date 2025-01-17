@@ -2,6 +2,7 @@
 
 class ListingController < ApplicationController
   def show
-    @profiles = retro_meet_client.nearby
+    @profiles = retro_meet_client.listing
+                                 .nearby
   end
 end

@@ -48,11 +48,14 @@
   width: 300px;
 }
 
+.chat .media {
+ margin-bottom: 5px;
+}
+
 .chat .media+.media {
  border-top: none;
  padding-top: 0px;
  margin-top: 0px;
- margin-bottom: 5px;
 }
 
 .image.is-256x256 {

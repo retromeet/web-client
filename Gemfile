@@ -32,7 +32,7 @@ gem "stimulus-rails"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem "async-http" # Used for making requests towards retromeet-core
+gem "async-rest" # Used for making requests towards retromeet-core
 gem "multipart-post" # Used for sending files over to retromeet-core
 
 group :development, :test do
@@ -63,6 +63,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
+  gem "falcon-capybara"
   gem "selenium-webdriver"
 
   gem "mocha" # adds mocking capabilities
