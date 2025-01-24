@@ -57,8 +57,7 @@ module RetroMeet
 
       # @return [String]
       def user_agent
-        # TODO: (renatolond, 2024-10-31): properly build the address of the server
-        @user_agent ||= "RetroMeet-web/#{Version} (async-http #{Async::HTTP::VERSION}; +http#{false ? "s" : ""}://localhost:3000/)"
+        @user_agent ||= "RetroMeet-web/#{Version} (async-rest #{Async::REST::VERSION}; +http#{Rails.configuration.x.use_https ? "s" : ""}://#{Rails.configuration.x.retromeet_web_host}/)"
       end
     end
   end
