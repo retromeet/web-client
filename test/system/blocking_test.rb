@@ -17,7 +17,7 @@ class BlockingTest < ApplicationSystemTestCase
     assert_link("Block their profile")
 
     stub_request(:post, "http://localhost:3000/api/profile/#{other_profile_uuid}/block").to_return(webfixture_json_file("block_good"))
-    stub_request(:get, "http://localhost:3000/api/listing").to_return(webfixture_json_file("listing"))
+    stub_request(:get, "http://localhost:3000/api/listing?max_distance=#{RetroMeet::Core::Listing::DEFAULT_MAX_DISTANCE_IN_KM}").to_return(webfixture_json_file("listing"))
 
     click_on "Block their profile"
 
@@ -38,7 +38,7 @@ class BlockingTest < ApplicationSystemTestCase
     assert_link("Unblock their profile")
 
     stub_request(:delete, "http://localhost:3000/api/profile/#{other_profile_uuid}/block").to_return(webfixture_json_file("unblock_good"))
-    stub_request(:get, "http://localhost:3000/api/listing").to_return(webfixture_json_file("listing"))
+    stub_request(:get, "http://localhost:3000/api/listing?max_distance=#{RetroMeet::Core::Listing::DEFAULT_MAX_DISTANCE_IN_KM}").to_return(webfixture_json_file("listing"))
     stub_request(:get, "http://localhost:3000/api/profile/#{other_profile_uuid}/complete").to_return(webfixture_json_file("other_profile_complete_good"))
 
     click_on "Unblock their profile"

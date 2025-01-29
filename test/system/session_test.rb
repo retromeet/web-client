@@ -12,7 +12,7 @@ class SessionTest < ApplicationSystemTestCase
   test "Logging in to a good account" do
     stub_request(:post, "http://localhost:3000/login").to_return(webfixture_json_file("login_ok"))
     stub_request(:get, "http://localhost:3000/api/profile/info").to_return(webfixture_json_file("profile_info_good"))
-    stub_request(:get, "http://localhost:3000/api/listing").to_return(webfixture_json_file("listing"))
+    stub_request(:get, "http://localhost:3000/api/listing?max_distance=#{RetroMeet::Core::Listing::DEFAULT_MAX_DISTANCE_IN_KM}").to_return(webfixture_json_file("listing"))
 
     visit new_session_url
 

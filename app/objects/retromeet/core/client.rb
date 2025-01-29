@@ -34,8 +34,8 @@ module RetroMeet
       end
 
       # @return [RetroMeet::Client::Listing]
-      def listing
-        Listing.new(with(path: "/api/listing"))
+      def listing(max_distance: Listing::DEFAULT_MAX_DISTANCE_IN_KM)
+        Listing.new(with(path: "/api/listing", parameters: { max_distance: }))
       end
 
       # @return [RetroMeet::Client::Conversation]
