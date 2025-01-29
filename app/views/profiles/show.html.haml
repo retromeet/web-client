@@ -14,11 +14,11 @@
             %a{href: edit_profile_location_path}= I18n.t("edit_profile_location")
         - if controller.action_name == 'view'
           .is-pulled-right
-            %a.button.is-info{href: conversations_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("send_a_message")
-            - if @profile_info.is_blocked
-              %a.button.is-info{href: profile_block_path(other_profile: @profile_info.id), data: { turbo_method: :delete }}= I18n.t("unblock_profile")
-            - else
-              %a.button.is-info{href: profile_block_index_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("block_profile")
+            .field.is-grouped
+              %a.button.is-info{href: conversations_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("send_a_message")
+              %a.button.is-info{"data-controller": "bulma-modal-opener", "data-action": "bulma-modal-opener#open", "data-bulma-modal-opener-bulma-modal-outlet": ".root"}
+                %span.icon
+                  %i.fa.fa-ellipsis-v
         .title.is-4
           #{@profile_info.display_name}
         .subtitle.is-6
@@ -92,3 +92,14 @@
         %h1 About me
         :markdown
           #{@profile_info.about_me}
+
+- if controller.action_name == 'view'
+  .modal.root{"data-controller": "bulma-modal", "data-bulma-modal-target": "root"}
+    .modal-background
+    .modal-content
+      .box.is-flex.is-justify-content-center
+        - if @profile_info.is_blocked
+          %a.button.is-info{href: profile_block_path(other_profile: @profile_info.id), data: { turbo_method: :delete }}= I18n.t("unblock_profile")
+        - else
+          %a.button.is-info{href: profile_block_index_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("block_profile")
+    %button.modal-close.is-large{"data-action": "bulma-modal#close"}
