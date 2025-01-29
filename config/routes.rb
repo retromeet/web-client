@@ -47,5 +47,7 @@ Rails.application.routes.draw do
     resource :messages, only: %i[show create], controller: "conversations/messages"
   end
 
+  resource :reports, only: %i[create]
+
   get "/images/*rest", to: "image_proxy#image"
 end

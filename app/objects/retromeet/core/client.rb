@@ -81,6 +81,11 @@ module RetroMeet
       def profile_picture
         ProfilePicture.new(with(path: "/api/profile/picture"))
       end
+
+      # @return [Reports]
+      def reports
+        Reports.new(with(path: "/api/reports"))
+      end
     end
   end
 end
