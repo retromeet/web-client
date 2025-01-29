@@ -374,3 +374,8 @@ en:
     empty_show:
       no_messages_title: Currently you have no messages.
       no_messages_subtitle_html: You have no messages at this moment. You will see your chats here once you do. Check out the <a href="%{listing_path}">folks around you!</a>
+
+  listing:
+    empty_show:
+      no_profiles_title: Currently we have no profiles to show you.
+      no_profiles_subtitle_html: No one is close to you. If you haven't yet, <a href="%{edit_profile_location_path}">set your location</a>. We hope you will have some folks to look at soon 🤞

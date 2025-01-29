@@ -1,0 +1,34 @@
+- @profiles.each do |profile|
+  .card
+    .card-content
+      .media
+        .media-left
+          %figure.image.is-48x48
+            %img{src: profile.picture}
+        .media-content
+          .title.is-4 #{profile.display_name}
+          .subtitle.is-6
+            #{profile.age ? I18n.t("age", count: profile.age) : I18n.t("unknown_age")}
+            &centerdot;
+            #{profile.location} (#{profile.distance})
+          .content
+            .fixed-grid
+              .grid
+                - if profile.genders
+                  .cell
+                    #{I18n.t("gender")}
+                    - profile.genders.each do |gender|
+                      %span.tag.is-primary #{I18n.t(gender, scope: :genders)}
+                - if profile.orientations
+                  .cell
+                    #{I18n.t("orientation")}
+                    - profile.orientations.each do |orientation|
+                      %span.tag.is-info #{I18n.t(orientation, scope: :orientations)}
+                - if profile.relationship_status
+                  .cell
+                    #{I18n.t("relationship_status")}
+                    %span.tag.is-primary #{I18n.t(profile.relationship_status, scope: :relationship_status_list)}
+      .content!
+        lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    %footer.card-footer
+      %a.button.card-footer-item{href: view_profile_path(profile.id)}= I18n.t("go_to_profile")
