@@ -16,7 +16,7 @@
           .is-pulled-right
             .field
               %a.button.is-info{href: conversations_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("send_a_message")
-              %a.button.is-info{"data-controller": "bulma-modal-opener", "data-action": "bulma-modal-opener#open", "data-bulma-modal-opener-bulma-modal-outlet": ".root"}
+              %button.button.is-info{"data-controller": "bulma-modal-opener", "data-action": "bulma-modal-opener#open", "data-bulma-modal-opener-bulma-modal-outlet": ".root", "aria-label": t(".more_actions")}
                 %span.icon
                   %i.fa.fa-ellipsis-v
         .title.is-4
