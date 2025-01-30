@@ -1,0 +1,12 @@
+= turbo_stream.replace "profile_modal_content" do
+  .modal.is-active.root#profile_modal_content{"data-controller": "bulma-modal", "data-bulma-modal-target": "root"}
+    .modal-background
+    .modal-content#profile_modal_content{"data-bulma-modal-target": "content"}
+      .box
+        .fixed-grid.has-1-cols
+          .grid.has-text-centered
+            .cell=t(".choose_report_reason")
+            - I18n.t("reports.types").each_key do |k|
+              .cell
+                %a.button.is-info{href: reports_path(target_profile_id: params["target_profile_id"], type: k), data: { turbo_stream: true }}= t(k, scope: "reports.types")
+    %button.modal-close.is-large{"data-action": "bulma-modal#close"}

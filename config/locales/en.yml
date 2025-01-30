@@ -279,6 +279,7 @@ en:
     show:
       edit_profile: Edit profile
       more_actions: More actions
+      report_profile: Report their profile
   pronouns: Pronouns
   relationship_status: Relationship status
   relationship_status_list:
@@ -380,3 +381,16 @@ en:
     empty_show:
       no_profiles_title: Currently we have no profiles to show you.
       no_profiles_subtitle_html: No one is close to you. If you haven't yet, <a href="%{edit_profile_location_path}">set your location</a>. We hope you will have some folks to look at soon 🤞
+  reports:
+    types:
+      spam: Spam
+      intimidation: This person is intimidating me
+      harassment: This person is harassing me
+      minors: The person seems to be a minor
+      against_rules: This person is violating RetroMeet's rules
+      illegal: This person is doing something illegal
+      other: Other
+    wizard_step1:
+      choose_report_reason: "Why are you reporting this profile?"
+    create:
+      report_created: "Your report was created and will be checked by someone in our staff!"
