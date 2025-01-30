@@ -2,7 +2,7 @@
   .card-content
     .media
       .media-left
-        %figure.image.is-128x128
+        %figure.image.is-128x128.is-64x64-mobile
           %img{src: @profile_info.picture}
         - if controller.action_name == 'show'
           %a{href: edit_profile_picture_path}= I18n.t("edit_profile_picture")
@@ -14,7 +14,7 @@
             %a{href: edit_profile_location_path}= I18n.t("edit_profile_location")
         - if controller.action_name == 'view'
           .is-pulled-right
-            .field.is-grouped
+            .field
               %a.button.is-info{href: conversations_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("send_a_message")
               %a.button.is-info{"data-controller": "bulma-modal-opener", "data-action": "bulma-modal-opener#open", "data-bulma-modal-opener-bulma-modal-outlet": ".root"}
                 %span.icon
@@ -26,7 +26,7 @@
           &centerdot;
           #{@profile_info.location}
         .content
-          .fixed-grid
+          .fixed-grid.has-1-cols-mobile
             .grid
               - if @profile_info.genders
                 .cell
@@ -57,7 +57,7 @@
     .content
       %hr
       %h1 Some extra details:
-      .fixed-grid.has-3-cols
+      .fixed-grid.has-1-cols-mobile.has-3-cols
         .grid
           - if @profile_info.tobacco
             .cell
