@@ -96,7 +96,7 @@
 - if controller.action_name == 'view'
   .modal.root{"data-controller": "bulma-modal", "data-bulma-modal-target": "root"}
     .modal-background
-    .modal-content
+    .modal-content{"data-bulma-modal-target": "content"}
       .box.is-flex.is-justify-content-center
         - if @profile_info.is_blocked
           %a.button.is-info{href: profile_block_path(other_profile: @profile_info.id), data: { turbo_method: :delete }}= I18n.t("unblock_profile")
