@@ -402,3 +402,5 @@ en:
       continue: "Continue"
     create:
       report_created: "Your report was created and will be checked by someone in our staff!"
+
+  close_window: "Close window"

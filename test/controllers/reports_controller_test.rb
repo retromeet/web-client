@@ -13,7 +13,8 @@ class ReportsControllerTest < ActionDispatch::IntegrationTest
       .with(body: "{\"target_profile_id\":\"11111111-1111-7111-b111-111111111111\",\"type\":\"spam\",\"comment\":\"They are trying to sell me some soap!?\",\"message_ids\":null}")
       .to_return(webfixture_json_file("reports_good"))
 
-    post reports_url, params: { target_profile_id: "11111111-1111-7111-b111-111111111111", type: "spam", comment: "They are trying to sell me some soap!?" }
+    post reports_url, params: { target_profile_id: "11111111-1111-7111-b111-111111111111", type: "spam", comment: "They are trying to sell me some soap!?" }, xhr: true
+
     assert_response :success
   end
 end
