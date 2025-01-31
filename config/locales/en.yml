@@ -391,6 +391,14 @@ en:
       illegal: This person is doing something illegal
       other: Other
     wizard_step1:
+      found_messages_send_them: "We found some messages to you from the profile you are reporting. Would you like to include any of them in the report?"
+      messages_subtitle: "We will only see the messages you include."
+      continue: "Continue"
+    wizard_step2:
       choose_report_reason: "Why are you reporting this profile?"
+    wizard_step3:
+      comment_the_report_optional: "Why you are making this report? (this step is optional)"
+      comment_subtitle: "You can add some comments about why you are making this report to help our staff, this might help us take action faster or help us understand something about this profile."
+      continue: "Continue"
     create:
       report_created: "Your report was created and will be checked by someone in our staff!"

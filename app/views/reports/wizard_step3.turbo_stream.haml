@@ -2,19 +2,19 @@
   .modal.is-active.removable.root#report_modal_content{"data-controller": "bulma-modal", "data-bulma-modal-target": "root", "data-bulma-modal-bulma-modal-outlet": ".modal.is-active"}
     .modal-background
     .modal-content{"data-bulma-modal-target": "content"}
-      = form_with(url: wizard_step2_reports_path, method: :get, data: { turbo_stream: true }) do |f|
+      = form_with(url: reports_path, method: :post) do |f|
         = f.hidden_field :target_profile_id, class: "input", value: params[:target_profile_id]
+        - params[:messages]&.each do |message|
+          = f.hidden_field :"messages[]", class: "input", value: message
+        = f.hidden_field :type, class: "input", value: params[:type]
         .box
           .fixed-grid.has-1-cols
             .grid.has-text-centered
               .cell
                 .content
-                  %h3= t(".found_messages_send_them")
-                  %h4= t(".messages_subtitle")
-              - @messages.each do |message|
-                .cell
-                  %label.checkbox
-                    = checkbox_tag :"messages[]", message.id, id: "message_#{message.id}"
-                    = message.content
+                  %h3= t(".comment_the_report_optional")
+                  %h4= t(".comment_subtitle")
+              .cell
+                = f.text_area :comment, class: "textarea"
               .cell
                 = f.submit t(".continue"), class: "button is-info"

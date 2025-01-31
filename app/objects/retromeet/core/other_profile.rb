@@ -9,6 +9,11 @@ module RetroMeet
         OtherProfileInfo.new(@resource.with(path: "#{resource.path}/complete"))
       end
 
+      # @return (see Conversation#value)
+      def conversation
+        Conversation.new(@resource.with(path: "#{resource.path}/conversation")).value
+      end
+
       # @return [Boolean]
       def block!
         OtherProfile.post(@resource.with(path: "#{resource.path}/block"))
