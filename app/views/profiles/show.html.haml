@@ -1,5 +1,10 @@
 .card
   .card-content
+    - if controller.action_name == 'show'
+      .box.has-text-centered
+        %a{href: edit_profile_path}= I18n.t("edit_profile")
+        |
+        %a{href: edit_profile_location_path}= I18n.t("edit_profile_location")
     .media
       .media-left
         %figure.image.is-128x128.is-64x64-mobile
@@ -7,53 +12,41 @@
         - if controller.action_name == 'show'
           %a{href: edit_profile_picture_path}= I18n.t("edit_profile_picture")
       .media-content
-        - if controller.action_name == 'show'
-          .is-pulled-right
-            %a{href: edit_profile_path}= I18n.t("edit_profile")
-            |
-            %a{href: edit_profile_location_path}= I18n.t("edit_profile_location")
-        - if controller.action_name == 'view'
-          .is-pulled-right
-            .field
-              %a.button.is-info{href: conversations_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("send_a_message")
-              %button.button.is-info{"data-controller": "bulma-modal-opener", "data-action": "bulma-modal-opener#open", "data-bulma-modal-opener-bulma-modal-outlet": ".root", "aria-label": t(".more_actions")}
-                %span.icon
-                  %i.fa.fa-ellipsis-v
         .title.is-4
           #{@profile_info.display_name}
         .subtitle.is-6
           #{@profile_info.age ? I18n.t("age", count: @profile_info.age) : I18n.t("hidden_age")}
           &centerdot;
           #{@profile_info.location}
-        .content
-          .fixed-grid.has-1-cols-mobile
-            .grid
-              - if @profile_info.genders
-                .cell
-                  #{I18n.t("gender")}
-                  - @profile_info.genders.each do |gender|
-                    %span.tag.is-primary #{I18n.t(gender, scope: :genders)}
-              - if @profile_info.orientations
-                .cell
-                  #{I18n.t("orientation")}
-                  - @profile_info.orientations.each do |orientation|
-                    %span.tag.is-info #{I18n.t(orientation, scope: :orientations)}
-              .cell
-                #{I18n.t("pronouns")}
-                %span.tag.is-light.is-info #{@profile_info.pronouns}
-              - if @profile_info.relationship_status
-                .cell
-                  #{I18n.t("relationship_status")}
-                  %span.tag.is-primary #{I18n.t(@profile_info.relationship_status, scope: :relationship_status_list)}
-              - if @profile_info.relationship_type
-                .cell
-                  #{I18n.t("relationship_type")}
-                  %span.tag.is-info #{I18n.t(@profile_info.relationship_type, scope: :relationship_type_list)}
-              - if @profile_info.languages
-                .cell
-                  #{I18n.t("languages_known")}
-                  - @profile_info.languages.each do |language|
-                    %span.tag.is-info.is-light #{I18n.t(language, scope: :languages_known_list)}
+    .content
+      .fixed-grid.has-1-cols-mobile
+        .grid
+          - if @profile_info.genders
+            .cell
+              #{I18n.t("gender")}
+              - @profile_info.genders.each do |gender|
+                %span.tag.is-primary #{I18n.t(gender, scope: :genders)}
+          - if @profile_info.orientations
+            .cell
+              #{I18n.t("orientation")}
+              - @profile_info.orientations.each do |orientation|
+                %span.tag.is-info #{I18n.t(orientation, scope: :orientations)}
+          .cell
+            #{I18n.t("pronouns")}
+            %span.tag.is-light.is-info #{@profile_info.pronouns}
+          - if @profile_info.relationship_status
+            .cell
+              #{I18n.t("relationship_status")}
+              %span.tag.is-primary #{I18n.t(@profile_info.relationship_status, scope: :relationship_status_list)}
+          - if @profile_info.relationship_type
+            .cell
+              #{I18n.t("relationship_type")}
+              %span.tag.is-info #{I18n.t(@profile_info.relationship_type, scope: :relationship_type_list)}
+          - if @profile_info.languages
+            .cell
+              #{I18n.t("languages_known")}
+              - @profile_info.languages.each do |language|
+                %span.tag.is-info.is-light #{I18n.t(language, scope: :languages_known_list)}
     .content
       %hr
       %h1 Some extra details:
@@ -92,6 +85,13 @@
         %h1 About me
         :markdown
           #{@profile_info.about_me}
+      - if controller.action_name == 'view'
+        .box.has-text-centered
+          .field
+            %a.button.is-info{href: conversations_path(other_profile: @profile_info.id), data: { turbo_method: :post }}= I18n.t("send_a_message")
+            %button.button.is-info{"data-controller": "bulma-modal-opener", "data-action": "bulma-modal-opener#open", "data-bulma-modal-opener-bulma-modal-outlet": ".root", "aria-label": t(".more_actions")}
+              %span.icon
+                %i.fa.fa-ellipsis-v
 
 - if controller.action_name == 'view'
   .modal.root#profile_modal_content{"data-controller": "bulma-modal", "data-bulma-modal-target": "root"}
