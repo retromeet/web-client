@@ -1,0 +1,5 @@
+HTTP/1.1 404 Not Found
+content-type: application/json
+vary: accept-encoding
+
+{"error":"NOT_FOUND","details":[{"fields":[],"errors":["conversation not found"]}]}

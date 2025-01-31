@@ -278,6 +278,8 @@ en:
       hide_age: Hide age
     show:
       edit_profile: Edit profile
+      more_actions: More actions
+      report_profile: Report their profile
   pronouns: Pronouns
   relationship_status: Relationship status
   relationship_status_list:
@@ -374,3 +376,31 @@ en:
     empty_show:
       no_messages_title: Currently you have no messages.
       no_messages_subtitle_html: You have no messages at this moment. You will see your chats here once you do. Check out the <a href="%{listing_path}">folks around you!</a>
+
+  listing:
+    empty_show:
+      no_profiles_title: Currently we have no profiles to show you.
+      no_profiles_subtitle_html: No one is close to you. If you haven't yet, <a href="%{edit_profile_location_path}">set your location</a>. We hope you will have some folks to look at soon 🤞
+  reports:
+    types:
+      spam: Spam
+      intimidation: This person is intimidating me
+      harassment: This person is harassing me
+      minors: The person seems to be a minor
+      against_rules: This person is violating RetroMeet's rules
+      illegal: This person is doing something illegal
+      other: Other
+    wizard_step1:
+      found_messages_send_them: "We found some messages to you from the profile you are reporting. Would you like to include any of them in the report?"
+      messages_subtitle: "We will only see the messages you include."
+      continue: "Continue"
+    wizard_step2:
+      choose_report_reason: "Why are you reporting this profile?"
+    wizard_step3:
+      comment_the_report_optional: "Why you are making this report? (this step is optional)"
+      comment_subtitle: "You can add some comments about why you are making this report to help our staff, this might help us take action faster or help us understand something about this profile."
+      continue: "Continue"
+    create:
+      report_created: "Your report was created and will be checked by someone in our staff!"
+
+  close_window: "Close window"

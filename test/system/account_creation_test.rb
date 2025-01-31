@@ -14,7 +14,7 @@ class AccountCreationTest < ApplicationSystemTestCase
   test "creating a new account" do
     stub_request(:post, "http://localhost:3000/create-account").to_return(webfixture_json_file("create_account_ok"))
     stub_request(:get, "http://localhost:3000/api/profile/info").to_return(webfixture_json_file("profile_info_good"))
-    stub_request(:get, "http://localhost:3000/api/listing").to_return(webfixture_json_file("listing"))
+    stub_request(:get, "http://localhost:3000/api/listing?max_distance=#{RetroMeet::Core::Listing::DEFAULT_MAX_DISTANCE_IN_KM}").to_return(webfixture_json_file("listing"))
 
     visit new_account_session_url
 

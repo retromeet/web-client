@@ -1,0 +1,14 @@
+= turbo_stream.after "profile_modal_content" do
+  .modal.is-active.removable.root#report_modal_content{"data-controller": "bulma-modal", "data-bulma-modal-target": "root", "data-bulma-modal-bulma-modal-outlet": ".modal.is-active"}
+    .modal-background
+    .modal-content{"data-bulma-modal-target": "content"}
+      .box
+        .fixed-grid.has-1-cols
+          .grid.has-text-centered
+            .cell
+              .content
+                %h3= t(".choose_report_reason")
+            - I18n.t("reports.types").each_key do |k|
+              .cell
+                %a.button.is-info{href: wizard_step3_reports_path(target_profile_id: params[:target_profile_id], messages: params[:messages], type: k), data: { turbo_stream: true }}= t(k, scope: "reports.types")
+    %button.modal-close.is-large{"data-action": "bulma-modal#remove", "aria-label": t("close_window")}

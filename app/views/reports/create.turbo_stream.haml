@@ -1,0 +1,6 @@
+= turbo_stream.replace "report_modal_content" do
+  .modal.is-active.root#report_modal_content{"data-controller": "bulma-modal", "data-bulma-modal-target": "root"}
+    .modal-background
+    .modal-content{"data-bulma-modal-target": "content"}
+      .box.has-text-centered= t(".report_created")
+    %button.modal-close.is-large{"data-action": "bulma-modal#remove", "aria-label": t("close_window")}

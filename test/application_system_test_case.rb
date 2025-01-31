@@ -3,6 +3,7 @@ require_relative "helpers/capybara_sign_in_helper"
 
 Capybara.configure do |config|
   config.server = :falcon_http
+  config.enable_aria_label = true
 end
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase

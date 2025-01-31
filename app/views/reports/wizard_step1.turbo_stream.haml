@@ -1,0 +1,21 @@
+= turbo_stream.after "profile_modal_content" do
+  .modal.is-active.removable.root#report_modal_content{"data-controller": "bulma-modal", "data-bulma-modal-target": "root", "data-bulma-modal-bulma-modal-outlet": ".modal.is-active"}
+    .modal-background
+    .modal-content{"data-bulma-modal-target": "content"}
+      = form_with(url: wizard_step2_reports_path, method: :get, data: { turbo_stream: true }) do |f|
+        = f.hidden_field :target_profile_id, class: "input", value: params[:target_profile_id]
+        .box
+          .fixed-grid.has-1-cols
+            .grid.has-text-centered
+              .cell
+                .content
+                  %h3= t(".found_messages_send_them")
+                  %h4= t(".messages_subtitle")
+              - @messages.each do |message|
+                .cell
+                  %label.checkbox
+                    = checkbox_tag :"messages[]", message.id, id: "message_#{message.id}"
+                    = message.content
+              .cell
+                = f.submit t(".continue"), class: "button is-info"
+    %button.modal-close.is-large{"data-action": "bulma-modal#remove", "aria-label": t("close_window")}

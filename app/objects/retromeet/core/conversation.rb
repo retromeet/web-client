@@ -4,7 +4,7 @@ module RetroMeet
   module Core
     # Sub-class for a single Conversation
     class Conversation < Representation
-      # @return [Array<::Conversation>] A list of conversations
+      # @return [::Conversation] A single conversation
       def value
         ::Conversation.new(**super.slice(*::Conversation.members))
       end

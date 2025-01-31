@@ -2,4 +2,4 @@ HTTP/1.1 200 OK
 content-type: application/json
 vary: accept-encoding
 
-{"messages":[{"id":18,"sender":"11111111-1111-7111-b111-111111111110","sent_at":"2025-01-14T11:34:18+01:00","content":"Hello, friend!"}]}
+{"messages":[{"id":17,"sender":"11111111-1111-7111-b111-111111111111","sent_at":"2025-01-13T11:34:18+01:00","content":"Hey, bud!"}, {"id":18,"sender":"11111111-1111-7111-b111-111111111110","sent_at":"2025-01-14T11:34:18+01:00","content":"Hello, friend!"}]}

@@ -105,6 +105,6 @@ class ProfileTest < ApplicationSystemTestCase
     visit view_profile_url(other_profile_uuid)
 
     assert_link("Send them a message")
-    assert_link("Block their profile")
+    assert_button("More actions")
   end
 end
