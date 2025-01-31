@@ -14,6 +14,13 @@ export default class extends Controller {
     this.modalClose()
   }
   clickOutside(event) {
-    this.modalClose()
+    if (this.rootTarget.classList.contains("removable")) {
+      this.remove();
+    } else {
+      this.modalClose();
+    }
+  }
+  remove() {
+    this.rootTarget.remove()
   }
 }
