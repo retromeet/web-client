@@ -57,7 +57,7 @@ module RetroMeet
 
       # @return [String]
       def user_agent
-        @user_agent ||= "RetroMeet-web/#{Version} (async-rest #{Async::REST::VERSION}; +http#{Rails.configuration.x.use_https ? "s" : ""}://#{Rails.configuration.x.retromeet_web_host}/)"
+        @user_agent ||= "RetroMeet-web/#{Version} (async-rest #{Async::REST::VERSION}; +#{Url})"
       end
     end
   end

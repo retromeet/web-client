@@ -25,12 +25,12 @@ Rails.application.routes.draw do
   resource :listing, only: %i[show], controller: "listing"
 
   resource :session, only: [], path: :auth do
-    get :new, path: :sign_in, as: :new
-    post :create, path: :sign_in
     get :new_account, path: :sign_up
     post :create_account, path: :sign_up
     delete :destroy, path: :sign_out, as: "destroy"
   end
+
+  get "auth/callback", to: "sessions#create"
 
   resource :profile, except: %i[new create destroy] do
     resource :location, only: %i[edit update], controller: "profiles/locations" do
