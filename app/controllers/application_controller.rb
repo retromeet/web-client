@@ -25,8 +25,8 @@ class ApplicationController < ActionController::Base
       @basic_profile_info ||= retro_meet_client.basic_profile_info.value if authenticated?
     rescue RetroMeet::Core::UnauthorizedError
       flash.now[:warn] = t("forced_log_out")
-      terminate_session
-      redirect_to :root
+      # terminate_session
+      # redirect_to :root
     end
 
     # @return [nil,RetroMeet::Core::Client]
