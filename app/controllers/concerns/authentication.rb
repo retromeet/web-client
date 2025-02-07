@@ -32,7 +32,7 @@ module Authentication
     # Sets the current session from the cookie
     def resume_session
       Current.session ||= if find_session_by_cookie
-        at = OAuth2::AccessToken.from_hash(OmniAuth::Strategies::RetroMeetCore.client, find_session_by_cookie&.except!("expires"))
+        at = RetroMeet::AccessToken.from_hash(OmniAuth::Strategies::RetroMeetCore.client, find_session_by_cookie&.except!("expires"))
         at = at.refresh({ headers: { "Content-Type" => "application/json", "Accept" => "application/json" } }) if at.expired?
         cookies.signed[:session] = { value: at.to_hash, httponly: true, same_site: :strict }
         at
@@ -69,7 +69,7 @@ module Authentication
     # Logs out from retro meet core and removes the session cookie
     # @return [void]
     def terminate_session
-      # retro_meet_client.logout
-      # cookies.delete(:session)
+      Current.session.revoke!
+      cookies.delete(:session)
     end
 end
