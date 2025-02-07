@@ -4,19 +4,12 @@
 module CapybaraSignInHelper
   # Signs a user in. Will stub a few requests, but will unstub them before the test is over.
   def sign_in
-    stubs = []
-    stubs << stub_request(:post, "http://localhost:3000/login").to_return(webfixture_json_file("login_ok"))
-    stubs << stub_request(:get, "http://localhost:3000/api/profile/info").to_return(webfixture_json_file("profile_info_good"))
-    stubs << stub_request(:get, "http://localhost:3000/api/listing?max_distance=#{RetroMeet::Core::Listing::DEFAULT_MAX_DISTANCE_IN_KM}").to_return(webfixture_json_file("listing"))
+    visit root_url
+    cookie_jar = ActionDispatch::Request.new(
+      Rails.application.env_config.deep_dup
+    ).cookie_jar
 
-    visit new_session_url
-
-    fill_in("email", with: "blob@blob.com")
-    fill_in("Password", with: "my-password")
-
-    click_button("Sign in") # rubocop:disable Capybara/ClickLinkOrButtonStyle
-    assert_text("Logged in successfully")
-
-    stubs.each { |s| remove_request_stub(s) }
+    cookie_jar.signed[:session] = { value: { "token" => "TOKEN", "refresh_token" => "REFRESH_TOKEN", "expires_at" => 1.hour.from_now, "expires" => true }, same_site: :strict }
+    page.driver.browser.manage.add_cookie(name: "session", value: Rack::Utils.escape(cookie_jar[:session]))
   end
 end
