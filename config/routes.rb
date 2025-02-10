@@ -25,8 +25,6 @@ Rails.application.routes.draw do
   resource :listing, only: %i[show], controller: "listing"
 
   resource :session, only: [], path: :auth do
-    get :new_account, path: :sign_up
-    post :create_account, path: :sign_up
     delete :destroy, path: :sign_out, as: "destroy"
   end
 

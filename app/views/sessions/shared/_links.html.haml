@@ -1,5 +1,0 @@
-%p.has-text-grey
-  != [ |
-       action_name != "new" ? link_to(t("sessions.sign_in"), new_session_path) : nil, |
-       action_name != "new_account" ? link_to(t("sessions.sign_up"), new_account_session_path) : nil |
-     ].compact.join("&nbsp;·&nbsp;") |
