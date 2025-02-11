@@ -13,7 +13,7 @@ module RetroMeet
         body: params.to_json,
         headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
       }
-      post("/revoke", request_opts)
+      post("/oauth/revoke", request_opts)
     end
   end
 end

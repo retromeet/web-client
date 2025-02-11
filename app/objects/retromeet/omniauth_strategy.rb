@@ -7,7 +7,7 @@ module RetroMeet
     CLIENT_ID = ""
     CLIENT_SECRET = ""
     # This constant needs to use only symbols or the .client call might fail. Beware!
-    CLIENT_OPTIONS = { site: Rails.configuration.x.retromeet_core_host, authorize_url: "/authorize", token_url: "/token", auth_scheme: :request_body }.freeze
+    CLIENT_OPTIONS = { site: Rails.configuration.x.retromeet_core_host, authorize_url: "/oauth/authorize", token_url: "/oauth/token", auth_scheme: :request_body }.freeze
 
     option :name, "retromeet_core"
     option :client_id, CLIENT_ID
