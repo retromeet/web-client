@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def create_client
-      RetroMeet::Core.connect(request.ip, authorization_header: Current.session&.headers&.[]("Authorization")) do |client|
+      RetroMeet::Core.connect(user_ip: request.ip, authorization_header: Current.session&.headers&.[]("Authorization")) do |client|
         @retro_meet_client = client
         yield
         @retro_meet_client = nil
