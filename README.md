@@ -1,4 +1,6 @@
-# RetroMeet
+<h1><picture>
+  <img alt="RetroMeet Web logo" src="https://github.com/retromeet/web-client/blob/main/app/assets/images/retromeet_long.png?raw=true">
+</picture></h1>
 
 RetroMeet is a free, open-source dating and friend-finding application. RetroMeet has a philosophy of giving more space to give more information about yourself and to help find people who share common interests with you. The whole philosophy of RetroMeet is described in [the philosophy](https://github.com/renatolond/retromeet-core/blob/main/docs/the_philosophy.md).
 
