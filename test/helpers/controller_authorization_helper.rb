@@ -4,6 +4,6 @@
 module ControllerAuthorizationHelper
   # Sets the authorization token using a fake test token
   def set_authorization_headers
-    signed_cookies[:authorization] = "test-token"
+    signed_cookies[:session] = { value: { "token" => "TOKEN", "refresh_token" => "REFRESH_TOKEN", "expires_at" => 1.hour.from_now, "expires" => true } }
   end
 end

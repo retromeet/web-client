@@ -4,11 +4,10 @@
       .pb-5.is-flex.is-flex-wrap-wrap.is-justify-content-between.is-align-items-center
         .mr-auto.mb-2
           %a.is-inline-block{:href => "#"}
-            %img.image{:alt => "", :src => "https://bulma.io/images/bulma-logo.png", :width => "96px"}/
+            = image_tag("retromeet_128.png", class: %i[image is-96x96])
         %div
           %ul.is-flex.is-flex-wrap-wrap.is-align-items-center.is-justify-content-center
             %li.mr-4= link_to t("about"), about_path
-            %li.mr-4= link_to t("terms"), terms_path
             %li.mr-4= link_to t("privacy_policy"), privacy_path
     %hr
     .container
@@ -16,7 +15,7 @@
         %p
           Powered by
           %a{href: "https://join.retromeet.social", target: "_blank"}
-            RetroMeet #{RetroMeet::Version}
+            RetroMeetWeb #{RetroMeet::Version}
           &#169; 2024, RetroMeet contributors.
         .py-2.is-hidden-tablet
         .ml-auto

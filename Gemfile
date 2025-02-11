@@ -35,6 +35,10 @@ gem "bootsnap", require: false
 gem "async-rest" # Used for making requests towards retromeet-core
 gem "multipart-post" # Used for sending files over to retromeet-core
 
+gem "omniauth"
+gem "omniauth-oauth2"
+gem "omniauth-rails_csrf_protection"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"

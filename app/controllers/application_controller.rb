@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def create_client
-      RetroMeet::Core.connect(request.ip, authorization_header: Current.session) do |client|
+      RetroMeet::Core.connect(request.ip, authorization_header: Current.session&.headers&.[]("Authorization")) do |client|
         @retro_meet_client = client
         yield
         @retro_meet_client = nil
@@ -25,8 +25,8 @@ class ApplicationController < ActionController::Base
       @basic_profile_info ||= retro_meet_client.basic_profile_info.value if authenticated?
     rescue RetroMeet::Core::UnauthorizedError
       flash.now[:warn] = t("forced_log_out")
-      terminate_session
-      redirect_to :root
+      # terminate_session
+      # redirect_to :root
     end
 
     # @return [nil,RetroMeet::Core::Client]

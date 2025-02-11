@@ -12,8 +12,8 @@ module Authentication
 
   class_methods do
     # Method that allows some method in a controller to be unauthenticated. Should really only be used for root and sign_in/register actions
-    def allow_unauthenticated_access(**options)
-      skip_before_action :require_authentication, **options
+    def allow_unauthenticated_access(**)
+      skip_before_action :require_authentication, **
     end
   end
 
@@ -31,21 +31,32 @@ module Authentication
 
     # Sets the current session from the cookie
     def resume_session
-      Current.session ||= find_session_by_cookie
+      Current.session ||= if find_session_by_cookie
+        begin
+          at = RetroMeet::AccessToken.from_hash(RetroMeet::OmniauthStrategy.client, find_session_by_cookie&.except!("expires"))
+          at = at.refresh({ headers: { "Content-Type" => "application/json", "Accept" => "application/json" } }) if at.expired?
+          cookies.signed[:session] = { value: at.to_hash, httponly: true, same_site: :strict }
+          at
+        rescue OAuth2::Error => e
+          raise unless e.code == "invalid_grant"
+
+          cookies.delete(:session)
+          nil
+        end
+      end
     end
 
-    # (renatolond, 2024-11-08) should it be returning something more than the authorization cookie?
-    #
-    # @return [String]
+    # @return [Hash]
     def find_session_by_cookie
-      cookies.signed[:authorization]
+      cookies.signed[:session]
     end
 
     # Sets the return url and redirects to login page
     # @return [void]
     def request_authentication
       session[:return_to_after_authenticating] = request.url
-      redirect_to new_session_path
+      flash.now[:error] = I18n.t("you_need_to_be_logged_in")
+      redirect_to root_url
     end
 
     # Will either return the url the user was at before, or the root
@@ -57,15 +68,15 @@ module Authentication
 
     # Sets the cookie for the new session
     # @return [void]
-    def start_new_session_for(authorization_token)
+    def start_new_session_for(token_credentials)
       # TODO: check expiration time
-      cookies.signed[:authorization] = { value: authorization_token, httponly: true, same_site: :strict }
+      cookies.signed[:session] = { value: token_credentials, httponly: true, same_site: :strict }
     end
 
     # Logs out from retro meet core and removes the session cookie
     # @return [void]
     def terminate_session
-      retro_meet_client.logout
-      cookies.delete(:authorization)
+      Current.session.revoke!
+      cookies.delete(:session)
     end
 end

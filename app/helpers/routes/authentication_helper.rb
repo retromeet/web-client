@@ -14,7 +14,7 @@ module Routes
       # Adds a constraint to check if the user is logged-in
       def authenticated?(&)
         constraint = lambda do |request|
-          request.cookie_jar.signed[:authorization].present?
+          request.cookie_jar.signed[:session].present?
         end
 
         constraints(constraint, &)

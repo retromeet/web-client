@@ -7,20 +7,13 @@ class SessionsController < ApplicationController
 
   def new
     redirect_to :root if Current.session
+    redirect_to retro_meet_client.authorize_url(state: form_authenticity_token)
   end
 
   def create
-    authorization_token = retro_meet_client.login(login: params[:email],
-                                                  password: params[:password])
     flash[:success] = t(".logged_in")
-    start_new_session_for authorization_token
+    start_new_session_for request.env["omniauth.auth"]["credentials"]
     redirect_to after_authentication_url
-  rescue RetroMeet::Core::BadPasswordError
-    flash.now[:error] = t(".bad_password")
-    render "new", status: :unauthorized
-  rescue RetroMeet::Core::BadLoginError
-    flash.now[:error] = t(".bad_login")
-    render "new", status: :unauthorized
   end
 
   def new_account
@@ -64,6 +57,6 @@ class SessionsController < ApplicationController
 
   def destroy
     terminate_session
-    redirect_to new_session_path
+    redirect_to root_path
   end
 end

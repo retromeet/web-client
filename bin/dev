@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-exec "./bin/rails", "server", "-p", "3001", *ARGV
+exec "./bin/rails", "server", "-p", ENV.fetch("PORT", "3001"), *ARGV
