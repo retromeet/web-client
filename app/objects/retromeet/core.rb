@@ -24,9 +24,10 @@ module RetroMeet
       # @param user_ip [String] The ip of the user that started the request. Will be forwarded to core
       # @param authorization_header [String,nil] If present, will return an authenticated client
       # @yieldreturn [Client]
-      def connect(user_ip, authorization_header: nil)
+      def connect(user_ip: nil, authorization_header: nil)
         client = Client.open
-                       .with(headers: BASE_HEADERS.merge("X-Forwarded-For": user_ip))
+
+        client = client.with(headers: BASE_HEADERS.merge("X-Forwarded-For": user_ip)) if user_ip
 
         client = client.authenticated(authorization_header) if authorization_header
 

@@ -4,14 +4,12 @@ module RetroMeet
   # Class that defines the strategy for the RetroMeet core oauth
   class OmniauthStrategy < OmniAuth::Strategies::OAuth2
     # TODO: come from env vars, pre-registered
-    CLIENT_ID = ""
-    CLIENT_SECRET = ""
     # This constant needs to use only symbols or the .client call might fail. Beware!
     CLIENT_OPTIONS = { site: Rails.configuration.x.retromeet_core_host, authorize_url: "/oauth/authorize", token_url: "/oauth/token", auth_scheme: :request_body }.freeze
 
     option :name, "retromeet_core"
-    option :client_id, CLIENT_ID
-    option :client_secret, CLIENT_SECRET
+    option :client_id, Rails.configuration.x.oauth_client_id
+    option :client_secret, Rails.configuration.x.oauth_client_secret
     option :client_options, CLIENT_OPTIONS
     option :authorize_params, { response_mode: :query }
 
@@ -32,7 +30,7 @@ module RetroMeet
     class << self
       # @return [::Oauth2::Client] A client that uses the same options as this strategy
       def client
-        ::OAuth2::Client.new(CLIENT_ID, CLIENT_SECRET, CLIENT_OPTIONS)
+        ::OAuth2::Client.new(Rails.configuration.x.oauth_client_id, Rails.configuration.x.oauth_client_secret, CLIENT_OPTIONS)
       end
     end
   end
