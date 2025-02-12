@@ -86,6 +86,11 @@ module RetroMeet
       def reports
         Reports.new(with(path: "/api/reports"))
       end
+
+      # @return [OAuth2]
+      def oauth2
+        OAuth2.new(with(path: "/oauth"))
+      end
     end
   end
 end

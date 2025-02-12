@@ -39,9 +39,14 @@ gem "omniauth"
 gem "omniauth-oauth2"
 gem "omniauth-rails_csrf_protection"
 
+# CLI-related gems
+gem "pastel" # Used for coloring the output of rake tasks
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
+
+  gem "dotenv-rails" # Used to load variables from .env files
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false

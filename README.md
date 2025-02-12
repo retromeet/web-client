@@ -22,4 +22,14 @@ There's a [pronto](https://github.com/prontolabs/pronto) github action running o
 
 RetroMeet Web will connect to a RetroMeet instance. If you want to run everything locally, follow the steps to run [retromeet-core](https://github.com/renatolond/retromeet-core/tree/main?tab=readme-ov-file#development), and then you should be able to connect to it normally.
 
-You can install dependencies with `./bin/setup` and then you can run the server with `./bin/dev`.
+You can install dependencies with `./bin/setup`.
+
+You need to generate the OAuth2 variables to access RetroMeet core. To do so, you need to run:
+
+```sh
+bundle exec rails oauth_client:create
+```
+
+If this is successful, it will output the three variables you need to add to your `.env.development`
+
+You can then run the server with `./bin/dev`.
