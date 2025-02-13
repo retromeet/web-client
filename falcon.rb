@@ -5,11 +5,17 @@ require "falcon/environment/rack"
 require "falcon/environment/supervisor"
 
 hostname = File.basename(__dir__)
+port = ENV["PORT"] || 3001
 service hostname do
   include Falcon::Environment::Rack
 
   # Insert an in-memory cache in front of the application (using async-http-cache).
   cache true
+
+  # TODO: Does it make sense to allow falcon http2 directly? Currently reverse proxy needed.
+  endpoint do
+    Async::HTTP::Endpoint.parse("http://localhost:#{port}").with(protocol: Async::HTTP::Protocol::HTTP11)
+  end
 end
 
 service "supervisor" do
