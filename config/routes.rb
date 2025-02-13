@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     get "wizard_step2"
     get "wizard_step3"
   end
+  resources :notification, only: %i[index]
 
   get "/images/*rest", to: "image_proxy#image"
 end

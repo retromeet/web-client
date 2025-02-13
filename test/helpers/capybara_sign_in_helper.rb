@@ -9,7 +9,7 @@ module CapybaraSignInHelper
       Rails.application.env_config.deep_dup
     ).cookie_jar
 
-    cookie_jar.signed[:session] = { value: { "token" => "TOKEN", "refresh_token" => "REFRESH_TOKEN", "expires_at" => 1.hour.from_now, "expires" => true }, same_site: :strict }
+    cookie_jar.signed[:session] = { value: { "token" => "TOKEN", "refresh_token" => "REFRESH_TOKEN", "expires_at" => 1.hour.from_now, "expires" => true } }
     page.driver.browser.manage.add_cookie(name: "session", value: Rack::Utils.escape(cookie_jar[:session]))
   end
 end
