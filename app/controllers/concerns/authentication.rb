@@ -35,7 +35,7 @@ module Authentication
         begin
           at = RetroMeet::AccessToken.from_hash(RetroMeet::OmniauthStrategy.client, find_session_by_cookie&.except!("expires"))
           at = at.refresh({ headers: { "Content-Type" => "application/json", "Accept" => "application/json" } }) if at.expired?
-          cookies.signed[:session] = { value: at.to_hash, httponly: true, same_site: :strict }
+          cookies.signed[:session] = { value: at.to_hash, httponly: true }
           at
         rescue OAuth2::Error => e
           raise unless e.code == "invalid_grant"
@@ -70,7 +70,7 @@ module Authentication
     # @return [void]
     def start_new_session_for(token_credentials)
       # TODO: check expiration time
-      cookies.signed[:session] = { value: token_credentials, httponly: true, same_site: :strict }
+      cookies.signed[:session] = { value: token_credentials, httponly: true }
     end
 
     # Logs out from retro meet core and removes the session cookie
