@@ -18,7 +18,7 @@ We use Rubocop for linting. To make your experience easier, it's recommended tha
 
 There's a [pronto](https://github.com/prontolabs/pronto) github action running on each pull request that will comment on any forgotten lint issues. You can also get ahead of it by enabling [lefthook](https://github.com/evilmartians/lefthook), you can do it by running locally: `lefthook install --force`. The `--force` is optional, but will override any other hooks you have in this repo only, so it should be safe to run. This will run pronto any time you try to push a branch.
 
-### Setup
+### Development Setup
 
 RetroMeet Web will connect to a RetroMeet instance. If you want to run everything locally, follow the steps to run [retromeet-core](https://github.com/renatolond/retromeet-core/tree/main?tab=readme-ov-file#development), and then you should be able to connect to it normally.
 
@@ -33,3 +33,48 @@ bundle exec rails oauth_client:create
 If this is successful, it will output the three variables you need to add to your `.env.development`
 
 You can then run the server with `./bin/dev`.
+
+### Deploying to production
+
+RetroMeet web needs a core API running to work. You can deploy one by checking [the instructions](https://github.com/retromeet/core/blob/main/README.md#deploying-to-production).
+
+You need to have Ruby installed, the same version as the one in [.ruby-version](./.ruby-version). We recommend using one of the [ruby manager](https://www.ruby-lang.org/en/documentation/installation/#managers) for that to make it easier to switch between versions if needed.
+
+You want to configure bundler to ignore test and development dependencies:
+
+```sh
+bundle config set without 'development test'
+```
+
+Then, install dependencies with:
+
+```sh
+bundle install -j$(getconf _NPROCESSORS_ONLN)
+```
+
+Run the following command to generate a `secret_key_base`:
+
+```sh
+bundle exec rails secret
+```
+
+Then, copy the output of that (a long string) as the `SECRET_KEY_BASE` in your `.env.production` file.
+
+You need to also set `LOCAL_DOMAIN` and `RETROMEET_CORE_HOST` on that file.
+
+Finally, run the following command:
+
+
+```sh
+bundle exec rails oauth_client:create
+```
+
+If this is successful, it will output the three variables you need to add to your `.env.production`
+
+Configure a reverse proxy and run the server with:
+
+```sh
+bundle exec falcon host falcon_host.rb
+```
+
+TODO: come back and explain nginx configuration, add systemctl unit etc
