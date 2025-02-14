@@ -21,6 +21,13 @@
   --bulma-navbar-background-color: #E7D8B7;
 }
 
+figure.image img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .hero-body .subtitle {
   padding-top: 2rem;
   line-height: 1.5;

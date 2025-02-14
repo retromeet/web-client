@@ -8,7 +8,7 @@
     .media
       .media-left
         %figure.image.is-128x128.is-64x64-mobile
-          %img{src: @profile_info.picture}
+          %img.is-rounded{src: @profile_info.picture}
         - if controller.action_name == 'show'
           %a{href: edit_profile_picture_path}= I18n.t("edit_profile_picture")
       .media-content
