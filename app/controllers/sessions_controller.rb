@@ -2,7 +2,7 @@
 
 class SessionsController < ApplicationController
   layout "no_columns"
-  allow_unauthenticated_access only: %i[new create new_account create_account]
+  allow_unauthenticated_access only: %i[new create]
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_session_url, alert: "Try again later." }
 
   def new
