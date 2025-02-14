@@ -275,6 +275,7 @@ en:
       select_languages_you_speak: Select any languages you speak
       select_your_genders: Select one or more genders that define you
       select_your_orientations: Select one or more orientations that define you
+      select_your_pronouns: By which pronouns you prefer to be referred to?
       hide_age: Hide age
     show:
       edit_profile: Edit profile
@@ -309,29 +310,6 @@ en:
   sessions:
     create:
       logged_in: Logged in successfully!
-      bad_login: Incorrect login. It should be the e-mail you used to sign-in.
-      bad_password: Incorrect password.
-    create_account:
-      account_created: Your account was created!
-      login_is_already_in_use: The login is already in use. Maybe try signing in instead?
-      login_must_be_email: Your login must be a valid email.
-      passwords_do_not_match: Passwords do not match
-      birth_date_is_under_age: You need to be at least 18 years old to join RetroMeet.
-      date_invalid: Your birth date need to be a valid date.
-      password_invalid: The password does not meet minimum requirements.
-    new:
-      email_placeholder: email@example.com
-      password: Password
-      login_to_proceed: Login to proceed
-      remember_me: Remember me
-      sign_in: Sign in
-    new_account:
-      email_placeholder: email@example.com
-      password: Password
-      password_confirmation: Password confirmation
-      birth_date_required_help: We need your birth date to guarantee that you are allowed access to our service, according to our terms of service. You **CANNOT** change this at a later time, but you can make your age private if you wish.
-    sign_in: Sign in
-    sign_up: Sign up
   sign_in: Sign in
   sign_out: Sign out
   tobacco: Tobacco

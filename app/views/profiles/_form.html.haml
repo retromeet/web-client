@@ -20,12 +20,14 @@
               = form.label :hide_age, class: "label checkbox" do
                 = form.checkbox :hide_age, class: "checkbox"
                 = t(".hide_age")
-          .content
-            .fixed-grid
-              .grid
-                .cell
-                  #{I18n.t("pronouns")}
-                  %span.tag.is-light.is-info #{@profile_info.pronouns}
+      .field.is-horizontal
+        .field-label.is-normal
+          = form.label :display_name, class: "label"
+        .field-body
+          .field
+            .control
+              .is-fullwidth
+                = form.text_field :display_name, class: "input", placeholder: t(".display_name")
       .field.is-horizontal
         .field-label.is-normal
           = form.label :relationship_status, class: "label"
@@ -51,6 +53,14 @@
               .control
                 .select.is-fullwidth.is-multiple
                   = form.select :genders, gender_options, {}, {multiple: true, data: { "search-target": :genderSelect, controller: :profile, placeholder: t(".select_your_genders") } }
+      .field.is-horizontal
+        .field-label.is-normal
+          = form.label :pronouns, class: "label"
+        .field-body
+          .field
+            .control
+              .is-fullwidth
+                = form.text_field :pronouns, class: "input", placeholder: t(".select_your_pronouns")
       .content
         .field.is-horizontal
           .field-label.is-normal
@@ -142,5 +152,6 @@
         .field
           = form.label :about_me, class: "label"
           = form.text_area :about_me, class: "textarea"
-        .actions
-          = form.submit class: "button is-info is-pulled-right"
+        .field.is-grouped.is-grouped-right
+          .control
+            = form.submit class: "button is-info"
