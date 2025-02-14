@@ -31,9 +31,10 @@
               #{I18n.t("orientation")}
               - @profile_info.orientations.each do |orientation|
                 %span.tag.is-info #{I18n.t(orientation, scope: :orientations)}
-          .cell
-            #{I18n.t("pronouns")}
-            %span.tag.is-light.is-info #{@profile_info.pronouns}
+          - if @profile_info.pronouns
+            .cell
+              #{I18n.t("pronouns")}
+              %span.tag.is-light.is-info #{@profile_info.pronouns}
           - if @profile_info.relationship_status
             .cell
               #{I18n.t("relationship_status")}
