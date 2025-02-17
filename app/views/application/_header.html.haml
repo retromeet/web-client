@@ -16,4 +16,4 @@
         - if @basic_profile_info.present?
           .navbar-item= link_to t("sign_out"), destroy_session_url, data: { "turbo-method": :delete }
         - else
-          .navbar-item= button_to t("sign_in"), "/auth/retromeet_core", data: { turbo: false }, method: :post
+          .navbar-item= button_to t("sign_in"), "/auth/retromeet_core", data: { turbo: false }, method: :post, class: "button is-link is-inverted"
