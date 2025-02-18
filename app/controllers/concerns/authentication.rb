@@ -6,6 +6,7 @@ module Authentication
   extend ActiveSupport::Concern
 
   included do
+    before_action :resume_session
     before_action :require_authentication
     helper_method :authenticated?
   end
@@ -26,7 +27,7 @@ module Authentication
 
     # Makes sure that if there's no session, it will require auth
     def require_authentication
-      resume_session || request_authentication
+      Current.session || request_authentication
     end
 
     # Sets the current session from the cookie
