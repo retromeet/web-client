@@ -72,15 +72,15 @@
           - if @profile_info.kids || @profile_info.wants_kids
             .cell
               #{I18n.t("kids")}
-              %span.tag.is-primary.is-light #{[I18n.t(@profile_info.kids, this: I18n.t("kids").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_kids, scope: :wants)].compact.to_sentence}
+              %span.tag.is-primary.is-light #{[I18n.t(@profile_info.kids, this: I18n.t("kids").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_kids, scope: :wants, default: nil)].compact.to_sentence}
           - if @profile_info.pets || @profile_info.wants_pets
             .cell
               #{I18n.t("pets")}
-              %span.tag.is-primary.is-light #{[I18n.t(@profile_info.pets, this: I18n.t("pets").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_pets, scope: :wants)].compact.to_sentence}
+              %span.tag.is-primary.is-light #{[I18n.t(@profile_info.pets, this: I18n.t("pets").downcase, scope: :have_or_have_nots), I18n.t(@profile_info.wants_pets, scope: :wants, default: nil)].compact.to_sentence}
           - if @profile_info.religion
             .cell
               #{I18n.t("religion")}
-              %span.tag.is-primary.is-light #{[I18n.t(@profile_info.religion, scope: :religion_list), I18n.t(@profile_info.religion_importance, scope: :importance)].compact.to_sentence}
+              %span.tag.is-primary.is-light #{[I18n.t(@profile_info.religion, scope: :religion_list), I18n.t(@profile_info.religion_importance, scope: :importance, default: nil)].compact.to_sentence}
       - if @profile_info.about_me
         %hr
         %h1 About me
