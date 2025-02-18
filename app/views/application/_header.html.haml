@@ -1,19 +1,18 @@
 %nav.navbar
-  .container
-    .navbar-brand
-      .navbar-item= link_to image_tag("retromeet_long.png", class: %i[image]), root_url
-      %a.navbar-burger{role: "button", aria: { label: "menu", expanded: false}, "data-target": "navbarMenu" }
-        %span{"aria-hidden": true}
-        %span{"aria-hidden": true}
-        %span{"aria-hidden": true}
-        %span{"aria-hidden": true}
-    #navbarMenu.navbar-menu
-      .navbar-end
-        - if @basic_profile_info.present?
-          .navbar-item= t("welcome", display_name: @basic_profile_info.display_name)
-          .navbar-item= link_to t("my_profile"), profile_path
-          .navbar-item Settings
-        - if @basic_profile_info.present?
-          .navbar-item= link_to t("sign_out"), destroy_session_url, data: { "turbo-method": :delete }
-        - else
-          .navbar-item= button_to t("sign_in"), "/auth/retromeet_core", data: { turbo: false }, method: :post, class: "button is-link is-inverted"
+  .navbar-brand
+    .navbar-item= link_to image_tag("retromeet_long.png", class: %i[image]), root_url
+    %a.navbar-burger{role: "button", aria: { label: "menu", expanded: false}, "data-target": "navbarMenu" }
+      %span{"aria-hidden": true}
+      %span{"aria-hidden": true}
+      %span{"aria-hidden": true}
+      %span{"aria-hidden": true}
+  #navbarMenu.navbar-menu
+    .navbar-end
+      - if @basic_profile_info.present?
+        .navbar-item= t("welcome", display_name: @basic_profile_info.display_name)
+        .navbar-item= link_to t("my_profile"), profile_path
+        .navbar-item Settings
+      - if @basic_profile_info.present?
+        .navbar-item= link_to t("sign_out"), destroy_session_url, data: { "turbo-method": :delete }
+      - else
+        .navbar-item= button_to t("sign_in"), "/auth/retromeet_core", data: { turbo: false }, method: :post

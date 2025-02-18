@@ -17,9 +17,6 @@
   --bulma-body-background-color: #E7D8B7;
   --bulma-skeleton-background: #E7D8B7;
 }
-.navbar {
-  --bulma-navbar-background-color: #E7D8B7;
-}
 
 figure.image img {
   width: auto;
