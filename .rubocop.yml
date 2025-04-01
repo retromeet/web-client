@@ -1,10 +1,10 @@
 plugins:
+  - rubocop-capybara
   - rubocop-rails
   - rubocop-rake
   - rubocop-performance
 
 require:
-  - rubocop-capybara
   - rubocop-yard
 
 AllCops:
