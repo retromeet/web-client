@@ -3,8 +3,6 @@ plugins:
   - rubocop-rails
   - rubocop-rake
   - rubocop-performance
-
-require:
   - rubocop-yard
 
 AllCops:
