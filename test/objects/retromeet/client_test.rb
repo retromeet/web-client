@@ -106,7 +106,7 @@ class RetroMeetClientTest < ActiveSupport::TestCase
   test "calls the profile info method with a good authorization header and gets the profile info" do
     authorization_header = "good_header"
     user_ip = "10.1.2.3"
-    stub_request(:get, "http://localhost:3000/api/profile/info").with(headers: { "Content-Type" => "application/json", "Authorization" => authorization_header, "X-Forwarded-For": user_ip })
+    stub_request(:get, "http://localhost:3000/api/profile/info").with(headers: { "Authorization" => authorization_header, "X-Forwarded-For": user_ip })
                                                                 .to_return(webfixture_json_file("profile_info_good"))
     expected_response = BasicProfileInfo.new("0192e1e9-9e3a-7156-91c3-6e38966821eb", "bob tables", DateTime.new(2024, 9, 23, 15, 45, 24, "+02:00"))
     RetroMeet::Core.connect(user_ip:, authorization_header:) do |client|
