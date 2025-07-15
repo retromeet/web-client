@@ -2,6 +2,5 @@ HTTP/1.1 401 Unauthorized
 authorization: eyJhbGciOiJIUzI1NiJ9.e30.7k-y2TFPta8oQgUMssFXSdaS8XEogkVljv1-STmDjgk
 content-type: application/json
 vary: accept-encoding
-content-length: 85
 
 {"field-error":["login","no matching login"],"error":"There was an error logging in"}

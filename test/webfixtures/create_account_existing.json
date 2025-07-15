@@ -2,6 +2,5 @@ HTTP/1.1 422 Unprocessable Entity
 authorization: eyJhbGciOiJIUzI1NiJ9.e30.7k-y2TFPta8oQgUMssFXSdaS8XEogkVljv1-STmDjgk
 content-type: application/json
 vary: accept-encoding
-content-length: 128
 
 {"field-error":["login","invalid login, already an account with this login"],"error":"There was an error creating your account"}

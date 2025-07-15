@@ -19,7 +19,7 @@ module RetroMeet
     TooYoungError = Class.new(Error)
 
     class << self
-      BASE_HEADERS = { "Content-Type" => "application/json", "User-Agent": RetroMeet::Version.user_agent }.freeze
+      BASE_HEADERS = { "User-Agent": RetroMeet::Version.user_agent }.freeze
 
       # @param user_ip [String] The ip of the user that started the request. Will be forwarded to core
       # @param authorization_header [String,nil] If present, will return an authenticated client
