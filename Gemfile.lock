@@ -309,11 +309,10 @@ GEM
     pronto-rubocop (0.11.6)
       pronto (~> 0.11.0)
       rubocop (>= 0.63.1, < 2.0)
-    propshaft (1.1.0)
+    propshaft (1.2.1)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
-      railties (>= 7.0.0)
     protocol-hpack (1.5.1)
     protocol-http (0.51.0)
     protocol-http1 (0.34.1)
