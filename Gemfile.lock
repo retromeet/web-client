@@ -216,7 +216,7 @@ GEM
     kramdown (2.5.1)
       rexml (>= 3.3.9)
     language_server-protocol (3.17.0.5)
-    lefthook (1.12.3)
+    lefthook (1.12.4)
     lint_roller (1.1.0)
     localhost (1.6.0)
     logger (1.7.0)
@@ -586,7 +586,7 @@ CHECKSUMS
   jwt (2.10.1) sha256=e6424ae1d813f63e761a04d6284e10e7ec531d6f701917fadcd0d9b2deaf1cc5
   kramdown (2.5.1) sha256=87bbb6abd9d3cebe4fc1f33e367c392b4500e6f8fa19dd61c0972cf4afe7368c
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
-  lefthook (1.12.3) sha256=e89c29a62727585e659ff612dc1a050dbf2e9bdfaf4a137a60511c57eea90a5f
+  lefthook (1.12.4) sha256=cb5140d52b86f579569674f9cbb36861ac7bf84cdbf33ae927941257792591b5
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   localhost (1.6.0) sha256=d99697c6344283d39d8ae8572c22fcd556c95347a30d361594c36846b112fa17
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
