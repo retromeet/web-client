@@ -13,7 +13,7 @@ gem "propshaft"
 gem "falcon"
 
 gem "haml" # Allows to use haml template files instead of erb
-gem "haml-rails", "~> 2.0"
+gem "haml-rails", "~> 3.0"
 
 gem "kramdown" # Allows for markdown in haml files, look more into this
 
