@@ -26,11 +26,12 @@ class ReportTest < ApplicationSystemTestCase
     click_on "Spam"
 
     assert_text "Why you are making this report? (this step is optional)"
-    click_on "Continue"
 
     stub_request(:post, "http://localhost:3000/api/reports")
       .with(body: "{\"target_profile_id\":\"11111111-1111-7111-b111-111111111111\",\"type\":\"spam\",\"comment\":\"\",\"message_ids\":null}")
       .to_return(status: 204)
+
+    click_on "Continue"
 
     assert_text "Your report was created and will be checked by someone in our staff!"
     click_on "Close window"
@@ -63,11 +64,11 @@ class ReportTest < ApplicationSystemTestCase
     assert_text "Why you are making this report? (this step is optional)"
     fill_in "comment", with: "They are trying to sell me soap?!"
 
-    click_on "Continue"
-
     stub_request(:post, "http://localhost:3000/api/reports")
       .with(body: "{\"target_profile_id\":\"11111111-1111-7111-b111-111111111111\",\"type\":\"spam\",\"comment\":\"They are trying to sell me soap?!\",\"message_ids\":null}")
       .to_return(status: 204)
+
+    click_on "Continue"
 
     assert_text "Your report was created and will be checked by someone in our staff!"
     click_on "Close window"
@@ -107,11 +108,11 @@ class ReportTest < ApplicationSystemTestCase
     assert_text "Why you are making this report? (this step is optional)"
     fill_in "comment", with: "They are trying to sell me soap?!"
 
-    click_on "Continue"
-
     stub_request(:post, "http://localhost:3000/api/reports")
       .with(body: "{\"target_profile_id\":\"11111111-1111-7111-b111-111111111111\",\"type\":\"spam\",\"comment\":\"They are trying to sell me soap?!\",\"message_ids\":[\"17\"]}")
       .to_return(status: 204)
+
+    click_on "Continue"
 
     assert_text "Your report was created and will be checked by someone in our staff!"
     click_on "Close window"
