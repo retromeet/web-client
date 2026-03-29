@@ -9,6 +9,10 @@ end
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include CapybaraSignInHelper
 
+  setup do
+    Capybara.current_session.reset!
+  end
+
   headless = ENV.fetch("HEADLESS", true) != "false"
 
   driven_by(:selenium, using: :chrome, screen_size: [1400, 1400]) do |driver|
