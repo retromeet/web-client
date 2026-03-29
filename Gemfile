@@ -12,6 +12,8 @@ gem "propshaft"
 # Use the Falcon web server [https://socketry.github.io/falcon/guides/rails-integration/index.html]
 gem "falcon"
 
+gem "async-service-supervisor" # Used by falcon.rb to start and supervise falcon
+
 gem "haml" # Allows to use haml template files instead of erb
 gem "haml-rails", "~> 3.0"
 
